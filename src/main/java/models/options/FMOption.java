@@ -19,7 +19,7 @@ public class FMOption implements IOption {
 	@Override
 	public void desactivate() {
 		// TODO Implémenter la désactivation de l'option
-		System.out.println("Options : Option FM dÃ©sactivée");
+		System.out.println("Options : Option FM désactivée");
 	}
 	
 }

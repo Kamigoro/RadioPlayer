@@ -9,7 +9,7 @@ public class IdleState implements IRadioState{
 	
 	public IdleState(RadioPlayer radio) {
 		this.radio = radio;
-		System.out.println("STATES : La radio est en Ã©tat IDLE");
+		System.out.println("STATES : La radio est en état IDLE");
 	}
 	
 	@Override
