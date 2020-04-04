@@ -30,13 +30,11 @@ public class AUXPlayer extends Thread implements IPlayer, IUserPlayer {
 	private long currentSongTimer;
 	
 	public AUXPlayer() {
+		this.start();
 		listSongs();
 		currentSongIndex = 0;
-	}
-	
-	@Override
-	public void run() {
-		 
+		isPlaying = true;
+		playMusic();
 	}
 	
 	@Override
@@ -72,6 +70,7 @@ public class AUXPlayer extends Thread implements IPlayer, IUserPlayer {
 	
 	@Override
 	public void leftClick() {
+		clip.stop();
 		playPreviousSong();
 	}
 
@@ -87,6 +86,7 @@ public class AUXPlayer extends Thread implements IPlayer, IUserPlayer {
 
 	@Override
 	public void rightClick() {
+		clip.stop();
 		playNextSong();
 	}
 
@@ -106,7 +106,7 @@ public class AUXPlayer extends Thread implements IPlayer, IUserPlayer {
 	public void playNextSong() {
 		if(currentSongIndex<listOfAUXSongs.length) {
 			currentSongIndex++;
-			playMusic(listOfAUXSongs[currentSongIndex].getSongPath());
+			playMusic();
 		}
 	}
 
@@ -114,14 +114,15 @@ public class AUXPlayer extends Thread implements IPlayer, IUserPlayer {
 	public void playPreviousSong() {
 		if(currentSongIndex>0) {
 			currentSongIndex--;
-			playMusic(listOfAUXSongs[currentSongIndex].getSongPath());
+			playMusic();
 		}
 	}
 	
 
 	@Override
-	public void playMusic(String songPath) {
+	public void playMusic() {
 		try {
+			String songPath = listOfAUXSongs[currentSongIndex].getSongPath();
 			File songFile = new File(songPath);
 			AudioInputStream audioInput = AudioSystem.getAudioInputStream(songFile);
 			clip = AudioSystem.getClip();

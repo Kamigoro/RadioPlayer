@@ -24,7 +24,6 @@ public class DateAndHourManager extends Thread {
 			try {
 				secondIncrement();
 				checkIfAlarmMustBeTriggered();
-				System.out.println("Année :" +currentYear +" Mois :" +currentMonth +" Jour :" +currentDay +" Heure :" +currentHour +" Minute : " +currentMinut);
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();

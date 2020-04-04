@@ -33,6 +33,6 @@ public interface IPlayer {
 	/**
 	 * Fonction permettant de lire une vraie musique
 	 */
-	public void playMusic(String songPath);
+	public void playMusic();
 	
 }

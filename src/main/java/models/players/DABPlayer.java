@@ -40,9 +40,7 @@ public class DABPlayer implements IPlayer, ISignalPlayer {
 	}
 
 	@Override
-	public void playMusic(String songPath) {
-		// TODO Auto-generated method stub
-		
+	public void playMusic() {		
 	}
 
 }

@@ -2,6 +2,7 @@ package models;
 
 import controllers.RadioController;
 import models.behaviourManager.*;
+import models.players.AUXPlayer;
 import models.players.IPlayer;
 import states.IRadioState;
 import states.IdleState;

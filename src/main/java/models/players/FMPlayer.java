@@ -47,6 +47,6 @@ public class FMPlayer implements IPlayer, ISignalPlayer {
 	}
 
 	@Override
-	public void playMusic(String songPath) {
+	public void playMusic() {
 	}
 }

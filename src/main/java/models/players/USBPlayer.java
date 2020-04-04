@@ -97,8 +97,7 @@ public class USBPlayer implements IPlayer, IUserPlayer {
 	}
 
 	@Override
-	public void playMusic(String songPath) {
-		
+	public void playMusic() {
 	}
 
 }
