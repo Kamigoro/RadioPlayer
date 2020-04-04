@@ -308,6 +308,37 @@ public class RadioController {
     	}
     }
     
+    public void editDateAndTimeLabel(DateAndTimeMenu dateAndTimeMenu, int currentDateAndTimeValue) {
+    	
+    	switch(dateAndTimeMenu) {
+    	case Minut :
+    		changeValueOfLabel(lblDateAndTimeMinutEdit, currentDateAndTimeValue);
+    		break;
+    	case Hour :
+    		changeValueOfLabel(lblDateAndTimeHourEdit, currentDateAndTimeValue);
+    		break;
+    	case Day :
+    		changeValueOfLabel(lblDateAndTimeDayEdit, currentDateAndTimeValue);
+    		break;
+    	case Month :
+    		changeValueOfLabel(lblDateAndTimeMonthEdit, currentDateAndTimeValue);
+    		break;
+    	case Year :
+    		changeValueOfLabel(lblDateAndTimeYearEdit, currentDateAndTimeValue);
+    		break;
+    	}
+    	
+    }
+    
+    public void editAllDateAndTimeProperties(int [] dateAndTimeProperties) {
+    	
+    	changeValueOfLabel(lblDateAndTimeMinutEdit, dateAndTimeProperties[0]);
+    	changeValueOfLabel(lblDateAndTimeHourEdit, dateAndTimeProperties[1]);
+    	changeValueOfLabel(lblDateAndTimeDayEdit, dateAndTimeProperties[2]);
+    	changeValueOfLabel(lblDateAndTimeMonthEdit, dateAndTimeProperties[3]);
+    	changeValueOfLabel(lblDateAndTimeYearEdit, dateAndTimeProperties[4]);
+    }
+    
     public void alarmMenu() {
     	hboxMenuAlarm.toFront();
     }
@@ -325,7 +356,8 @@ public class RadioController {
 	    		break;
     	}
     }
- public void editAlarmLabel(AlarmMenu currentAlarm, int alarmValue) {
+    
+    public void editAlarmLabel(AlarmMenu currentAlarm, int alarmValue) {
     	
     	switch (currentAlarm) {
 			case Hour:

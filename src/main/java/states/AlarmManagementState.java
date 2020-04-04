@@ -57,8 +57,7 @@ public class AlarmManagementState implements IRadioState {
 			}
 			radio.editAlarmProperties(selectedAlarmProperty, alarmMinut);
 			break;
-	
-	}
+		}
 	}
 
 	@Override
