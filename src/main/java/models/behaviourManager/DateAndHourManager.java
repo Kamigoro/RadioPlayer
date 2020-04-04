@@ -65,7 +65,7 @@ public class DateAndHourManager extends Thread {
 	 * 
 	 */
 	private void secondIncrement() {
-		if(currentSecond < 60) {
+		if(currentSecond < 59) {
 			currentSecond ++;
 		} else {
 			currentSecond = 0;
@@ -74,7 +74,7 @@ public class DateAndHourManager extends Thread {
 	}
 	
 	private void minutIncrement() {
-		if(currentMinut < 60) {
+		if(currentMinut < 59) {
 			currentMinut ++;
 		} else {
 			currentMinut = 0;
@@ -83,7 +83,7 @@ public class DateAndHourManager extends Thread {
 	}
 	
 	private void hourIncrement() {
-		if(currentHour < 24) {
+		if(currentHour < 23) {
 			currentHour ++;
 		} else {
 			currentHour = 0;

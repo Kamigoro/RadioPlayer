@@ -151,11 +151,11 @@ public class DateAndHourManagementState implements IRadioState {
 			if(dateAndTimeMinut > 0) {
 				dateAndTimeMinut --;
 			} else {
-				dateAndTimeMinut = 60;
+				dateAndTimeMinut = 59;
 				hourIncrementOrDecrement(false);
 			}
 		}
-		radio.editDateAndTimeProperty(selectedDateAndTimeProperty, dateAndTimeMinut);
+		radio.editDateAndTimeProperty(dateAndTimeMenu.Minut, dateAndTimeMinut);
 	}
 	
 	private void hourIncrementOrDecrement(boolean isIncremented) {
@@ -174,7 +174,7 @@ public class DateAndHourManagementState implements IRadioState {
 				dayIncrementOrDecrement(false);
 			}
 		}
-		radio.editDateAndTimeProperty(selectedDateAndTimeProperty, dateAndTimeHour);
+		radio.editDateAndTimeProperty(dateAndTimeMenu.Hour, dateAndTimeHour);
 	}
 	
 	private void dayIncrementOrDecrement(boolean isIncremented) {
@@ -193,7 +193,7 @@ public class DateAndHourManagementState implements IRadioState {
 				monthIncrementOrDecrement(false);
 			}
 		}
-		radio.editDateAndTimeProperty(selectedDateAndTimeProperty, dateAndTimeDay);
+		radio.editDateAndTimeProperty(dateAndTimeMenu.Day, dateAndTimeDay);
 	}
 	
 	private void monthIncrementOrDecrement(boolean isIncremented) {
@@ -212,7 +212,7 @@ public class DateAndHourManagementState implements IRadioState {
 				yearIncrementOrDecrement(false);
 			}
 		}
-		radio.editDateAndTimeProperty(selectedDateAndTimeProperty, dateAndTimeMonth);
+		radio.editDateAndTimeProperty(dateAndTimeMenu.Month, dateAndTimeMonth);
 	}
 	
 	private void yearIncrementOrDecrement(boolean isIncremented) {
@@ -221,7 +221,7 @@ public class DateAndHourManagementState implements IRadioState {
 		} else {
 			dateAndTimeYear --;
 		}
-		radio.editDateAndTimeProperty(selectedDateAndTimeProperty, dateAndTimeYear);
+		radio.editDateAndTimeProperty(dateAndTimeMenu.Year, dateAndTimeYear);
 	}
 	
 	private int howManyDaysInAMonth() {
