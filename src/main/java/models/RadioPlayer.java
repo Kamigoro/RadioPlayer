@@ -96,6 +96,14 @@ public class RadioPlayer {
 		this.radioController.changeFocusDateAndTimeMenu(currentDateAndTime);
 	}
 	
+	public void editDateAndTimeProperty(DateAndTimeMenu dateAndTimeMenu, int currentDateAndTimeValue) {
+		this.radioController.editDateAndTimeLabel(dateAndTimeMenu, currentDateAndTimeValue);
+	}
+	
+	public void editAllDateAndTimeProperties(int[] dateAndTimeProperties) {
+		this.radioController.editAllDateAndTimeProperties(dateAndTimeProperties);
+	}
+	
 	public void openAlarmMenu() {
 		this.radioController.alarmMenu();
 	}
@@ -170,11 +178,11 @@ public class RadioPlayer {
 		this.breakingNewsManager = breakingNewsManager;
 	}
 
-
 	
 	
-	
-	
+	public DateAndHourManager getDateAndHourManager() {
+		return dateAndHourManager;
+	}
 	
 	public IPlayer getPlayer() {
 		return player;
