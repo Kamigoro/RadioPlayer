@@ -21,7 +21,7 @@ public interface ISignalPlayer {
 	 * Permet d'aller à la station suivante.
 	 * @return
 	 */
-	public Station goToNextStation();
+	public void goToNextStation();
 	
 	/**
 	 * Méthode appelée quand on écoute normalement la radio
@@ -29,6 +29,6 @@ public interface ISignalPlayer {
 	 * Permet d'aller à  la station précédente.
 	 * @return
 	 */
-	public Station goToPreviousStation();
+	public void goToPreviousStation();
 	
 }

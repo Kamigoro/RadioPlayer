@@ -1,8 +1,14 @@
 package models.players;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -19,6 +25,7 @@ import models.Song;
 public class USBPlayer implements IPlayer, IUserPlayer {
 
 	private Song[] listOfUSBSongs;
+	
 	
 	public USBPlayer() {
 		System.out.println("PLAYER : Un USBPlayer a été crée");
@@ -41,6 +48,7 @@ public class USBPlayer implements IPlayer, IUserPlayer {
 							songElement.getAttribute("name"),
 							songElement.getAttribute("artist"),
 							songElement.getAttribute("imagePath"),
+							songElement.getAttribute("songPath"),
 							Integer.parseInt(songElement.getAttribute("durationMN")),
 							Integer.parseInt(songElement.getAttribute("durationSec")));
 				}
@@ -71,27 +79,26 @@ public class USBPlayer implements IPlayer, IUserPlayer {
 	}
 
 	@Override
-	public void playSong() {
-		// TODO Reprendre une chanson
+	public void resumeSong() {
 		
 	}
 
 	@Override
 	public void pauseSong() {
-		// TODO Mettre en pause la chanson actuelle
 		
 	}
 
 	@Override
-	public Song playNextSong() {
-		// TODO Renvoyer la chanson suivante
-		return null;
+	public void playNextSong() {
 	}
 
 	@Override
-	public Song playPreviousSong() {
-		// TODO Renvoyer la chanson précédente
-		return null;
+	public void playPreviousSong() {
+	}
+
+	@Override
+	public void playMusic(String songPath) {
+		
 	}
 
 }

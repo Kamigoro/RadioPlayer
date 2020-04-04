@@ -15,7 +15,14 @@ public interface IUserPlayer {
 	 */
 	public Song[] listSongs();
 	
-	public void playSong();
+	/**
+	 * Permet de reprendre la lecture d'une chanson
+	 */
+	public void resumeSong();
+	
+	/**
+	 * Permet de mettre en pause la lecture d'une chanson
+	 */
 	public void pauseSong();
 	
 	/**
@@ -24,7 +31,7 @@ public interface IUserPlayer {
 	 * Permet de prendre la chanson suivante et de la jouer.
 	 * @return
 	 */
-	public Song playNextSong();
+	public void playNextSong();
 	
 	/**
 	 * Méthode appelée quand on écoute normalement la radio
@@ -32,7 +39,7 @@ public interface IUserPlayer {
 	 * Permet de prendre la chanson précédente et de la jouer.
 	 * @return
 	 */
-	public Song playPreviousSong();
+	public void playPreviousSong();
 	
 	
 }

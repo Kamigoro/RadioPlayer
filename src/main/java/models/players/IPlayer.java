@@ -30,4 +30,9 @@ public interface IPlayer {
 	 */
 	public void okClick();
 	
+	/**
+	 * Fonction permettant de lire une vraie musique
+	 */
+	public void playMusic(String songPath);
+	
 }

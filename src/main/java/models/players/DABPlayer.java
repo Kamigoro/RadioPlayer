@@ -32,15 +32,17 @@ public class DABPlayer implements IPlayer, ISignalPlayer {
 	}
 
 	@Override
-	public Station goToNextStation() {
-		// TODO Renvoyer la station suivante
-		return null;
+	public void goToNextStation() {
 	}
 
 	@Override
-	public Station goToPreviousStation() {
-		// TODO Renvoyer la station précédente
-		return null;
+	public void goToPreviousStation() {
+	}
+
+	@Override
+	public void playMusic(String songPath) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
