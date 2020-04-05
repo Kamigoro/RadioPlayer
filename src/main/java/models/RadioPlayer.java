@@ -4,6 +4,7 @@ import controllers.RadioController;
 import models.behaviourManager.*;
 import models.players.AUXPlayer;
 import models.players.IPlayer;
+import models.players.USBPlayer;
 import states.IRadioState;
 import states.IdleState;
 import java.io.IOException;

@@ -26,7 +26,7 @@ public interface IPlayer {
 	
 	/**
 	 * Méthode appelée par un controller graphique.
-	 * Permet de mettre en pause une chanson. Ne fait rien en cas de signal radio.
+	 * Permet de mettre en pause une chanson ou de la faire reprendre. Ne fait rien en cas de signal radio.
 	 */
 	public void okClick();
 	
@@ -34,5 +34,10 @@ public interface IPlayer {
 	 * Fonction permettant de lire une vraie musique
 	 */
 	public void playMusic();
+	
+	/**
+	 * Fonction qui va être appelée quand on va vouloir détruire un player. Elle va permettre d'arrêter la lecture des chansons en cours avant de passer au player suivant.
+	 */
+	public void stopPlayer();
 	
 }

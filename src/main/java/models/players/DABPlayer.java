@@ -33,4 +33,10 @@ public class DABPlayer implements IPlayer {
 	public void playMusic() {		
 	}
 
+	@Override
+	public void stopPlayer() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

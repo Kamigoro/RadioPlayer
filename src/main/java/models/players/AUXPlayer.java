@@ -21,7 +21,7 @@ import org.xml.sax.SAXException;
 
 import models.Song;
 
-public class AUXPlayer extends Thread implements IPlayer{
+public class AUXPlayer implements IPlayer{
 
 	private Song[] listOfAUXSongs;
 	private int currentSongIndex;
@@ -30,13 +30,16 @@ public class AUXPlayer extends Thread implements IPlayer{
 	private long currentSongTimer;
 	
 	public AUXPlayer() {
-		this.start();
 		listSongs();
 		currentSongIndex = 0;
 		isPlaying = true;
 		playMusic();
 	}
 	
+	/**
+	 * Liste les musisques présentes dans le fichier 
+	 * @return
+	 */
 	public Song[] listSongs() {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
@@ -69,8 +72,9 @@ public class AUXPlayer extends Thread implements IPlayer{
 	
 	@Override
 	public void leftClick() {
-		clip.stop();
-		if(currentSongIndex>0) {
+		clip.stop();//Arrêter la musique actuelle
+		isPlaying = true;//Quand on change de musique on la joue directement
+		if(currentSongIndex>0) {//Jouer la chanson précédente s'il y'en a une
 			currentSongIndex--;
 			playMusic();
 		}
@@ -90,14 +94,14 @@ public class AUXPlayer extends Thread implements IPlayer{
 
 	@Override
 	public void rightClick() {
-		clip.stop();
-		if(currentSongIndex<listOfAUXSongs.length) {
+		clip.stop();//Arrêter la musique actuelle
+		isPlaying = true;//Quand on change de musique on la joue directement
+		if(currentSongIndex<listOfAUXSongs.length) {//Jouer la chanson suivante s'il y'en a une
 			currentSongIndex++;
 			playMusic();
 		}
 	}
 	
-
 	@Override
 	public void playMusic() {
 		try {
@@ -112,5 +116,10 @@ public class AUXPlayer extends Thread implements IPlayer{
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void stopPlayer() {
+		clip.stop();
 	}
 }

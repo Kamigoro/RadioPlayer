@@ -25,11 +25,16 @@ import models.Song;
 public class USBPlayer implements IPlayer {
 
 	private Song[] listOfUSBSongs;
-	
+	private int currentSongIndex;
+	private boolean isPlaying;
+	private Clip clip;
+	private long currentSongTimer;
 	
 	public USBPlayer() {
-		System.out.println("PLAYER : Un USBPlayer a été crée");
 		listSongs();
+		currentSongIndex = 0;
+		isPlaying = true;
+		playMusic();
 	}
 	
 	public Song[] listSongs() {
@@ -64,19 +69,55 @@ public class USBPlayer implements IPlayer {
 	
 	@Override
 	public void leftClick() {
+		clip.stop();//Arrêter la musique actuelle
+		isPlaying = true;//Quand on change de musique on la joue directement
+		if(currentSongIndex<listOfUSBSongs.length) {//Jouer la chanson précédente s'il y'en a une
+			currentSongIndex--;
+			playMusic();
+		}
 	}
 
 	@Override
 	public void okClick() {
-		// TODO Gérer la mise en pause et la reprise d'une chanson
+		isPlaying = !isPlaying;
+		if(isPlaying) {
+			clip.setMicrosecondPosition(currentSongTimer);
+			clip.start();
+		}else {
+			currentSongTimer = clip.getMicrosecondPosition();
+			clip.stop();
+		}
 	}
 
 	@Override
 	public void rightClick() {
+		clip.stop();//Arrêter la musique actuelle
+		isPlaying = true;//Quand on change de musique on la joue directement
+		if(currentSongIndex<listOfUSBSongs.length) {//Jouer la chanson suivante s'il y'en a une
+			currentSongIndex++;
+			playMusic();
+		}
 	}
 
 	@Override
 	public void playMusic() {
+		try {
+			String songPath = listOfUSBSongs[currentSongIndex].getSongPath();
+			File songFile = new File(songPath);
+			AudioInputStream audioInput = AudioSystem.getAudioInputStream(songFile);
+			clip = AudioSystem.getClip();
+			clip.open(audioInput);
+			clip.start();
+		} catch (UnsupportedAudioFileException | IOException e) {
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void stopPlayer() {
+		clip.stop();
 	}
 
 }

@@ -38,4 +38,10 @@ public class FMPlayer implements IPlayer {
 	@Override
 	public void playMusic() {
 	}
+
+	@Override
+	public void stopPlayer() {
+		// TODO Auto-generated method stub
+		
+	}
 }

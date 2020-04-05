@@ -8,15 +8,14 @@ public class Station {
 	
 	private String name;
 	private float frequency;
-	private String imagePath;
-	private ArrayList<Song> listOfSongs;
+	private String logoPath;
+	private String radioSongPath;
 	
 	
-	public Station(String name, float frequency, String imagePath, ArrayList<Song> listOfSongs) {
+	public Station(String name, float frequency, String logoPath) {
 		this.name = name;
 		this.frequency = frequency;
-		this.imagePath = imagePath;
-		this.listOfSongs = listOfSongs;
+		this.logoPath = logoPath;
 	}
 	
 	//Getters et setters//
@@ -33,18 +32,13 @@ public class Station {
 	public void setFrequency(float frequency) {
 		this.frequency = frequency;
 	}
-	public String getImagePath() {
-		return imagePath;
+	public String getLogoPath() {
+		return logoPath;
 	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+	public void setLogoPath(String logoPath) {
+		this.logoPath = logoPath;
 	}
-	public ArrayList<Song> getListOfSongs() {
-		return listOfSongs;
-	}
-	public void setListOfSongs(ArrayList<Song> listOfSongs) {
-		this.listOfSongs = listOfSongs;
-	}
+
 	
 	
 	
