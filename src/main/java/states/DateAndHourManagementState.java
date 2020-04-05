@@ -2,6 +2,8 @@ package states;
 
 import models.RadioPlayer;
 import models.enums.DateAndTimeMenu;
+import models.enums.MonthInYear;
+import models.constants.Constant;
 
 //TODO Implémenter la navigation dans cet état
 public class DateAndHourManagementState implements IRadioState {
@@ -9,7 +11,8 @@ public class DateAndHourManagementState implements IRadioState {
 	private RadioPlayer radio;
 	private DateAndTimeMenu selectedDateAndTimeProperty;
 	private DateAndTimeMenu dateAndTimeMenu;
-	private int dateAndTimeHour,dateAndTimeMinut,dateAndTimeDay,dateAndTimeMonth,dateAndTimeYear;
+	private int dateAndTimeHour,dateAndTimeMinute,dateAndTimeDay,dateAndTimeMonth,dateAndTimeYear;
+	private MonthInYear monthInYear;
 	
 	public DateAndHourManagementState(RadioPlayer radio) {
 		this.radio = radio;
@@ -29,9 +32,9 @@ public class DateAndHourManagementState implements IRadioState {
 			selectedDateAndTimeProperty = dateAndTimeMenu.Day;
 			radio.changeSelectedMenuDateAndTime(selectedDateAndTimeProperty);
 		} else if(selectedDateAndTimeProperty == dateAndTimeMenu.Day) {
-			selectedDateAndTimeProperty = dateAndTimeMenu.Minut;
+			selectedDateAndTimeProperty = dateAndTimeMenu.Minute;
 			radio.changeSelectedMenuDateAndTime(selectedDateAndTimeProperty);
-		} else if(selectedDateAndTimeProperty == dateAndTimeMenu.Minut) {
+		} else if(selectedDateAndTimeProperty == dateAndTimeMenu.Minute) {
 			selectedDateAndTimeProperty = dateAndTimeMenu.Hour;
 			radio.changeSelectedMenuDateAndTime(selectedDateAndTimeProperty);
 		}
@@ -40,9 +43,9 @@ public class DateAndHourManagementState implements IRadioState {
 	@Override
 	public void rightClick() {
 		if(selectedDateAndTimeProperty == dateAndTimeMenu.Hour) {
-			selectedDateAndTimeProperty = dateAndTimeMenu.Minut;
+			selectedDateAndTimeProperty = dateAndTimeMenu.Minute;
 			radio.changeSelectedMenuDateAndTime(selectedDateAndTimeProperty);
-		} else if(selectedDateAndTimeProperty == dateAndTimeMenu.Minut) {
+		} else if(selectedDateAndTimeProperty == dateAndTimeMenu.Minute) {
 			selectedDateAndTimeProperty = dateAndTimeMenu.Day;
 			radio.changeSelectedMenuDateAndTime(selectedDateAndTimeProperty);
 		} else if(selectedDateAndTimeProperty == dateAndTimeMenu.Day) {
@@ -57,8 +60,8 @@ public class DateAndHourManagementState implements IRadioState {
 	@Override
 	public void upClick() {
 		switch (selectedDateAndTimeProperty) {
-		case Minut :
-			minutIncrementOrDecrement(true);
+		case Minute :
+			minuteIncrementOrDecrement(true);
 			break;
 		case Hour:
 			hourIncrementOrDecrement(true);
@@ -78,8 +81,8 @@ public class DateAndHourManagementState implements IRadioState {
 	@Override
 	public void downClick() {
 		switch (selectedDateAndTimeProperty) {
-		case Minut :
-			minutIncrementOrDecrement(false);
+		case Minute :
+			minuteIncrementOrDecrement(false);
 			break;
 		case Hour:
 			hourIncrementOrDecrement(false);
@@ -98,7 +101,7 @@ public class DateAndHourManagementState implements IRadioState {
 
 	@Override
 	public void okClick() {
-		radio.getDateAndHourManager().setAllDateAndTimeProperties(dateAndTimeMinut, dateAndTimeHour, dateAndTimeDay, dateAndTimeMonth, dateAndTimeYear);
+		radio.getDateAndHourManager().setAllDateAndTimeProperties(dateAndTimeMinute, dateAndTimeHour, dateAndTimeDay, (dateAndTimeMonth -1), dateAndTimeYear);
 		radio.setCurrentState(new IdleState(radio));
 		radio.openInitialScreen();
 	}
@@ -128,93 +131,116 @@ public class DateAndHourManagementState implements IRadioState {
 		}
 	}
 	
+	/**
+	 * Permet d'initaliser les valeurs de l'interface du menu date et heure à partir des informations de la radio
+	 */
 	private void configureDateAndTimeProperties() {
 		int[] dateAndTimeProperties = radio.getDateAndHourManager().getAllDateAndTimeProperties();
 		
 		radio.editAllDateAndTimeProperties(dateAndTimeProperties);
-		dateAndTimeMinut = dateAndTimeProperties[0];
+		dateAndTimeMinute = dateAndTimeProperties[0];
 		dateAndTimeHour = dateAndTimeProperties[1];
 		dateAndTimeDay = dateAndTimeProperties[2];
 		dateAndTimeMonth = dateAndTimeProperties[3];
 		dateAndTimeYear = dateAndTimeProperties[4];
 	}
 	
-	private void minutIncrementOrDecrement(boolean isIncremented) {
+	/**
+	 * Permet l'incrémentation ou la décrémentation des minutes si report supérieur ou inférieur appel à la méthode d'incrémentation/décrémentation des heures
+	 * @param isIncremented si vrai alors incrémentation sinon décrementation
+	 */
+	private void minuteIncrementOrDecrement(boolean isIncremented) {
 		if(isIncremented) {
-			if(dateAndTimeMinut < 59) {
-				dateAndTimeMinut ++;
+			if(dateAndTimeMinute < Constant.maxMinuteInAnHour) {
+				dateAndTimeMinute ++;
 			} else {
-				dateAndTimeMinut = 0;
+				dateAndTimeMinute = Constant.minMinuteInAnHour;
 				hourIncrementOrDecrement(true);
 			}
 		} else {
-			if(dateAndTimeMinut > 0) {
-				dateAndTimeMinut --;
+			if(dateAndTimeMinute > Constant.minMinuteInAnHour) {
+				dateAndTimeMinute --;
 			} else {
-				dateAndTimeMinut = 59;
+				dateAndTimeMinute = Constant.maxMinuteInAnHour;
 				hourIncrementOrDecrement(false);
 			}
 		}
-		radio.editDateAndTimeProperty(dateAndTimeMenu.Minut, dateAndTimeMinut);
+		radio.editDateAndTimeProperty(dateAndTimeMenu.Minute, dateAndTimeMinute);
 	}
 	
+	/**
+	 * Permet l'incrémentation ou la décrémentation des heures si report supérieur ou inférieur appel à la méthode d'incrémentation/décrémentation des jours
+	 * @param isIncremented si vrai alors incrémentation sinon décrementation
+	 */
 	private void hourIncrementOrDecrement(boolean isIncremented) {
 		if(isIncremented) {
-			if(dateAndTimeHour < 23) {
+			if(dateAndTimeHour < Constant.maxHourInADay) {
 				dateAndTimeHour ++;
 			} else {
-				dateAndTimeHour = 0;
+				dateAndTimeHour = Constant.minHourInADay;
 				dayIncrementOrDecrement(true);
 			}
 		} else {
-			if(dateAndTimeHour > 0) {
+			if(dateAndTimeHour > Constant.minHourInADay) {
 				dateAndTimeHour --;
 			} else {
-				dateAndTimeHour = 23;
+				dateAndTimeHour = Constant.maxHourInADay;
 				dayIncrementOrDecrement(false);
 			}
 		}
 		radio.editDateAndTimeProperty(dateAndTimeMenu.Hour, dateAndTimeHour);
 	}
 	
+	/**
+	 * Permet l'incrémentation ou la décrémentation des jours si report supérieur ou inférieur appel à la méthode d'incrémentation/décrémentation des mois
+	 * @param isIncremented si vrai alors incrémentation sinon décrementation
+	 */
 	private void dayIncrementOrDecrement(boolean isIncremented) {
 		if(isIncremented) {
-			if(dateAndTimeDay < howManyDaysInAMonth(dateAndTimeMonth)) {
+			if(dateAndTimeDay < howManyDaysInAMonth(dateAndTimeMonth - 1)) {
 				dateAndTimeDay ++;
 			} else {
-				dateAndTimeDay = 1;
+				dateAndTimeDay = Constant.minDayInAMonth;
 				monthIncrementOrDecrement(true);
 			}
 		} else {
-			if(dateAndTimeDay > 1) {
+			if(dateAndTimeDay > Constant.minDayInAMonth) {
 				dateAndTimeDay --;
 			} else {
-				dateAndTimeDay = howManyDaysInAMonth(dateAndTimeMonth - 1);
+				dateAndTimeDay = howManyDaysInAMonth(dateAndTimeMonth - 2);
 				monthIncrementOrDecrement(false);
 			}
 		}
 		radio.editDateAndTimeProperty(dateAndTimeMenu.Day, dateAndTimeDay);
 	}
 	
+	/**
+	 * Permet l'incrémentation ou la décrémentation des mois si report supérieur ou inférieur appel à la méthode d'incrémentation/décrémentation des années
+	 * @param isIncremented si vrai alors incrémentation sinon décrementation
+	 */
 	private void monthIncrementOrDecrement(boolean isIncremented) {
 		if(isIncremented) {
-			if(dateAndTimeMonth < 12) {
+			if(dateAndTimeMonth < Constant.maxMonthInAYear) {
 				dateAndTimeMonth ++;
 			} else {
-				dateAndTimeMonth = 1;
+				dateAndTimeMonth = Constant.minMonthInAYear;
 				yearIncrementOrDecrement(true);
 			}
 		} else {
-			if(dateAndTimeMonth > 1) {
+			if(dateAndTimeMonth > Constant.minMonthInAYear) {
 				dateAndTimeMonth --;
 			} else {
-				dateAndTimeMonth = 12;
+				dateAndTimeMonth = Constant.maxMonthInAYear;
 				yearIncrementOrDecrement(false);
 			}
 		}
 		radio.editDateAndTimeProperty(dateAndTimeMenu.Month, dateAndTimeMonth);
 	}
 	
+	/**
+	 * Permet l'incrémentation ou la décrémentation des années
+	 * @param isIncremented si vrai alors incrémentation sinon décrementation
+	 */
 	private void yearIncrementOrDecrement(boolean isIncremented) {
 		if(isIncremented) {
 			dateAndTimeYear++;
@@ -225,11 +251,11 @@ public class DateAndHourManagementState implements IRadioState {
 	}
 	
 	private int howManyDaysInAMonth(int month) {
-		if ( month == 4 || month == 6 || month == 9 || month == 11 ) {
+		if ( month == monthInYear.APRIL.ordinal() || month == monthInYear.JUNE.ordinal() || month == monthInYear.SEPTEMBER.ordinal() || month == monthInYear.NOVEMBER.ordinal() ) {
 			
 			return 30;  	
 		}  
-		else if ( month == 2 )
+		else if ( month == monthInYear.FEBRUARY.ordinal() )
 		{
             if ((dateAndTimeYear % 400 == 0) || ((dateAndTimeYear % 4 == 0) && (dateAndTimeYear % 100 != 0))) {         	
                 return 29;

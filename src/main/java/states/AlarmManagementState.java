@@ -1,14 +1,16 @@
 package states;
 
 import models.RadioPlayer;
+import models.constants.Constant;
 import models.enums.AlarmMenu;
+import models.constants.Constant;
 
 public class AlarmManagementState implements IRadioState {
 
 	private RadioPlayer radio;
 	private AlarmMenu selectedAlarmProperty;
 	private AlarmMenu alarmMenu;
-	private int alarmHour, alarmMinut;
+	private int alarmHour, alarmMinute;
 	
 	public AlarmManagementState(RadioPlayer radio) {
 		this.radio = radio;
@@ -16,7 +18,7 @@ public class AlarmManagementState implements IRadioState {
 		selectedAlarmProperty = alarmMenu.Hour;
 		radio.changeSelectedMenuAlarm(selectedAlarmProperty);
 		alarmHour = radio.getAlarmManager().getTriggerHour();
-		alarmMinut = radio.getAlarmManager().getTriggerMinute();
+		alarmMinute = radio.getAlarmManager().getTriggerMinute();
 		System.out.println("STATES : La radio est en état de gestion des alarmes");
 	}
 	
@@ -40,22 +42,22 @@ public class AlarmManagementState implements IRadioState {
 	public void upClick() {
 		switch (selectedAlarmProperty) {
 		case Hour:
-			if(alarmHour < 24)
+			if(alarmHour < Constant.maxHourInADay)
 			{
 				alarmHour ++;
 			} else {
-				alarmHour = 0;
+				alarmHour = Constant.minHourInADay;
 			}
 			radio.editAlarmProperties(selectedAlarmProperty, alarmHour);
 			break;
 		case Minut :
-			if(alarmMinut < 60)
+			if(alarmMinute < Constant.maxMinuteInAnHour)
 			{
-				alarmMinut ++;
+				alarmMinute ++;
 			} else {
-				alarmMinut = 0;
+				alarmMinute = Constant.minMinuteInAnHour;
 			}
-			radio.editAlarmProperties(selectedAlarmProperty, alarmMinut);
+			radio.editAlarmProperties(selectedAlarmProperty, alarmMinute);
 			break;
 		}
 	}
@@ -64,22 +66,22 @@ public class AlarmManagementState implements IRadioState {
 	public void downClick() {
 		switch (selectedAlarmProperty) {
 		case Hour:
-			if(alarmHour > 0)
+			if(alarmHour > Constant.minHourInADay)
 			{
 				alarmHour --;
 			} else {
-				alarmHour = 24;
+				alarmHour = Constant.maxHourInADay;
 			}
 			radio.editAlarmProperties(selectedAlarmProperty, alarmHour);
 			break;
 		case Minut :
-			if(alarmMinut > 0)
+			if(alarmMinute > Constant.minMinuteInAnHour)
 			{
-				alarmMinut --;
+				alarmMinute --;
 			} else {
-				alarmMinut = 60;
+				alarmMinute = Constant.maxMinuteInAnHour;
 			}
-			radio.editAlarmProperties(selectedAlarmProperty, alarmMinut);
+			radio.editAlarmProperties(selectedAlarmProperty, alarmMinute);
 			break;
 	
 	}
@@ -88,7 +90,7 @@ public class AlarmManagementState implements IRadioState {
 	@Override
 	public void okClick() {
 		radio.getAlarmManager().setTriggerHour(alarmHour);
-		radio.getAlarmManager().setTriggerMinute(alarmMinut);
+		radio.getAlarmManager().setTriggerMinute(alarmMinute);
 		radio.getAlarmManager().setIsEnabled(true);
 		radio.changeAlarmStatus(radio.getAlarmManager().getIsEnabled());
 		radio.setCurrentState(new IdleState(radio));

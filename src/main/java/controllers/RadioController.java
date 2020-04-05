@@ -1,5 +1,7 @@
 package controllers;
 
+import java.text.DecimalFormat;
+
 import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -189,19 +191,33 @@ public class RadioController {
 		radio.getCurrentState().rightClick();
 	}
 	
+	@FXML
+    public void btnRadioAlarmModifyStatusClick(ActionEvent e) {
+    	radio.getCurrentState().alarmClick();
+    }
+	 /**
+	  * Méthode permettant de mettre au premier plan l'écran initial de la radio 
+	  */
 	public void initialScreen() {
     	hboxRadioMainScreen.toFront();
     }
     
+    /*-----------------------------------------------------------------------
+     *---- 	  METHODES CONCERNANT LES MODIFICATIONS DU MENU   			 ----
+     *-----------------------------------------------------------------------
+     */
+	
+	/**
+	 * Méthode permettant de mettre au premier plan l'interface de modification du signal d'entrée
+	 */
     public void menuScreen() {
     	hboxMenuMain.toFront();
     	
     }
-    
-    public void btnRadioAlarmModifyStatusClick(ActionEvent e) {
-    	radio.getCurrentState().alarmClick();
-    }
-    
+     /**
+      * Méthode permettant de montrer sur l'interface quelle propriété sera sélectionnée
+      * @param currentMenu énumération permettant de savoir quelle propriété modifier
+      */
     public void changeFocusMainMenu(MainMenu currentMenu) {
     	
     	switch(currentMenu) {
@@ -226,10 +242,27 @@ public class RadioController {
     
     }
     
+    /*-----------------------------------------------------------------------
+     *---- 	  METHODES CONCERNANT LES MODIFICATIONS DU MENU              ----
+     *-----------------------------------------------------------------------
+     */
+    
+    /*-----------------------------------------------------------------------
+     *---- 	  METHODES CONCERNANT LES MODIFICATIONS DU SIGNAL D'ENTREE   ----
+     *-----------------------------------------------------------------------
+     */
+    
+    /**
+     * Méthode permettant de mettre au premier plan l'interface de modification du signal d'entrée
+     */
     public void inputSignalMenu() {
     	hboxMenuInputSignal.toFront();
     }
     
+    /**
+     * Méthode permettant de montrer sur l'interface quelle propriété sera sélectionnée
+     * @param currentInputSignal énumération permettant de savoir quelle propriété modifier
+     */
     public void changeFocusInputSignalMenu(InputSignalMenu currentInputSignal) {
     	
     	switch(currentInputSignal) {
@@ -263,10 +296,28 @@ public class RadioController {
     	}
     }
     
+    /*------------------------------------------------------------------------
+     *---- FIN METHODES CONCERNANT LES MODIFICATIONS DU SIGNAL D'ENTREE   ----
+     *------------------------------------------------------------------------
+     */
+    
+    /*-----------------------------------------------------------------------
+     *---- 	  METHODES CONCERNANT LES MODIFICATIONS DE LA DATE ET HEURE  ----
+     *-----------------------------------------------------------------------
+     */
+    
+    /**
+     * Méthode permettant de mettre au premier plan l'interface de modification de la date et heure
+     */
     public void dateAndTimeMenu() {
     	hboxMenuDateAndTime.toFront();
     }
     
+    
+    /**
+     * Méthode permettant de montrer sur l'interface quelle propriété sera sélectionnée
+     * @param currentDateAndTime énumération permettant de savoir quelle propriété modifier
+     */    
     public void changeFocusDateAndTimeMenu(DateAndTimeMenu currentDateAndTime) {
     	
     	switch(currentDateAndTime) {
@@ -277,7 +328,7 @@ public class RadioController {
 	    		changeFocusOfLabel(lblDateAndTimeMonthEdit, false);
 	    		changeFocusOfLabel(lblDateAndTimeYearEdit, false);
 	    		break;
-	    	case Minut :
+	    	case Minute :
 	    		changeFocusOfLabel(lblDateAndTimeHourEdit, false);
 	    		changeFocusOfLabel(lblDateAndTimeMinutEdit, true);
 	    		changeFocusOfLabel(lblDateAndTimeDayEdit, false);
@@ -308,10 +359,15 @@ public class RadioController {
     	}
     }
     
+    /**
+     * Méthode permettant de modifier la date et l'heure en fonction de la propriété sélectionnée
+     * @param dateAndTimeMenu énumération permettant de savoir quelle propriété modifier
+     * @param currentDateAndTimeValue
+     */
     public void editDateAndTimeLabel(DateAndTimeMenu dateAndTimeMenu, int currentDateAndTimeValue) {
     	
     	switch(dateAndTimeMenu) {
-    	case Minut :
+    	case Minute :
     		changeValueOfLabel(lblDateAndTimeMinutEdit, currentDateAndTimeValue);
     		break;
     	case Hour :
@@ -330,6 +386,10 @@ public class RadioController {
     	
     }
     
+    /**
+     * Méthode permettant de modifier toutes les propriétés de date et heure en une fois
+     * @param dateAndTimeProperties Vecteur d'entier contant toutes les informations de date et heure
+     */
     public void editAllDateAndTimeProperties(int [] dateAndTimeProperties) {
     	
     	changeValueOfLabel(lblDateAndTimeMinutEdit, dateAndTimeProperties[0]);
@@ -339,10 +399,27 @@ public class RadioController {
     	changeValueOfLabel(lblDateAndTimeYearEdit, dateAndTimeProperties[4]);
     }
     
+    /*-----------------------------------------------------------------------
+     *--- FIN  METHODES CONCERNANT LES MODIFICATIONS DE LA DATE ET HEURE  ---
+     *-----------------------------------------------------------------------
+     */
+       
+    /*---------------------------------------------------------------
+     *---- 	  METHODES CONCERNANT LES MODIFICATIONS DE L'ALARME  ----
+     *---------------------------------------------------------------
+     */
+    
+    /**
+     * Méthode permettant de mettre au premier plan l'interface de modification de l'alarme
+     */
     public void alarmMenu() {
     	hboxMenuAlarm.toFront();
     }
     
+    /**
+     * Méthode permettant de montrer sur l'interface quelle propriété est sélectionnée
+     * @param currentAlarm énumération permettant de savoir quelle propriété modifier
+     */
     public void changeFocusAlarmMenu(AlarmMenu currentAlarm) {
     	
     	switch(currentAlarm) {
@@ -357,6 +434,11 @@ public class RadioController {
     	}
     }
     
+    /**
+     * Méthode permettant de modifier l'heure et la minute en fonction de la propriété sélectionnée
+     * @param currentAlarm énumération permettant de savoir quelle propriété modifier
+     * @param alarmValue
+     */
     public void editAlarmLabel(AlarmMenu currentAlarm, int alarmValue) {
     	
     	switch (currentAlarm) {
@@ -370,6 +452,10 @@ public class RadioController {
 		}
     }
     
+    /**
+     * Méthode permettant de modifier le visuel du button de l'alarme afin de savoir si cette dernière est active ou non. 
+     * @param isEnabled
+     */
     public void changeAlarmStatus(boolean isEnabled) {
     	if(isEnabled) {
     		btnRadioAlarmModifyStatus.setStyle("-fx-border-color: #42B504; -fx-border-width: 3;");
@@ -378,6 +464,16 @@ public class RadioController {
     	}
     }
     
+    /*---------------------------------------------------------------
+     *--- FIN  METHODES CONCERNANT LES MODIFICATIONS DE L'ALARME  ---
+     *---------------------------------------------------------------
+     */
+    
+    /**
+     * Méthode permettant de modifier les messages de l'écran principal de la radio
+     * @param displayType énumération permettant de savoir quel label modifier dans l'écran principal
+     * @param message string contenant le message à afficher
+     */
     public void displayMessageOnMainScreen(DisplayType displayType, String message) {
     	
     	Platform.runLater(() -> {
@@ -385,23 +481,27 @@ public class RadioController {
 	    	switch (displayType) {
 		    	case Alarm :
 		    		lblRadioMainScreenMessageEdit.setTextFill(Color.web("#4A932E"));
+					lblRadioMainScreenMessageEdit.setText(message);
 		        	break;
 		    	case BreakingNews :
 		    		lblRadioMainScreenMessageEdit.setTextFill(Color.web("#C00000"));
+					lblRadioMainScreenMessageEdit.setText(message);
+		    		break;
+		    	case DateAndTime :
+		    		lblRadioMainScreenDateAndTime.setText(message);
 		    		break;
 	    	}   	
-			lblRadioMainScreenMessageEdit.setText(message);
     	});
     }
     
     
     /**
-     * Méthode permettant la modification de la valeur d'un label
+     * Méthode permettant la modification de la valeur d'un label avec un passage de la variable du format 1 digit à deux ex : 1 -> 01
      * @param label
      * @param value
      */
     public void changeValueOfLabel(Label label, int value) {
-    	label.setText(Integer.toString(value));
+    	label.setText(new DecimalFormat("00").format(value));
     }
     
     /**
@@ -427,11 +527,11 @@ public class RadioController {
      */
     public void changeFocusOfGridPane(GridPane grid, boolean isFocused) {
     	if(isFocused) {
-    		// Griser le grid si sÃ©lectionnÃ©
+    		// Griser le grid si sélectionné
     		grid.setBackground(new Background(new BackgroundFill(Color.rgb(185, 185, 185), new CornerRadii(20), null)));
     		
     	} else {
-    		// Remettre la couleur d'origine si dÃ©sÃ©lectionnÃ©
+    		// Remettre la couleur d'origine si désélectionné
     		grid.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
     	}
     }
