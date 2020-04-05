@@ -10,13 +10,12 @@ import java.util.ArrayList;
 
 import models.Station;
 
-public class FMPlayer implements IPlayer, ISignalPlayer {
+public class FMPlayer implements IPlayer {
 
 	public FMPlayer(){
 		listStations();
 	}
 	
-	@Override
 	public Station[] listStations(){
 		// TODO Lire le fichier des stations FM et renvoyer la liste
 		return null;
@@ -25,7 +24,6 @@ public class FMPlayer implements IPlayer, ISignalPlayer {
 	
 	@Override
 	public void leftClick() {
-		goToPreviousStation();
 	}
 
 	@Override
@@ -35,15 +33,6 @@ public class FMPlayer implements IPlayer, ISignalPlayer {
 
 	@Override
 	public void rightClick() {
-		goToPreviousStation();
-	}
-
-	@Override
-	public void goToNextStation() {
-	}
-
-	@Override
-	public void goToPreviousStation() {
 	}
 
 	@Override

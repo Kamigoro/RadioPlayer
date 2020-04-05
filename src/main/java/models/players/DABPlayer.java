@@ -4,13 +4,12 @@ import java.util.ArrayList;
 
 import models.Station;
 
-public class DABPlayer implements IPlayer, ISignalPlayer {
+public class DABPlayer implements IPlayer {
 
 	public DABPlayer() {
 		listStations();
 	}
 	
-	@Override
 	public Station[] listStations() {
 		// TODO Lire le fichier JSON des stations DAB et renvoyer la liste
 		return null;
@@ -18,7 +17,6 @@ public class DABPlayer implements IPlayer, ISignalPlayer {
 	
 	@Override
 	public void leftClick() {
-		goToPreviousStation();
 	}
 
 	@Override
@@ -28,16 +26,8 @@ public class DABPlayer implements IPlayer, ISignalPlayer {
 
 	@Override
 	public void rightClick() {
-		goToPreviousStation();
 	}
 
-	@Override
-	public void goToNextStation() {
-	}
-
-	@Override
-	public void goToPreviousStation() {
-	}
 
 	@Override
 	public void playMusic() {		

@@ -22,7 +22,7 @@ import org.xml.sax.SAXException;
 
 import models.Song;
 
-public class USBPlayer implements IPlayer, IUserPlayer {
+public class USBPlayer implements IPlayer {
 
 	private Song[] listOfUSBSongs;
 	
@@ -32,7 +32,6 @@ public class USBPlayer implements IPlayer, IUserPlayer {
 		listSongs();
 	}
 	
-	@Override
 	public Song[] listSongs() {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
@@ -65,7 +64,6 @@ public class USBPlayer implements IPlayer, IUserPlayer {
 	
 	@Override
 	public void leftClick() {
-		playPreviousSong();
 	}
 
 	@Override
@@ -75,25 +73,6 @@ public class USBPlayer implements IPlayer, IUserPlayer {
 
 	@Override
 	public void rightClick() {
-		playNextSong();
-	}
-
-	@Override
-	public void resumeSong() {
-		
-	}
-
-	@Override
-	public void pauseSong() {
-		
-	}
-
-	@Override
-	public void playNextSong() {
-	}
-
-	@Override
-	public void playPreviousSong() {
 	}
 
 	@Override

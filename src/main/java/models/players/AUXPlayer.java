@@ -21,7 +21,7 @@ import org.xml.sax.SAXException;
 
 import models.Song;
 
-public class AUXPlayer extends Thread implements IPlayer, IUserPlayer {
+public class AUXPlayer extends Thread implements IPlayer{
 
 	private Song[] listOfAUXSongs;
 	private int currentSongIndex;
@@ -37,7 +37,6 @@ public class AUXPlayer extends Thread implements IPlayer, IUserPlayer {
 		playMusic();
 	}
 	
-	@Override
 	public Song[] listSongs() {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
@@ -71,49 +70,29 @@ public class AUXPlayer extends Thread implements IPlayer, IUserPlayer {
 	@Override
 	public void leftClick() {
 		clip.stop();
-		playPreviousSong();
+		if(currentSongIndex>0) {
+			currentSongIndex--;
+			playMusic();
+		}
 	}
 
 	@Override
 	public void okClick() {
 		isPlaying = !isPlaying;
 		if(isPlaying) {
-			resumeSong();
+			clip.setMicrosecondPosition(currentSongTimer);
+			clip.start();
 		}else {
-			pauseSong();
+			currentSongTimer = clip.getMicrosecondPosition();
+			clip.stop();
 		}
 	}
 
 	@Override
 	public void rightClick() {
 		clip.stop();
-		playNextSong();
-	}
-
-	@Override
-	public void resumeSong() {
-		clip.setMicrosecondPosition(currentSongTimer);
-		clip.start();
-	}
-
-	@Override
-	public void pauseSong() {
-		currentSongTimer = clip.getMicrosecondPosition();
-		clip.stop();
-	}
-
-	@Override
-	public void playNextSong() {
 		if(currentSongIndex<listOfAUXSongs.length) {
 			currentSongIndex++;
-			playMusic();
-		}
-	}
-
-	@Override
-	public void playPreviousSong() {
-		if(currentSongIndex>0) {
-			currentSongIndex--;
 			playMusic();
 		}
 	}
