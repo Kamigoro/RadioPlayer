@@ -143,9 +143,9 @@ public class DateAndHourManager extends Thread {
 		
 	}
 	
-	public void setAllDateAndTimeProperties(int minut, int hour, int day, int month, int year) {
+	public void setAllDateAndTimeProperties(int minute, int hour, int day, int month, int year) {
 		currentSecond = 0;
-		currentMinute = minut;
+		currentMinute = minute;
 		currentHour = hour;
 		currentDay = day;
 		currentMonth = month;
