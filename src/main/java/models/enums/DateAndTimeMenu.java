@@ -2,7 +2,7 @@ package models.enums;
 
 public enum DateAndTimeMenu {
 	Hour,
-	Minut,
+	Minute,
 	Day,
 	Month,
 	Year;
