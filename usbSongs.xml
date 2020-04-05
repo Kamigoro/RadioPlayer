@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<songs>
+	<usbsong name="Dire Miralis Theme" artist="Monster Hunter" imagePath="C:\Users\Dylan\Desktop\RadioPlayer\songsImages\MonsterHunterLogo.png" songPath="C:\Users\Dylan\Desktop\RadioPlayer\songs\direMiralis.wav" durationMN="3" durationSec="39"/>
+	<usbsong name="On the road again" artist="Willie Nelson" imagePath="C:\Users\Dylan\Desktop\RadioPlayer\songsImages\willieNelson.png" songPath="C:\Users\Dylan\Desktop\RadioPlayer\songs\onTheRoadAgain.wav" durationMN="2" durationSec="33"/>
+</songs>
