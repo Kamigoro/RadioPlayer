@@ -9,7 +9,7 @@ import models.*;
 public class DateAndHourManager extends Thread {
 	
 	private RadioPlayer radio; 
-	private int currentHour, currentMinut, currentSecond, currentDay, currentMonth, currentYear;
+	private int currentHour, currentMinute, currentSecond, currentDay, currentMonth, currentYear;
 
 	public DateAndHourManager(RadioPlayer radio) {
 		System.out.println("BehaviourManager : Un gestionnaire de date et heure est attaché à  la radio");
@@ -39,7 +39,7 @@ public class DateAndHourManager extends Thread {
 	private void checkIfAlarmMustBeTriggered() {
 		
 		if(radio.getAlarmManager() != null && radio.getAlarmManager().getIsEnabled()) {
-			if(radio.getAlarmManager().getTriggerHour() == currentHour && radio.getAlarmManager().getTriggerMinute() == currentMinut) {
+			if(radio.getAlarmManager().getTriggerHour() == currentHour && radio.getAlarmManager().getTriggerMinute() == currentMinute) {
 				radio.getAlarmManager().trigger();
 			}
 		}
@@ -53,16 +53,13 @@ public class DateAndHourManager extends Thread {
 		
 		Calendar rightNow = Calendar.getInstance();
 		currentSecond = rightNow.get(Calendar.SECOND);
-		currentMinut = rightNow.get(Calendar.MINUTE);
+		currentMinute = rightNow.get(Calendar.MINUTE);
 		currentHour = rightNow.get(Calendar.HOUR_OF_DAY);
 		currentDay = rightNow.get(Calendar.DAY_OF_MONTH);
 		currentMonth = rightNow.get(Calendar.MONTH) + 1;
 		currentYear = rightNow.get(Calendar.YEAR);
 	}
 	
-	/**
-	 * 
-	 */
 	private void secondIncrement() {
 		if(currentSecond < 59) {
 			currentSecond ++;
@@ -73,10 +70,10 @@ public class DateAndHourManager extends Thread {
 	}
 	
 	private void minutIncrement() {
-		if(currentMinut < 59) {
-			currentMinut ++;
+		if(currentMinute < 59) {
+			currentMinute ++;
 		} else {
-			currentMinut = 0;
+			currentMinute = 0;
 			hourIncrement();
 		}
 	}
@@ -87,8 +84,7 @@ public class DateAndHourManager extends Thread {
 		} else {
 			currentHour = 0;
 			dayIncrement();
-		}
-		
+		}	
 	}
 	
 	private void dayIncrement() {
@@ -137,7 +133,7 @@ public class DateAndHourManager extends Thread {
 		
 		int[] dateAndTimeProperties = new int[5];
 		
-		dateAndTimeProperties[0] = currentMinut;
+		dateAndTimeProperties[0] = currentMinute;
 		dateAndTimeProperties[1] = currentHour;
 		dateAndTimeProperties[2] = currentDay;
 		dateAndTimeProperties[3] = currentMonth;
@@ -149,7 +145,7 @@ public class DateAndHourManager extends Thread {
 	
 	public void setAllDateAndTimeProperties(int minut, int hour, int day, int month, int year) {
 		currentSecond = 0;
-		currentMinut = minut;
+		currentMinute = minut;
 		currentHour = hour;
 		currentDay = day;
 		currentMonth = month;

@@ -7,6 +7,7 @@ public class DateAndTimeAutoOption implements IOption {
 	private RadioPlayer radio;
 	
 	public DateAndTimeAutoOption(RadioPlayer radio) {
+		//TODO Gérer la date et l'heure automatique 
 		this.radio = radio;
 	}
 	
