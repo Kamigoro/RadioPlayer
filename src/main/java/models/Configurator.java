@@ -4,60 +4,42 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import controllers.ConfigurationController;
+import controllers.RadioController;
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import models.options.*;
 
 public class Configurator {
 
-	//Options possible d'activer
 	private AlarmManagementOption alarmOption;
 	private AutotuneOption autotuneOption;
 	private DateAndTimeAutoOption dateAndTimeAutoOption;
 	private AUXInOption auxInOption;
-	private DABPlusOption dabPlusOption;
 	private BreakingNewsOption breakingNewsOption;
 	private FMOption fmOption;
 	private USBOption usbOption;
 	private ArrayList<IOption> optionsList;
 	
 	private RadioPlayer radio;
-	private ConfigurationController controller;
+	private ConfigurationController configurationController;
+	private RadioController radioController;
+	private boolean[] optionsArray = new boolean[8];
 	
-	
+
 	public Configurator(ConfigurationController controller) {
-		this.controller = controller;
-		radio = new RadioPlayer(this);
-		instanciateAllOptions();
+		this.configurationController = controller;
 	}
 	
-	private void instanciateAllOptions() {
-		
-		//Création de toutes les options
-		//TODO Passer une radio Ã  toutes les options pour que les options soit juste responsable de l'instanciation d'objet
-		alarmOption = new AlarmManagementOption(radio);
-		autotuneOption = new AutotuneOption(radio);
-		dateAndTimeAutoOption = new DateAndTimeAutoOption(radio);
-		auxInOption = new AUXInOption(radio);
-		dabPlusOption = new DABPlusOption(radio);
-		breakingNewsOption = new BreakingNewsOption(radio);
-		fmOption = new FMOption(radio);
-		usbOption = new USBOption(radio);
-		
-		//Les enregistrer dans la liste d'options
-		optionsList = new ArrayList<IOption>();
-		optionsList.add(alarmOption);
-		optionsList.add(autotuneOption);
-		optionsList.add(dateAndTimeAutoOption);
-		optionsList.add(auxInOption);
-		optionsList.add(dabPlusOption);
-		optionsList.add(breakingNewsOption);
-		optionsList.add(fmOption);
-		optionsList.add(usbOption);
-		
-		//Par défaut elles sont toutes désactivées
-		for (IOption option : optionsList) {
-			option.desactivate();
-		}
-	}
+	////////////////////////////////////////////////////////////
+	//			Fonctions générales			                  //
+	////////////////////////////////////////////////////////////
+	
 	
 	/**
 	 * Fonction qui va être appelée lors de la génération d'une radio
@@ -65,90 +47,107 @@ public class Configurator {
 	 * @throws IOException 
 	 */
 	public void generateRadioForTheFirstTime() throws IOException {
+		openRadioPlayerScreen();
+		this.radio = radioController.getRadioPlayer();
+		this.radio.manageOptions(this.configurationController.getOptionsArray());
 		hideConfiguratorScreen();
-		radio.openRadioPlayerScreen();
+	}
+
+	/**
+	 * Fonction qui va être appelé lorsque nous avons déjà configuré une radio et que nous voulons mettre à jour ses options.
+	 * Nous renvoyons un tableau d'options à la radio. Ce tableau correspond au checkbox qui sont cochés dans le ConfigurationController.
+	 */
+	public void updateRadioOptions() {
+		this.radio.manageOptions(this.configurationController.getOptionsArray());
+		configurationController.hideScreen();
+	}
+	
+	////////////////////////////////////////////////////////////
+	//			Afficher ou cacher des écrans                 //
+	////////////////////////////////////////////////////////////
+	
+	public void openRadioPlayerScreen() {
+		try{
+			
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/RadioPanel.fxml"));
+			Parent radioParent = (Parent) fxmlLoader.load();
+			radioController = fxmlLoader.<RadioController>getController();
+			radioController.setConfigurator(this);
+			radioController.initialScreen();
+			Stage radioStage = new Stage();
+			radioStage.setTitle("Simulateur de radio");
+			radioStage.setScene(new Scene(radioParent));
+			radioStage.show();
+			
+			//Permet de complètement fermer l'application//
+			//C'est à dire stopper tous les threads      //
+			radioStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			    @Override
+			    public void handle(WindowEvent e) {
+			    	Platform.exit();
+			    	System.exit(0);
+			    }
+			  });
+		
+		} catch (IOException e) {
+			System.out.println("Impossible de charger la page RadioPanel.fxml");
+			System.out.println(e);
+		}
 	}
 	
 	/**
 	 * Fonction qui va demander au controller de montrer la fenêtre de configuration
 	 */
 	public void showConfiguratorScreen() {
-		this.controller.showScreen();
+		if(this.configurationController==null) {
+			System.out.println("Le configurationcontroller de configurator est null");
+		}else {
+			System.out.println("Le configurationcontroller de configurator est OK");
+			this.configurationController.showScreen();
+		}
 	}
 	
 	/**
 	 * Fonction qui va demander au controller de fermer la fenêtre de configuration
 	 */
 	private void hideConfiguratorScreen() {
-		this.controller.hideScreen();
+		this.configurationController.hideScreen();
+	}
+
+	
+	//////////////////////////
+	// Getters et setters   //
+	//////////////////////////
+	
+	public RadioPlayer getRadio() {
+		return radio;
+	}
+
+	public void setRadio(RadioPlayer radio) {
+		this.radio = radio;
+	}
+
+	public ConfigurationController getConfigurationController() {
+		return configurationController;
+	}
+
+	public void setConfigurationController(ConfigurationController configurationController) {
+		this.configurationController = configurationController;
+	}
+
+	public RadioController getRadioController() {
+		return radioController;
+	}
+
+	public void setRadioController(RadioController radioController) {
+		this.radioController = radioController;
 	}
 	
-	///////////////////////////////////////////////////////////
-	//	Fonctions d'activations ou désactivations d'options  //
-	///////////////////////////////////////////////////////////
-	
-	public void manageAlarmOption(boolean activated) {
-		if(activated) {
-			alarmOption.activate();
-		}else {
-			alarmOption.desactivate();
-		}
+	public boolean[] getOptionsArray() {
+		return optionsArray;
 	}
-	
-	public void manageAutotuneOption(boolean activated) {
-		if(activated) {
-			autotuneOption.activate();
-		}else {
-			autotuneOption.desactivate();
-		}
+
+	public void setOptionsArray(boolean[] optionsArray) {
+		this.optionsArray = optionsArray;
 	}
-	
-	public void manageDateAndHourAutoOption(boolean activated) {
-		if(activated) {
-			dateAndTimeAutoOption.activate();
-		}else {
-			dateAndTimeAutoOption.desactivate();
-		}
-	}
-	
-	public void manageAuxInOption(boolean activated) {
-		if(activated) {
-			auxInOption.activate();
-		}else {
-			auxInOption.desactivate();
-		}
-	}
-	
-	public void manageDabPlusOption(boolean activated) {
-		if(activated) {
-			dabPlusOption.activate();
-		}else {
-			dabPlusOption.desactivate();
-		}
-	}
-	
-	public void manageBreakingNewsOption(boolean activated) {
-		if(activated) {
-			breakingNewsOption.activate();
-		}else {
-			breakingNewsOption.desactivate();
-		}
-	}
-	
-	public void manageFMOption(boolean activated) {
-		if(activated) {
-			fmOption.activate();
-		}else {
-			fmOption.desactivate();
-		}
-	}
-	
-	public void manageUSBOption(boolean activated) {
-		if(activated) {
-			usbOption.activate();
-		}else {
-			usbOption.desactivate();
-		}
-	}
-	
 }

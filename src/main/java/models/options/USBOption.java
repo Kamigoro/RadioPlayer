@@ -21,5 +21,4 @@ public class USBOption implements IOption {
 		// TODO Implémenter la désactivation de l'option
 		System.out.println("Options : Option USB désactivée");
 	}
-
 }

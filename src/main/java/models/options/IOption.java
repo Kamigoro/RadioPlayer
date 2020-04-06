@@ -1,8 +1,16 @@
 package models.options;
 
+import models.RadioPlayer;
+
 public interface IOption {
 
+	/**
+	 * Active une option et rattache un gestionnaire d'options uniquement si l'option n'est déjà pas activé.
+	 */
 	public void activate();
-	public void desactivate();
 	
+	/**
+	 * Désactive une option, et donc rendre le gestionnaire d'option attaché null
+	 */
+	public void desactivate();
 }

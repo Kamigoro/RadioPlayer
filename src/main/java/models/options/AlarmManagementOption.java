@@ -15,7 +15,9 @@ public class AlarmManagementOption implements IOption {
 	@Override
 	public void activate() {
 		System.out.println("Options : Option Alarme activée");
-		radio.setAlarmManager(new AlarmManager(radio));
+		if(radio.getAlarmManager()==null) {
+			radio.setAlarmManager(new AlarmManager(radio));
+		}
 	}
 
 	@Override

@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,9 +45,14 @@ public class ConfigurationController implements Initializable {
     chbxDAB,chbxFM,chbxUSB,chbxAuxIN;
     @FXML
     private TextArea txtDescriptionSignal;
-	
-    //Variables normales
+    
+    //////////////////////
+    //Variables normales//
+    //////////////////////
+    
 	private Configurator configurator;
+	private boolean[] optionsArray = new boolean[8];
+	private Stage stage;
 	
 	
 	@Override
@@ -58,19 +64,35 @@ public class ConfigurationController implements Initializable {
 		panAboutIt.toFront();
 	}
 	
+	/**
+	 * Fonction qui va être appelé quand on va vouloir appuyer sur le bouton générer/sauver.
+	 * Si aucune radio n'a jamais été générée on va en générer une, sinon on va juste mettre à jour ses options.
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void generateRadioClick(ActionEvent event) throws IOException {
-		configurator.generateRadioForTheFirstTime();
+		if(configurator.getRadio()==null) {
+			configurator.generateRadioForTheFirstTime();
+		}else {
+			configurator.updateRadioOptions();
+		}
 	}
 	
+	/**
+	 * Rend visible l'écran de configuration
+	 */
 	public void showScreen() {
-		//TODO Implémenter le fait de rendre visible l'écran de configuration
+		stage.show();
+		btnGenerate.setText("Sauver");
 	}
 	
+	/**
+	 * Rend invisible l'écran de configuration
+	 */
 	public void hideScreen() {
-		Stage.getWindows().get(0).hide();
+		stage.hide();
 	}
-	
 	
 	@FXML
 	private void menuOptionsClick(ActionEvent event)
@@ -110,50 +132,73 @@ public class ConfigurationController implements Initializable {
 	//////////////////////////
 	@FXML
 	private void alarmOptionClick() {
-		configurator.manageAlarmOption(chbxAlarm.isSelected());
+		optionsArray[0] = chbxAlarm.isSelected();
 		iconImgAlarm.setVisible(chbxAlarm.isSelected());
 	}
 	
 	@FXML
-	private void auxInOptionClick() {
-		configurator.manageAuxInOption(chbxAudioIN.isSelected());
-		iconImgAudioIN.setVisible(chbxAudioIN.isSelected());
-	}
-	
-	@FXML
-	private void autotuneOptionClick() {
-		configurator.manageAutotuneOption(chbxAutotune.isSelected());
-		iconImgAutotune.setVisible(chbxAutotune.isSelected());
-	}
-	
-	@FXML
 	private void audioOutExtClick() {
+		optionsArray[1] = chbxAudioOUT.isSelected();
 		iconImgAudioOUT.setVisible(chbxAudioOUT.isSelected());
 	}
 	
 	@FXML
+	private void autotuneOptionClick() {
+		optionsArray[2] = chbxAlarm.isSelected();
+		iconImgAutotune.setVisible(chbxAutotune.isSelected());
+	}
+	
+	@FXML
+	private void auxInOptionClick() {
+		optionsArray[3] = chbxAlarm.isSelected();
+		iconImgAudioIN.setVisible(chbxAudioIN.isSelected());
+	}
+	
+	@FXML
 	private void breakingNewsOptionClick() {
-		configurator.manageBreakingNewsOption(chbxBreakNews.isSelected());
+		optionsArray[4] = chbxAlarm.isSelected();
 		iconImgBreakNews.setVisible(chbxBreakNews.isSelected());
 	}
 	
 	@FXML
-	private void secondarySpeakerOptionClick() {
-		iconImgSecondSpeaker.setVisible(chbxSecondarySpeaker.isSelected());
-	}
-	
-	@FXML
 	private void dateAndHourAutoOptionClick() {
-		configurator.manageDateAndHourAutoOption(chbxAutoDateTime.isSelected());
+		optionsArray[5] = chbxAutoDateTime.isSelected();
 		iconImgAutoDateTime.setVisible(chbxAutoDateTime.isSelected());
 	}
 	
 	@FXML
 	private void fmOptionClick() {
-		configurator.manageFMOption(chbxFMSupport.isSelected());
+		optionsArray[6] = chbxFMSupport.isSelected();
 		iconImgFMSupport.setVisible(chbxFMSupport.isSelected());
 	}
+	
+	@FXML
+	private void secondarySpeakerOptionClick() {
+		optionsArray[7] = chbxSecondarySpeaker.isSelected();
+		iconImgSecondSpeaker.setVisible(chbxSecondarySpeaker.isSelected());
+	}
+	
 		
+	//////////////////////////
+	// Getters et setters   //
+	//////////////////////////
 	
+	public Configurator getConfigurator() {
+		return configurator;
+	}
+	//////////////////////////
+	// Getters et setters   //
+	//////////////////////////
 	
+	public void setConfigurator(Configurator configurator) {
+		this.configurator = configurator;
+	}
+	
+	public boolean[] getOptionsArray() {
+		return this.optionsArray;
+	}
+
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
 }

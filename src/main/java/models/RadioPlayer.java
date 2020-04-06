@@ -17,52 +17,67 @@ import models.enums.DateAndTimeMenu;
 import models.enums.DisplayType;
 import models.enums.InputSignalMenu;
 import models.enums.MainMenu;
+import models.options.*;
 
 public class RadioPlayer {
 
-	private IRadioState currentState;
+	
 	private RadioController radioController;
 	private Configurator configurator;
-	private IPlayer player;
 	
-	//C'est ici que vont se trouver les plugin que peut avoir notre radio
+	private IRadioState currentState;
+	private IPlayer player;
 	private AlarmManager alarmManager;
 	private AutotuneManager autotuneManager;
 	private BreakingNewsManager breakingNewsManager;
 	private DateAndHourManager dateAndHourManager;
 	
-	//Constructeur
+	private IOption[] optionsArray = new IOption[8];
+	private boolean hasBeenGenerated = true;
+	
+	//////////////////////////////////////
+	//			Constructeur            //
+	//////////////////////////////////////
+	
 	public RadioPlayer(Configurator configurator) {
 		System.out.println("MODELS : Création d'une nouvelle radio");
-		
 		this.configurator = configurator;
+		instanciateOptions();
 		setCurrentState(new IdleState(this));
-		
 		//Création d'un gestionnaire des heures associés à la radio
 		dateAndHourManager = new DateAndHourManager(this);
+		player = new USBPlayer();
 	}
 
+	/////////////////////////////////////
+	//    Fonctions normales           //
+	/////////////////////////////////////
 	
-	public void openConfigurationScreen() {
-		this.configurator.showConfiguratorScreen();
+	/**
+	 * Crée tous les objets correspondant à chaque options.
+	 */
+	private void instanciateOptions() {
+		optionsArray[0] = new AlarmManagementOption(this);
+		optionsArray[1] = new AudioOutOption(this);
+		optionsArray[2] = new AutotuneOption(this);
+		optionsArray[3] = new AUXInOption(this);
+		optionsArray[4] = new BreakingNewsOption(this);
+		optionsArray[5] = new DateAndTimeAutoOption(this);
+		optionsArray[6] = new FMOption(this);
+		optionsArray[7] = new SecondarySpeakerOption(this);
 	}
 	
-	public void openRadioPlayerScreen() {
-		try{
-			
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/RadioPanel.fxml"));
-			Parent radioParent = (Parent) fxmlLoader.load();
-			radioController = fxmlLoader.<RadioController>getController();
-			radioController.setRadioPlayer(this);
-			radioController.initialScreen();
-			Stage radioStage = new Stage();
-			radioStage.setTitle("Simulateur de radio");
-			radioStage.setScene(new Scene(radioParent));
-			radioStage.show();
-		
-		} catch (IOException e) {
-			System.out.println("Impossible de charger la page RadioPanel.fxml");
-			System.out.println(e);
+	/**
+	 * Active les options en fonctions du tableau de booléen renvoyé par le configurationController.
+	 * @param optionsActivated
+	 */
+	public void manageOptions(boolean[] optionsActivated) {
+		for(int i = 0; i<optionsActivated.length;i++) {
+			if(optionsActivated[i]) {
+				optionsArray[i].activate();
+			}else {
+				optionsArray[i].desactivate();
+			}
 		}
 	}
 	
@@ -77,6 +92,15 @@ public class RadioPlayer {
 		this.radioController.initialScreen();
 	}
 	
+	public void openConfigurationScreen() {
+		this.configurator.showConfiguratorScreen();
+	}
+	
+	public void editRadioConfiguration() {
+		this.configurator.showConfiguratorScreen();
+	}
+	
+
     /*-----------------------------------------------------------------------
      *---- 	  METHODES CONCERNANT LES MODIFICATIONS DU MENU   			 ----
      *-----------------------------------------------------------------------
@@ -225,6 +249,22 @@ public class RadioPlayer {
 	//			Getters et setters	   //
 	/////////////////////////////////////
 	
+	public RadioController getRadioController() {
+		return this.radioController;
+	}
+	
+	public void setRadioController(RadioController radioController) {
+		this.radioController = radioController;
+	}
+	
+	public Configurator getConfigurator() {
+		return this.configurator;
+	}
+	
+	public void setConfigurator(Configurator configurator) {
+		this.configurator = configurator;
+	}
+	
 	public IRadioState getCurrentState() {
 		return currentState;
 	}
@@ -244,12 +284,7 @@ public class RadioPlayer {
 		this.alarmManager = alarmManager;
 	}
 
-	
-	
-	
-	
-	
-	public AutotuneManager getAutotune() {
+	public AutotuneManager getAutotuneManager() {
 		return autotuneManager;
 	}
 
@@ -259,12 +294,7 @@ public class RadioPlayer {
 		}
 		this.autotuneManager = autotuneManager;
 	}
-	
-	
-	
-	
-	
-	
+
 	public BreakingNewsManager getBreakingNewsManager() {
 		return breakingNewsManager;
 	}
@@ -276,19 +306,21 @@ public class RadioPlayer {
 		this.breakingNewsManager = breakingNewsManager;
 	}
 
-	
-	
 	public DateAndHourManager getDateAndHourManager() {
 		return dateAndHourManager;
+	}
+	
+	public void setDateAndHourManager(DateAndHourManager dateAndHourManager) {
+		this.dateAndHourManager = dateAndHourManager;
 	}
 	
 	public IPlayer getPlayer() {
 		return player;
 	}
 
-
 	public void setPlayer(IPlayer player) {
 		this.player = player;
 	}
+
 	
 }

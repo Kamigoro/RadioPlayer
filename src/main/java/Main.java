@@ -1,4 +1,5 @@
 import javafx.stage.Stage;
+import models.Configurator;
 
 public class Main {
 

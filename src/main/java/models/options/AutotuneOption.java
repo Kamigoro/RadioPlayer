@@ -15,7 +15,9 @@ public class AutotuneOption implements IOption {
 	@Override
 	public void activate() {
 		System.out.println("Options : Option Autotune activée");
-		radio.setAutotuneManager(new AutotuneManager(radio));
+		if(radio.getAutotuneManager()==null) {
+			radio.setAutotuneManager(new AutotuneManager(radio));
+		}
 	}
 
 	@Override
@@ -23,5 +25,6 @@ public class AutotuneOption implements IOption {
 		System.out.println("Options : Option Autotune désactivée");
 		radio.setAutotuneManager(null);
 	}	
+	
 
 }

@@ -11,7 +11,7 @@ public class AlarmManager {
 
 	//TODO Peut être implémenter le Observer Pattern
 	public AlarmManager(RadioPlayer radio) {
-		System.out.println("BehaviourManager : Un gestionnaire d'alarme est attachÃ© Ã  la radio");
+		System.out.println("BehaviourManager : Un gestionnaire d'alarme est attaché à  la radio");
 		this.radio = radio;
 		//Quand on crée une nouvelle alarme elle ne se déclenchera par défaut
 		triggerHour = 25;
@@ -21,7 +21,7 @@ public class AlarmManager {
 	
 	public void trigger() {
 		//TODO Implémenter le vrai déclenchement de l'alarme
-		this.radio.displayMessageOnMainScreen(DisplayType.Alarm,"Il est "+triggerHour+":"+triggerMinute+", votre alarme se dÃ©clenche");	}
+		this.radio.displayMessageOnMainScreen(DisplayType.Alarm,"Il est "+triggerHour+":"+triggerMinute+", votre alarme se déclenche");	}
 	
 	public int getTriggerHour() {
 		return triggerHour;

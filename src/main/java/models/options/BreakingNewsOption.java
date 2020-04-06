@@ -16,7 +16,9 @@ public class BreakingNewsOption implements IOption {
 	@Override
 	public void activate() {
 		System.out.println("Options : L'option Breaking news a été activée");
-		radio.setBreakingNewsManager(new BreakingNewsManager(radio));
+		if(radio.getBreakingNewsManager()== null) {
+			radio.setBreakingNewsManager(new BreakingNewsManager(radio));
+		}
 	}
 
 	@Override
@@ -36,5 +38,5 @@ public class BreakingNewsOption implements IOption {
 		}
 		
 	}
-
+	
 }

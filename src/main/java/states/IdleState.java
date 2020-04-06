@@ -14,10 +14,12 @@ public class IdleState implements IRadioState{
 	
 	@Override
 	public void leftClick() {
+		radio.getPlayer().leftClick();
 	}
 
 	@Override
 	public void rightClick() {
+		radio.getPlayer().rightClick();
 	}
 
 	@Override
@@ -30,6 +32,7 @@ public class IdleState implements IRadioState{
 
 	@Override
 	public void okClick() {
+		radio.getPlayer().okClick();
 	}
 
 	@Override

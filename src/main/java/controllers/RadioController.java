@@ -16,7 +16,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import models.Configurator;
 import models.RadioPlayer;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -56,18 +58,29 @@ public class RadioController {
 	private Button rotator_dial;
 	@FXML
 	private Button rotator_handle;
+	@FXML
+	private AnchorPane paneRadio;
 	
 	private final int roundingFactor = 1; // no decimals rounding
-	private RadioPlayer radio;
 	private final DoubleProperty rotation = new SimpleDoubleProperty();
 	
+	private RadioPlayer radio;
+	private Configurator configurator;
+	
+	//////////////////////////////////////
+	//			Constructeur            //
+	//////////////////////////////////////
+	
 	public RadioController() {
-		
 	}
+	
+	
 	
 	@FXML
 	private void initialize() {
 		
+		radio = new RadioPlayer(configurator);
+		radio.setRadioController(this);
 		rotator_handle.setRotate(210);
         
         rotator_dial.setOnAction((ActionEvent event) -> {
@@ -77,6 +90,11 @@ public class RadioController {
             event.consume();
         });
 	}
+	
+	
+	//////////////////////////////////////
+	// Fonctions int�ractions graphique //
+	//////////////////////////////////////
 	
 	@FXML
 	public void openConfigurationScreen() {
@@ -134,6 +152,7 @@ public class RadioController {
 	@FXML
 	private void btnEditClick(ActionEvent e) {
 		//TODO implémenter la réouverture du configurateur
+		radio.editRadioConfiguration();
 	}
 	
 	@FXML
@@ -536,8 +555,27 @@ public class RadioController {
     	}
     }
 
+	//////////////////////////
+	// Getters et setters   //
+	//////////////////////////
+    
     public void setRadioPlayer (RadioPlayer radio) {
     	this.radio = radio;
+    }
+    
+    
+    public RadioPlayer getRadioPlayer() {
+    	return this.radio;
+    }
+    
+    public void setConfigurator(Configurator configurator) {
+    	this.configurator = configurator;
+    	this.radio.setConfigurator(configurator);
+    }
+    
+    
+    public Configurator getConfigurator() {
+    	return this.configurator;
     }
 	
 }

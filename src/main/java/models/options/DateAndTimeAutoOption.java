@@ -23,5 +23,5 @@ public class DateAndTimeAutoOption implements IOption {
 		System.out.println("Options : Option date et heure auto désactivée");
 	}
 	
-	
+
 }

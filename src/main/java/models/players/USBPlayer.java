@@ -71,10 +71,12 @@ public class USBPlayer implements IPlayer {
 	public void leftClick() {
 		clip.stop();//Arrêter la musique actuelle
 		isPlaying = true;//Quand on change de musique on la joue directement
-		if(currentSongIndex<listOfUSBSongs.length) {//Jouer la chanson précédente s'il y'en a une
+		if(currentSongIndex>0) {//Jouer la chanson précédente s'il y'en a une
 			currentSongIndex--;
-			playMusic();
+		} else {
+			currentSongIndex = listOfUSBSongs.length - 1;
 		}
+		playMusic();
 	}
 
 	@Override
@@ -93,10 +95,12 @@ public class USBPlayer implements IPlayer {
 	public void rightClick() {
 		clip.stop();//Arrêter la musique actuelle
 		isPlaying = true;//Quand on change de musique on la joue directement
-		if(currentSongIndex<listOfUSBSongs.length) {//Jouer la chanson suivante s'il y'en a une
-			currentSongIndex++;
-			playMusic();
+		if(currentSongIndex<listOfUSBSongs.length-1) {//Jouer la chanson suivante s'il y'en a une
+			currentSongIndex++;	
+		} else {
+			currentSongIndex = 0;
 		}
+		playMusic();
 	}
 
 	@Override
