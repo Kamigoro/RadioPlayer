@@ -17,19 +17,10 @@ import models.options.*;
 
 public class Configurator {
 
-	private AlarmManagementOption alarmOption;
-	private AutotuneOption autotuneOption;
-	private DateAndTimeAutoOption dateAndTimeAutoOption;
-	private AUXInOption auxInOption;
-	private BreakingNewsOption breakingNewsOption;
-	private FMOption fmOption;
-	private USBOption usbOption;
-	private ArrayList<IOption> optionsList;
-	
 	private RadioPlayer radio;
 	private ConfigurationController configurationController;
 	private RadioController radioController;
-	private boolean[] optionsArray = new boolean[8];
+	private boolean[] optionsArray = new boolean[9];
 	
 
 	public Configurator(ConfigurationController controller) {
@@ -49,7 +40,7 @@ public class Configurator {
 	public void generateRadioForTheFirstTime() throws IOException {
 		openRadioPlayerScreen();
 		this.radio = radioController.getRadioPlayer();
-		this.radio.manageOptions(this.configurationController.getOptionsArray());
+		//this.radio.manageOptions(this.configurationController.getOptionsArray());
 		hideConfiguratorScreen();
 	}
 

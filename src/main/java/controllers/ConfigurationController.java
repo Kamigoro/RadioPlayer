@@ -30,7 +30,7 @@ public class ConfigurationController implements Initializable {
 
 	//Composants présents dans le FXML
 	@FXML
-    private ImageView imgAboutIt,imgOptions,imgInputSignal,imgMenuView,
+    private ImageView imgAboutIt,imgOptions,imgInputSignal,imgMenuView,iconImgUSBSupport,
 	iconImgAlarm,iconImgAudioIN,iconImgAutotune,iconImgAudioOUT,iconImgBreakNews,iconImgSecondSpeaker,iconImgAutoDateTime,iconImgFMSupport;
     @FXML
     private Button btnInputSginal,btnOptions,btnGenerate;
@@ -41,8 +41,8 @@ public class ConfigurationController implements Initializable {
     @FXML
     private GridPane panOptions;
     @FXML
-    private CheckBox chbxAlarm,chbxAudioIN,chbxAutotune,chbxAudioOUT,chbxBreakNews,chbxSecondarySpeaker,chbxAutoDateTime,chbxFMSupport,
-    chbxDAB,chbxFM,chbxUSB,chbxAuxIN;
+    private CheckBox chbxAlarm,chbxAuxINSupport,chbxAutotune,chbxAudioOUT,chbxBreakNews,chbxSecondarySpeaker,chbxAutoDateTime,
+    chbxDAB,chbxFMSupport,chbxUSBSupport;
     @FXML
     private TextArea txtDescriptionSignal;
     
@@ -51,7 +51,7 @@ public class ConfigurationController implements Initializable {
     //////////////////////
     
 	private Configurator configurator;
-	private boolean[] optionsArray = new boolean[8];
+	private boolean[] optionsArray = new boolean[9];
 	private Stage stage;
 	
 	
@@ -74,7 +74,7 @@ public class ConfigurationController implements Initializable {
 	private void generateRadioClick(ActionEvent event) throws IOException {
 		if(configurator.getRadio()==null) {
 			configurator.generateRadioForTheFirstTime();
-		}else {
+		} else {
 			configurator.updateRadioOptions();
 		}
 	}
@@ -144,19 +144,19 @@ public class ConfigurationController implements Initializable {
 	
 	@FXML
 	private void autotuneOptionClick() {
-		optionsArray[2] = chbxAlarm.isSelected();
+		optionsArray[2] = chbxAutotune.isSelected();
 		iconImgAutotune.setVisible(chbxAutotune.isSelected());
 	}
 	
 	@FXML
-	private void auxInOptionClick() {
-		optionsArray[3] = chbxAlarm.isSelected();
-		iconImgAudioIN.setVisible(chbxAudioIN.isSelected());
+	private void auxInSupportClick() {
+		optionsArray[3] = chbxAuxINSupport.isSelected();
+		iconImgAudioIN.setVisible(chbxAuxINSupport.isSelected());
 	}
 	
 	@FXML
 	private void breakingNewsOptionClick() {
-		optionsArray[4] = chbxAlarm.isSelected();
+		optionsArray[4] = chbxBreakNews.isSelected();
 		iconImgBreakNews.setVisible(chbxBreakNews.isSelected());
 	}
 	
@@ -167,7 +167,7 @@ public class ConfigurationController implements Initializable {
 	}
 	
 	@FXML
-	private void fmOptionClick() {
+	private void fmSupportClick() {
 		optionsArray[6] = chbxFMSupport.isSelected();
 		iconImgFMSupport.setVisible(chbxFMSupport.isSelected());
 	}
@@ -178,6 +178,11 @@ public class ConfigurationController implements Initializable {
 		iconImgSecondSpeaker.setVisible(chbxSecondarySpeaker.isSelected());
 	}
 	
+	@FXML
+	private void usbSupportClick() {
+		optionsArray[8] = chbxUSBSupport.isSelected();
+		iconImgUSBSupport.setVisible(chbxUSBSupport.isSelected());
+	}
 		
 	//////////////////////////
 	// Getters et setters   //

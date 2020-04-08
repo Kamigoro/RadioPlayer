@@ -20,11 +20,11 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.ls.LSInput;
 import org.xml.sax.SAXException;
 
-import models.Song;
+import models.Media;
 
 public class USBPlayer implements IPlayer {
 
-	private Song[] listOfUSBSongs;
+	private Media[] listOfUSBSongs;
 	private int currentSongIndex;
 	private boolean isPlaying;
 	private Clip clip;
@@ -33,28 +33,25 @@ public class USBPlayer implements IPlayer {
 	public USBPlayer() {
 		listSongs();
 		currentSongIndex = 0;
-		isPlaying = true;
-		playMusic();
 	}
 	
-	public Song[] listSongs() {
+	public Media[] listSongs() {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document document = builder.parse("usbSongs.xml");
 			NodeList usbSongsList = document.getElementsByTagName("usbsong");
-			listOfUSBSongs = new Song[usbSongsList.getLength()];
+			listOfUSBSongs = new Media[usbSongsList.getLength()];
 			for (int i = 0; i<usbSongsList.getLength();i++) {
 				Node song = usbSongsList.item(i);
 				if(song.getNodeType() == Node.ELEMENT_NODE) {
 					Element songElement = (Element)song;
-					listOfUSBSongs[i] = new Song(
+					listOfUSBSongs[i] = new Media(
 							songElement.getAttribute("name"),
 							songElement.getAttribute("artist"),
-							songElement.getAttribute("imagePath"),
-							songElement.getAttribute("songPath"),
-							Integer.parseInt(songElement.getAttribute("durationMN")),
-							Integer.parseInt(songElement.getAttribute("durationSec")));
+							songElement.getAttribute("usbLogo"),
+							songElement.getAttribute("defaultImageForUsbSong"),
+							songElement.getAttribute("songPath"));
 				}
 			}
 		} catch (ParserConfigurationException e) {
@@ -69,9 +66,9 @@ public class USBPlayer implements IPlayer {
 	
 	@Override
 	public void leftClick() {
-		clip.stop();//Arrêter la musique actuelle
+		clip.stop();//Arrï¿½ter la musique actuelle
 		isPlaying = true;//Quand on change de musique on la joue directement
-		if(currentSongIndex>0) {//Jouer la chanson précédente s'il y'en a une
+		if(currentSongIndex>0) {//Jouer la chanson prï¿½cï¿½dente s'il y'en a une
 			currentSongIndex--;
 		} else {
 			currentSongIndex = listOfUSBSongs.length - 1;
@@ -93,7 +90,7 @@ public class USBPlayer implements IPlayer {
 
 	@Override
 	public void rightClick() {
-		clip.stop();//Arrêter la musique actuelle
+		clip.stop();//Arrï¿½ter la musique actuelle
 		isPlaying = true;//Quand on change de musique on la joue directement
 		if(currentSongIndex<listOfUSBSongs.length-1) {//Jouer la chanson suivante s'il y'en a une
 			currentSongIndex++;	
@@ -122,6 +119,12 @@ public class USBPlayer implements IPlayer {
 	@Override
 	public void stopPlayer() {
 		clip.stop();
+	}
+
+	@Override
+	public void launchPlayer() {
+		isPlaying = true;
+		playMusic();
 	}
 
 }

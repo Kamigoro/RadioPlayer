@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<songs>
+	<dabStation stationName="RTL" frequency="" stationLogo="songsImages/deepPurple.png" stationImage="songsImages/deepPurple.png" songPath="songs/deepPurple.wav"/>
+	<dabStation stationName="NRJ" frequency="" stationLogo="songsImages/MonsterHunterLogo.png" stationImage="songsImages/MonsterHunterLogo.png" songPath="songs/sakura.wav"/>
+	<dabStation stationName="Radio Contact" frequency="" stationLogo="songsImages/willieNelson.png" stationImage="songsImages/willieNelson.png" songPath="songs/onTheRoadAgain.wav"/>
+</songs>

@@ -2,9 +2,7 @@ package models;
 
 import controllers.RadioController;
 import models.behaviourManager.*;
-import models.players.AUXPlayer;
-import models.players.IPlayer;
-import models.players.USBPlayer;
+import models.players.*;
 import states.IRadioState;
 import states.IdleState;
 import java.io.IOException;
@@ -32,8 +30,12 @@ public class RadioPlayer {
 	private BreakingNewsManager breakingNewsManager;
 	private DateAndHourManager dateAndHourManager;
 	
-	private IOption[] optionsArray = new IOption[8];
-	private boolean hasBeenGenerated = true;
+	private AUXPlayer auxPlayer;
+	private DABPlayer dabPlayer;
+	private FMPlayer fmPlayer;
+	private USBPlayer usbPlayer;
+	
+	private IOption[] optionsArray = new IOption[9];
 	
 	//////////////////////////////////////
 	//			Constructeur            //
@@ -41,12 +43,11 @@ public class RadioPlayer {
 	
 	public RadioPlayer(Configurator configurator) {
 		System.out.println("MODELS : Création d'une nouvelle radio");
-		this.configurator = configurator;
 		instanciateOptions();
+		this.configurator = configurator;
+		player = new DABPlayer(this);
 		setCurrentState(new IdleState(this));
-		//Création d'un gestionnaire des heures associés à la radio
 		dateAndHourManager = new DateAndHourManager(this);
-		player = new USBPlayer();
 	}
 
 	/////////////////////////////////////
@@ -56,15 +57,16 @@ public class RadioPlayer {
 	/**
 	 * Crée tous les objets correspondant à chaque options.
 	 */
-	private void instanciateOptions() {
+	public void instanciateOptions() {
 		optionsArray[0] = new AlarmManagementOption(this);
 		optionsArray[1] = new AudioOutOption(this);
 		optionsArray[2] = new AutotuneOption(this);
-		optionsArray[3] = new AUXInOption(this);
+		optionsArray[3] = new AUXInSupport(this);
 		optionsArray[4] = new BreakingNewsOption(this);
 		optionsArray[5] = new DateAndTimeAutoOption(this);
-		optionsArray[6] = new FMOption(this);
+		optionsArray[6] = new FMSupport(this);
 		optionsArray[7] = new SecondarySpeakerOption(this);
+		optionsArray[8] = new USBSupport(this);
 	}
 	
 	/**
@@ -235,6 +237,10 @@ public class RadioPlayer {
      *---------------------------------------------------------------
      */
 	
+	public void editPlayerInformations(String PlayerName,String name, String imgSongPath, String imgMediaPath) {
+		this.editPlayerInformations(PlayerName, name, imgSongPath, imgMediaPath);
+	}
+	
     
     /**
      * Méthode permettant de modifier les messages de l'écran principal de la radio
@@ -320,6 +326,38 @@ public class RadioPlayer {
 
 	public void setPlayer(IPlayer player) {
 		this.player = player;
+	}
+	
+	public AUXPlayer getAuxPlayer() {
+		return auxPlayer;
+	}
+
+	public void setAuxPlayer(AUXPlayer auxPlayer) {
+		this.auxPlayer = auxPlayer;
+	}
+
+	public DABPlayer getDabPlayer() {
+		return dabPlayer;
+	}
+
+	public void setDabPlayer(DABPlayer dabPlayer) {
+		this.dabPlayer = dabPlayer;
+	}
+
+	public FMPlayer getFmPlayer() {
+		return fmPlayer;
+	}
+
+	public void setFmPlayer(FMPlayer fmPlayer) {
+		this.fmPlayer = fmPlayer;
+	}
+
+	public USBPlayer getUsbPlayer() {
+		return usbPlayer;
+	}
+
+	public void setUsbPlayer(USBPlayer usbPlayer) {
+		this.usbPlayer = usbPlayer;
 	}
 
 	

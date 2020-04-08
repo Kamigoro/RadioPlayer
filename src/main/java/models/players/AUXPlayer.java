@@ -19,11 +19,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import models.Song;
+import models.Media;
 
 public class AUXPlayer implements IPlayer{
 
-	private Song[] listOfAUXSongs;
+	private Media[] listOfAUXSongs;
 	private int currentSongIndex;
 	private boolean isPlaying;
 	private Clip clip;
@@ -32,32 +32,29 @@ public class AUXPlayer implements IPlayer{
 	public AUXPlayer() {
 		listSongs();
 		currentSongIndex = 0;
-		isPlaying = true;
-		playMusic();
 	}
 	
 	/**
-	 * Liste les musisques présentes dans le fichier 
+	 * Liste les musisques prï¿½sentes dans le fichier 
 	 * @return
 	 */
-	public Song[] listSongs() {
+	public Media[] listSongs() {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document document = builder.parse("auxSongs.xml");
-			NodeList usbSongsList = document.getElementsByTagName("auxsong");
-			listOfAUXSongs = new Song[usbSongsList.getLength()];
-			for (int i = 0; i<usbSongsList.getLength();i++) {
-				Node song = usbSongsList.item(i);
+			NodeList auxSongsList = document.getElementsByTagName("auxsong");
+			listOfAUXSongs = new Media[auxSongsList.getLength()];
+			for (int i = 0; i<auxSongsList.getLength();i++) {
+				Node song = auxSongsList.item(i);
 				if(song.getNodeType() == Node.ELEMENT_NODE) {
 					Element songElement = (Element)song;
-					listOfAUXSongs[i] = new Song(
+					listOfAUXSongs[i] = new Media(
 							songElement.getAttribute("name"),
 							songElement.getAttribute("artist"),
-							songElement.getAttribute("imagePath"),
-							songElement.getAttribute("songPath"),
-							Integer.parseInt(songElement.getAttribute("durationMN")),
-							Integer.parseInt(songElement.getAttribute("durationSec")));
+							songElement.getAttribute("auxLogo"),
+							songElement.getAttribute("defaultImageForAuxSong"),
+							songElement.getAttribute("songPath"));
 				}
 			}
 		} catch (ParserConfigurationException e) {
@@ -72,9 +69,9 @@ public class AUXPlayer implements IPlayer{
 	
 	@Override
 	public void leftClick() {
-		clip.stop();//Arrêter la musique actuelle
+		clip.stop();//Arrï¿½ter la musique actuelle
 		isPlaying = true;//Quand on change de musique on la joue directement
-		if(currentSongIndex>0) {//Jouer la chanson précédente s'il y'en a une
+		if(currentSongIndex>0) {//Jouer la chanson prï¿½cï¿½dente s'il y'en a une
 			currentSongIndex--;
 			playMusic();
 		}
@@ -94,7 +91,7 @@ public class AUXPlayer implements IPlayer{
 
 	@Override
 	public void rightClick() {
-		clip.stop();//Arrêter la musique actuelle
+		clip.stop();//Arrï¿½ter la musique actuelle
 		isPlaying = true;//Quand on change de musique on la joue directement
 		if(currentSongIndex<listOfAUXSongs.length) {//Jouer la chanson suivante s'il y'en a une
 			currentSongIndex++;
@@ -121,5 +118,11 @@ public class AUXPlayer implements IPlayer{
 	@Override
 	public void stopPlayer() {
 		clip.stop();
+	}
+
+	@Override
+	public void launchPlayer() {
+		isPlaying = true;
+		playMusic();
 	}
 }

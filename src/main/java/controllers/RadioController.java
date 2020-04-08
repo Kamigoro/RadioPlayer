@@ -12,6 +12,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -487,6 +488,13 @@ public class RadioController {
      *--- FIN  METHODES CONCERNANT LES MODIFICATIONS DE L'ALARME  ---
      *---------------------------------------------------------------
      */
+    
+    public void editPlayerInformations(String PlayerName, String name, String imgSongPath, String imgMediaPath) {
+    	lblRadioMainScreenStationName.setText(name);
+    	lblRadioMainScreenSignalType.setText(PlayerName);
+    	imgRadioMainScreenMusicImage.setImage(new Image(imgSongPath));
+    	imgRadioMainScreenStationLogo.setImage(new Image(imgMediaPath));
+    }
     
     /**
      * Méthode permettant de modifier les messages de l'écran principal de la radio

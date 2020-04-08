@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 
 /**
- * Interface permettant de gérer les intéraction avec un player.
- * Appui sur la flèche de gauche/droite.
+ * Interface permettant de gÃ©rer les intÃ©raction avec un player.
+ * Appui sur la flÃ¨che de gauche/droite.
  * Appui sur le bouton centrale.
  * En fonction du type de player le comportement va changer.
  * @author Dylan
@@ -13,19 +13,19 @@ import java.util.ArrayList;
 public interface IPlayer {
 
 	/**
-	 * Méthode appelée par un controller graphique.
-	 * Permet de passer à la précédente Station/Chanson
+	 * MÃ©thode appelÃ©e par un controller graphique.
+	 * Permet de passer Ã  la prÃ©cÃ©dente Station/Chanson
 	 */
 	public void leftClick();
 	
 	/**
-	 * Méthode appelée par un controller graphique.
-	 * Permet d'aller à la précédente Station/Chanson
+	 * MÃ©thode appelÃ©e par un controller graphique.
+	 * Permet d'aller Ã  la prÃ©cÃ©dente Station/Chanson
 	 */
 	public void rightClick();
 	
 	/**
-	 * Méthode appelée par un controller graphique.
+	 * MÃ©thode appelÃ©e par un controller graphique.
 	 * Permet de mettre en pause une chanson ou de la faire reprendre. Ne fait rien en cas de signal radio.
 	 */
 	public void okClick();
@@ -36,8 +36,12 @@ public interface IPlayer {
 	public void playMusic();
 	
 	/**
-	 * Fonction qui va être appelée quand on va vouloir détruire un player. Elle va permettre d'arrêter la lecture des chansons en cours avant de passer au player suivant.
+	 * Fonction qui va Ãªtre appelÃ©e quand on va vouloir dÃ©truire un player. Elle va permettre d'arrÃªter la lecture des chansons en cours avant de passer au player suivant.
 	 */
 	public void stopPlayer();
 	
+	/**
+	 * Fonction qui va ï¿½tre appelï¿½e pour lancer un player pour la premiï¿½re fois.
+	 */
+	public void launchPlayer();
 }
