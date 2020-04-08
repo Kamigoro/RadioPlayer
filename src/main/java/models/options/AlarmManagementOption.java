@@ -8,8 +8,7 @@ public class AlarmManagementOption implements IOption {
 
 	private RadioPlayer radio;
 	
-	public AlarmManagementOption(RadioPlayer radio) {
-		this.radio = radio;
+	public AlarmManagementOption() {
 	}
 	
 	@Override
@@ -24,6 +23,11 @@ public class AlarmManagementOption implements IOption {
 	public void desactivate() {
 		System.out.println("Options : Option Alarme désactivée");
 		radio.setAlarmManager(null);
+	}
+	
+	@Override
+	public void setRadioPlayer(RadioPlayer radio) {
+		this.radio = radio;
 	}
 
 }

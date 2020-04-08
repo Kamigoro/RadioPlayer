@@ -16,6 +16,7 @@ public class DateAndHourManager extends Thread {
 	private int currentHour, currentMinute, currentSecond, currentDay, currentMonth, currentYear;
 	private MonthInYear month;
 	DecimalFormat formatter = new DecimalFormat("00");
+	private boolean isInAutoMode;//Booleen pour voir si on activé l'heure auto
 	
 	public DateAndHourManager(RadioPlayer radio) {
 		System.out.println("BehaviourManager : Un gestionnaire de date et heure est attaché à  la radio");
@@ -59,7 +60,7 @@ public class DateAndHourManager extends Thread {
 	/**
 	 * Permet de récupérer l'heure et la date actuelle à partir du pc
 	 */
-	private void getCurrentTime() {
+	public void getCurrentTime() {
 		
 		Calendar rightNow = Calendar.getInstance();
 		currentSecond = rightNow.get(Calendar.SECOND);
@@ -190,11 +191,22 @@ public class DateAndHourManager extends Thread {
 	 * @param year
 	 */
 	public void setAllDateAndTimeProperties(int minute, int hour, int day, int month, int year) {
-		currentSecond = Constant.minSecondInAMinut;
-		currentMinute = minute;
-		currentHour = hour;
-		currentDay = day;
-		currentMonth = month;
-		currentYear = year;
+		if(!isInAutoMode) {
+			currentSecond = Constant.minSecondInAMinut;
+			currentMinute = minute;
+			currentHour = hour;
+			currentDay = day;
+			currentMonth = month;
+			currentYear = year;
+		}
 	}
+
+	public void setIsInAutoMode(boolean isInAutoMode) {
+		this.isInAutoMode = isInAutoMode;
+	}
+	
+	public boolean isInAutoMode() {
+		return isInAutoMode;
+	}
+	
 }

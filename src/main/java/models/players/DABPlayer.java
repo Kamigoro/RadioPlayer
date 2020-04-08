@@ -34,6 +34,10 @@ public class DABPlayer implements IPlayer {
 	private boolean isPlaying;
 	private Clip clip;
 	
+	private Media preset1;
+	private Media preset2;
+	private Media preset3;
+	
 	public DABPlayer(RadioPlayer radio){
 		listDABStations();
 		currentStationIndex = 0;
@@ -52,6 +56,7 @@ public class DABPlayer implements IPlayer {
 				if(song.getNodeType() == Node.ELEMENT_NODE) {
 					Element songElement = (Element)song;
 					listOfDABStations[i] = new Media(
+							i,
 							songElement.getAttribute("stationName"),
 							songElement.getAttribute("frequency"),
 							songElement.getAttribute("stationLogo"),
@@ -108,7 +113,7 @@ public class DABPlayer implements IPlayer {
 			clip = AudioSystem.getClip();
 			clip.open(audioInput);
 			clip.start();
-			//this.getMediaElement();
+			sendMediaToRadio();
 		} catch (UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
 		} catch (LineUnavailableException e) {
@@ -126,8 +131,51 @@ public class DABPlayer implements IPlayer {
 		isPlaying = true;
 		playMusic();
 	}
+
+	@Override
+	public void sendMediaToRadio() {
+		radio.editPlayerInformations(listOfDABStations[currentStationIndex]);
+	}
+
+	@Override
+	public void setCurrentMediaIndex(int index) {
+		clip.stop();
+		currentStationIndex = index;
+		playMusic();
+	}
 	
-	private void getMediaElement() {
-		radio.editPlayerInformations("DAB+",listOfDABStations[currentStationIndex].getSongImagePath(),listOfDABStations[currentStationIndex].getName(),listOfDABStations[currentStationIndex].getMediaLogo());
+	@Override
+	public Media getCurrentMedia() {
+		return listOfDABStations[currentStationIndex];
+	}
+	
+	@Override
+	public Media getPreset1() {
+		return preset1;
+	}
+
+	@Override
+	public void setPreset1() {
+		preset1 = getCurrentMedia();
+	}
+
+	@Override
+	public Media getPreset2() {
+		return preset2;
+	}
+
+	@Override
+	public void setPreset2() {
+		preset2 = getCurrentMedia();
+	}
+
+	@Override
+	public Media getPreset3() {
+		return preset3;
+	}
+
+	@Override
+	public void setPreset3() {
+		preset3 = getCurrentMedia();
 	}
 }

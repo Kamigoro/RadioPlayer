@@ -29,6 +29,7 @@ import models.enums.DateAndTimeMenu;
 import models.enums.DisplayType;
 import models.enums.InputSignalMenu;
 import models.enums.MainMenu;
+import states.IdleState;
 
 
 public class RadioController {
@@ -74,8 +75,6 @@ public class RadioController {
 	
 	public RadioController() {
 	}
-	
-	
 	
 	@FXML
 	private void initialize() {
@@ -173,17 +172,28 @@ public class RadioController {
 	
 	@FXML
 	private void btnPresetOneClick(ActionEvent e) {
-		//TODO implémenter le click sur le preset 1
+		//Sauvegarde
+		radio.getPlayer().setPreset1();
+		//chargement
+		if(radio.getPlayer().getPreset1()!=null) {
+			radio.getPlayer().setCurrentMediaIndex(radio.getPlayer().getPreset1().getIndex());
+		}
 	}
 	
 	@FXML
 	private void btnPresetTwoClick(ActionEvent e) {
-		//TODO implémenter le click sur le preset 2
+		//Sauvegarde
+		radio.getPlayer().setPreset2();
+		//chargement
+		radio.getPlayer().setCurrentMediaIndex(radio.getPlayer().getPreset2().getIndex());
 	}
 	
 	@FXML
 	private void btnPresetThreeClick(ActionEvent e) {
-		//TODO implémenter le click sur le preset 3
+		//Sauvegarde
+		radio.getPlayer().setPreset3();
+		//chargement
+		radio.getPlayer().setCurrentMediaIndex(radio.getPlayer().getPreset3().getIndex());
 	}
 	
 	@FXML
@@ -215,11 +225,14 @@ public class RadioController {
     public void btnRadioAlarmModifyStatusClick(ActionEvent e) {
     	radio.getCurrentState().alarmClick();
     }
-	 /**
-	  * Méthode permettant de mettre au premier plan l'écran initial de la radio 
-	  */
+	
+	/**
+	 * Méthode permettant de mettre au premier plan l'écran initial de la radio 
+	 */ 
 	public void initialScreen() {
     	hboxRadioMainScreen.toFront();
+    	//TODO Regarder pour bouger ça car c'est dégueu
+    	radio.setCurrentState(new IdleState(radio));
     }
     
     /*-----------------------------------------------------------------------
@@ -492,8 +505,8 @@ public class RadioController {
     public void editPlayerInformations(String PlayerName, String name, String imgSongPath, String imgMediaPath) {
     	lblRadioMainScreenStationName.setText(name);
     	lblRadioMainScreenSignalType.setText(PlayerName);
-    	imgRadioMainScreenMusicImage.setImage(new Image(imgSongPath));
-    	imgRadioMainScreenStationLogo.setImage(new Image(imgMediaPath));
+    	//imgRadioMainScreenMusicImage.setImage(new Image(imgSongPath));
+    	//imgRadioMainScreenStationLogo.setImage(new Image(imgMediaPath));
     }
     
     /**
@@ -571,7 +584,6 @@ public class RadioController {
     	this.radio = radio;
     }
     
-    
     public RadioPlayer getRadioPlayer() {
     	return this.radio;
     }
@@ -580,7 +592,6 @@ public class RadioController {
     	this.configurator = configurator;
     	this.radio.setConfigurator(configurator);
     }
-    
     
     public Configurator getConfigurator() {
     	return this.configurator;

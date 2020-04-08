@@ -40,7 +40,7 @@ public class Configurator {
 	public void generateRadioForTheFirstTime() throws IOException {
 		openRadioPlayerScreen();
 		this.radio = radioController.getRadioPlayer();
-		//this.radio.manageOptions(this.configurationController.getOptionsArray());
+		this.radio.manageOptions(this.configurationController.getOptionsArray());
 		hideConfiguratorScreen();
 	}
 

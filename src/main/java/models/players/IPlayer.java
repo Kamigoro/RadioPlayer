@@ -2,6 +2,8 @@ package models.players;
 
 import java.util.ArrayList;
 
+import models.Media;
+
 
 /**
  * Interface permettant de gérer les intéraction avec un player.
@@ -44,4 +46,29 @@ public interface IPlayer {
 	 * Fonction qui va �tre appel�e pour lancer un player pour la premi�re fois.
 	 */
 	public void launchPlayer();
+	
+	/**
+	 * Fonction qui va modifier l'interface graphique de la radio correspondant à la musique
+	 */
+	public void sendMediaToRadio();
+	
+	/**
+	 * Méthode qui va nous renvoyer le média actuel
+	 */
+	public Media getCurrentMedia();	
+	
+	/**
+	 * Méthode qui va permettre de dire au player à quel media se placer pour le jouer. Utile dans le cas où l'on appuie sur un preset.
+	 * @param index
+	 */
+	public void setCurrentMediaIndex(int index);
+	
+	public Media getPreset1();
+	public void setPreset1();
+	
+	public Media getPreset2();
+	public void setPreset2();
+	
+	public Media getPreset3();
+	public void setPreset3();
 }

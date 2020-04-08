@@ -9,8 +9,7 @@ public class BreakingNewsOption implements IOption {
 
 	private RadioPlayer radio;
 	
-	public BreakingNewsOption(RadioPlayer radio) {
-		this.radio = radio;
+	public BreakingNewsOption() {
 	}
 	
 	@Override
@@ -38,5 +37,11 @@ public class BreakingNewsOption implements IOption {
 		}
 		
 	}
+
+	@Override
+	public void setRadioPlayer(RadioPlayer radio) {
+		this.radio = radio;
+	}
+	
 	
 }

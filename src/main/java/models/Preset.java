@@ -2,14 +2,18 @@ package models;
 
 public class Preset {
 
-	private int presetNumber;
+	private Media media;
 	
-	public Preset(int presetNumber) {
-		this.presetNumber = presetNumber;
+	public Preset() {
+		
 	}
-	
-	public int getPresetNumber() {
-		return presetNumber;
+
+	public Media getMedia() {
+		return media;
+	}
+
+	public void setMedia(Media media) {
+		this.media = media;
 	}
 	
 }

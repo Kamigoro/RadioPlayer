@@ -8,8 +8,7 @@ public class AutotuneOption implements IOption {
 
 	private RadioPlayer radio;
 	
-	public AutotuneOption(RadioPlayer radio) {
-		this.radio = radio;
+	public AutotuneOption() {
 	}
 	
 	@Override
@@ -26,5 +25,8 @@ public class AutotuneOption implements IOption {
 		radio.setAutotuneManager(null);
 	}	
 	
-
+	@Override
+	public void setRadioPlayer(RadioPlayer radio) {
+		this.radio = radio;
+	}
 }

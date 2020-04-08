@@ -24,6 +24,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import models.Media;
+import models.RadioPlayer;
 
 public class FMPlayer implements IPlayer {
 
@@ -31,8 +32,14 @@ public class FMPlayer implements IPlayer {
 	private int currentStationIndex;
 	private boolean isPlaying;
 	private Clip clip;
+	private RadioPlayer radio;
 	
-	public FMPlayer(){
+	private Media preset1;
+	private Media preset2;
+	private Media preset3;
+	
+	public FMPlayer(RadioPlayer radio){
+		this.radio = radio;
 		listFMStations();
 		currentStationIndex = 0;
 	}
@@ -41,14 +48,15 @@ public class FMPlayer implements IPlayer {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document document = builder.parse("usbSongs.xml");
-			NodeList usbSongsList = document.getElementsByTagName("usbsong");
+			Document document = builder.parse("fmStations.xml");
+			NodeList usbSongsList = document.getElementsByTagName("fmStation");
 			listOfFMStations = new Media[usbSongsList.getLength()];
 			for (int i = 0; i<usbSongsList.getLength();i++) {
 				Node song = usbSongsList.item(i);
 				if(song.getNodeType() == Node.ELEMENT_NODE) {
 					Element songElement = (Element)song;
 					listOfFMStations[i] = new Media(
+							i,
 							songElement.getAttribute("stationName"),
 							songElement.getAttribute("frequency"),
 							songElement.getAttribute("fmLogo"),
@@ -105,6 +113,7 @@ public class FMPlayer implements IPlayer {
 			clip = AudioSystem.getClip();
 			clip.open(audioInput);
 			clip.start();
+			sendMediaToRadio();
 		} catch (UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
 		} catch (LineUnavailableException e) {
@@ -121,5 +130,52 @@ public class FMPlayer implements IPlayer {
 	public void launchPlayer() {
 		isPlaying = true;
 		playMusic();
+	}
+
+	@Override
+	public void sendMediaToRadio() {
+		radio.editPlayerInformations(listOfFMStations[currentStationIndex]);
+	}
+
+	@Override
+	public void setCurrentMediaIndex(int index) {
+		clip.stop();
+		currentStationIndex = index;
+		playMusic();
+	}
+	
+	@Override
+	public Media getCurrentMedia() {
+		return listOfFMStations[currentStationIndex];
+	}
+	
+	@Override
+	public Media getPreset1() {
+		return preset1;
+	}
+
+	@Override
+	public void setPreset1() {
+		preset1 = getCurrentMedia();
+	}
+
+	@Override
+	public Media getPreset2() {
+		return preset2;
+	}
+
+	@Override
+	public void setPreset2() {
+		preset2 = getCurrentMedia();
+	}
+
+	@Override
+	public Media getPreset3() {
+		return preset3;
+	}
+
+	@Override
+	public void setPreset3() {
+		preset3 = getCurrentMedia();
 	}
 }

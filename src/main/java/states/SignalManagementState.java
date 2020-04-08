@@ -2,6 +2,8 @@ package states;
 
 import models.RadioPlayer;
 import models.enums.InputSignalMenu;
+import models.players.DABPlayer;
+import models.players.FMPlayer;
 
 //TODO Implémenter la navigation dans cet état
 public class SignalManagementState implements IRadioState {
@@ -56,6 +58,38 @@ public class SignalManagementState implements IRadioState {
 
 	@Override
 	public void okClick() {
+		switch (selectedInputSignal) {
+		case DAB: 
+			radio.getPlayer().stopPlayer();
+			radio.setPlayer(new DABPlayer(radio));
+			radio.setCurrentState(new IdleState(radio));
+			radio.openInitialScreen();
+			break;
+		case FM:
+			if(radio.getFmPlayer()!=null) {
+				radio.getPlayer().stopPlayer();
+				radio.setPlayer(radio.getFmPlayer());
+				radio.setCurrentState(new IdleState(radio));
+				radio.openInitialScreen();
+			}
+			break;
+		case AuxIn:
+			if(radio.getAuxPlayer()!=null) {
+				radio.getPlayer().stopPlayer();
+				radio.setPlayer(radio.getAuxPlayer());
+				radio.setCurrentState(new IdleState(radio));
+				radio.openInitialScreen();
+			}
+			break;
+		case USB:
+			if(radio.getUsbPlayer()!=null) {
+				radio.getPlayer().stopPlayer();
+				radio.setPlayer(radio.getUsbPlayer());
+				radio.setCurrentState(new IdleState(radio));
+				radio.openInitialScreen();
+			}
+			break;
+		}
 	}
 
 	@Override

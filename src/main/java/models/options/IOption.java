@@ -13,4 +13,6 @@ public interface IOption {
 	 * Désactive une option, et donc rendre le gestionnaire d'option attaché null
 	 */
 	public void desactivate();
+	
+	public void setRadioPlayer(RadioPlayer radio);
 }

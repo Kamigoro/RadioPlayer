@@ -6,8 +6,7 @@ public class AudioOutOption implements IOption {
 
 	private RadioPlayer radio;
 	
-	public AudioOutOption(RadioPlayer radio) {
-		this.radio = radio;
+	public AudioOutOption() {
 	}
 	
 	@Override
@@ -20,4 +19,9 @@ public class AudioOutOption implements IOption {
 		System.out.println("Options : Option de sortie extérieur désactivée");
 	}
 
+	@Override
+	public void setRadioPlayer(RadioPlayer radio) {
+		this.radio = radio;
+	}
+	
 }

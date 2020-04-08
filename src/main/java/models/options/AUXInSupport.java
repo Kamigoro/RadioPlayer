@@ -7,25 +7,29 @@ public class AUXInSupport implements IOption {
 
 	private RadioPlayer radio;
 	
-	public AUXInSupport(RadioPlayer radioPlayer) {
-		this.radio = radio;
+	public AUXInSupport() {
 	}
 	
 	@Override
 	public void activate() {
 		if(radio.getAuxPlayer()==null) {
-			System.out.println("Player : Un player auxilière a été créé");
-			radio.setAuxPlayer(new AUXPlayer());
+			System.out.println("Options : Un player AUXIn a été créé");
+			radio.setAuxPlayer(new AUXPlayer(radio));
 		}
 	}
 
 	@Override
 	public void desactivate() {
 		if(radio.getAuxPlayer()!=null) {
-			System.out.println("Player : Un player auxilière a été désactivé");
 			radio.getAuxPlayer().stopPlayer();
 			radio.setAuxPlayer(null);
-		}
+		}	
+		System.out.println("Options : Un player AUXIn a été désactivé");
+	}
+	
+	@Override
+	public void setRadioPlayer(RadioPlayer radio) {
+		this.radio = radio;
 	}
 
 }

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<songs>
+	<fmStation stationName="Dire Miralis Theme" frequency="Monster Hunter" fmLogo="C:\Users\Dylan\Desktop\RadioPlayer\songsImages\MonsterHunterLogo.png" defaultImageForFMSong="C:\Users\Dylan\Desktop\RadioPlayer\songsImages\MonsterHunterLogo.png" songPath="songs/direMiralis.wav"/>
+	<fmStation stationName="Sakura" frequency="Monster Hunter" fmLogo="C:\Users\Dylan\Desktop\RadioPlayer\songsImages\MonsterHunterLogo.png" defaultImageForFMSong="C:\Users\Dylan\Desktop\RadioPlayer\songsImages\MonsterHunterLogo.png" songPath="songs/sakura.wav"/>
+</songs>

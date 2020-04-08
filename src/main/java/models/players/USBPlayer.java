@@ -21,6 +21,7 @@ import org.w3c.dom.ls.LSInput;
 import org.xml.sax.SAXException;
 
 import models.Media;
+import models.RadioPlayer;
 
 public class USBPlayer implements IPlayer {
 
@@ -29,8 +30,14 @@ public class USBPlayer implements IPlayer {
 	private boolean isPlaying;
 	private Clip clip;
 	private long currentSongTimer;
+	private RadioPlayer radio;
 	
-	public USBPlayer() {
+	private Media preset1;
+	private Media preset2;
+	private Media preset3;
+	
+	public USBPlayer(RadioPlayer radio) {
+		this.radio = radio;
 		listSongs();
 		currentSongIndex = 0;
 	}
@@ -47,6 +54,7 @@ public class USBPlayer implements IPlayer {
 				if(song.getNodeType() == Node.ELEMENT_NODE) {
 					Element songElement = (Element)song;
 					listOfUSBSongs[i] = new Media(
+							i,
 							songElement.getAttribute("name"),
 							songElement.getAttribute("artist"),
 							songElement.getAttribute("usbLogo"),
@@ -109,6 +117,7 @@ public class USBPlayer implements IPlayer {
 			clip = AudioSystem.getClip();
 			clip.open(audioInput);
 			clip.start();
+			sendMediaToRadio();
 		} catch (UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
 		} catch (LineUnavailableException e) {
@@ -125,6 +134,53 @@ public class USBPlayer implements IPlayer {
 	public void launchPlayer() {
 		isPlaying = true;
 		playMusic();
+	}
+
+	@Override
+	public void sendMediaToRadio() {
+		radio.editPlayerInformations(listOfUSBSongs[currentSongIndex]);
+	}
+
+	@Override
+	public void setCurrentMediaIndex(int index) {
+		clip.stop();
+		currentSongIndex = index;
+		playMusic();
+	}
+	
+	@Override
+	public Media getCurrentMedia() {
+		return listOfUSBSongs[currentSongIndex];
+	}
+	
+	@Override
+	public Media getPreset1() {
+		return preset1;
+	}
+
+	@Override
+	public void setPreset1() {
+		preset1 = getCurrentMedia();
+	}
+
+	@Override
+	public Media getPreset2() {
+		return preset2;
+	}
+
+	@Override
+	public void setPreset2() {
+		preset2 = getCurrentMedia();
+	}
+
+	@Override
+	public Media getPreset3() {
+		return preset3;
+	}
+
+	@Override
+	public void setPreset3() {
+		preset3 = getCurrentMedia();
 	}
 
 }

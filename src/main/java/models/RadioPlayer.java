@@ -46,7 +46,6 @@ public class RadioPlayer {
 		instanciateOptions();
 		this.configurator = configurator;
 		player = new DABPlayer(this);
-		setCurrentState(new IdleState(this));
 		dateAndHourManager = new DateAndHourManager(this);
 	}
 
@@ -58,15 +57,15 @@ public class RadioPlayer {
 	 * Crée tous les objets correspondant à chaque options.
 	 */
 	public void instanciateOptions() {
-		optionsArray[0] = new AlarmManagementOption(this);
-		optionsArray[1] = new AudioOutOption(this);
-		optionsArray[2] = new AutotuneOption(this);
-		optionsArray[3] = new AUXInSupport(this);
-		optionsArray[4] = new BreakingNewsOption(this);
-		optionsArray[5] = new DateAndTimeAutoOption(this);
-		optionsArray[6] = new FMSupport(this);
-		optionsArray[7] = new SecondarySpeakerOption(this);
-		optionsArray[8] = new USBSupport(this);
+		optionsArray[0] = new AlarmManagementOption();
+		optionsArray[1] = new AudioOutOption();
+		optionsArray[2] = new AutotuneOption();
+		optionsArray[3] = new AUXInSupport();
+		optionsArray[4] = new BreakingNewsOption();
+		optionsArray[5] = new DateAndTimeAutoOption();
+		optionsArray[6] = new FMSupport();
+		optionsArray[7] = new SecondarySpeakerOption();
+		optionsArray[8] = new USBSupport();
 	}
 	
 	/**
@@ -75,6 +74,7 @@ public class RadioPlayer {
 	 */
 	public void manageOptions(boolean[] optionsActivated) {
 		for(int i = 0; i<optionsActivated.length;i++) {
+			optionsArray[i].setRadioPlayer(this);
 			if(optionsActivated[i]) {
 				optionsArray[i].activate();
 			}else {
@@ -237,8 +237,11 @@ public class RadioPlayer {
      *---------------------------------------------------------------
      */
 	
-	public void editPlayerInformations(String PlayerName,String name, String imgSongPath, String imgMediaPath) {
-		this.editPlayerInformations(PlayerName, name, imgSongPath, imgMediaPath);
+	public void editPlayerInformations(Media currentMedia) {
+		radioController.editPlayerInformations(currentMedia.getName(),
+				currentMedia.getName(),
+				currentMedia.getSongImagePath(), 
+				currentMedia.getMediaLogo());
 	}
 	
     
@@ -360,5 +363,4 @@ public class RadioPlayer {
 		this.usbPlayer = usbPlayer;
 	}
 
-	
 }

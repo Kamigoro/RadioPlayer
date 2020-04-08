@@ -7,12 +7,14 @@ public class AutotuneManager {
 	private RadioPlayer radio;
 	
 	public AutotuneManager(RadioPlayer radio) {
-		System.out.println("BehaviourManager : Un gestionnaire d'autotune est attachÃ© Ã  la radio");
+		System.out.println("BehaviourManager : Un gestionnaire d'autotune est attaché à la radio");
 		this.radio = radio;
 	}
 	
-	//TODO Implémenter le comportement d'autotune
 	public void autotune() {
-		System.out.println("J'autotune");
+		System.out.println("BehaviourManager : Un autotune a été demandé");
+		radio.setPreset1(radio.getPlayer().getMediaAtIndex(0));
+		radio.setPreset2(radio.getPlayer().getMediaAtIndex(1));
+		radio.setPreset3(radio.getPlayer().getMediaAtIndex(2));
 	}
 }

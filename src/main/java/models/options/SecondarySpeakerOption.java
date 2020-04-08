@@ -6,8 +6,7 @@ public class SecondarySpeakerOption implements IOption {
 
 	private RadioPlayer radio;
 	
-	public SecondarySpeakerOption(RadioPlayer radio) {
-		this.radio = radio;
+	public SecondarySpeakerOption() {
 	}
 	
 	@Override
@@ -20,4 +19,9 @@ public class SecondarySpeakerOption implements IOption {
 		System.out.println("Options : Option de deuxième haut parleur désactivée");
 	}
 
+	@Override
+	public void setRadioPlayer(RadioPlayer radio) {
+		this.radio = radio;
+	}
+	
 }
