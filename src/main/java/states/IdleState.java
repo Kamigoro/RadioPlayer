@@ -43,6 +43,9 @@ public class IdleState implements IRadioState{
 
 	@Override
 	public void autotuneClick() {
+		if(radio.getAutotuneManager() != null) {
+			radio.getAutotuneManager().autotune();
+		}
 	}
 
 	@Override

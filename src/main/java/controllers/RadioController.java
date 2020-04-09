@@ -1,11 +1,15 @@
 package controllers;
 
+import java.awt.Desktop.Action;
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
@@ -19,6 +23,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import models.Configurator;
 import models.RadioPlayer;
+import models.constants.Constant;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -39,7 +44,7 @@ public class RadioController {
 	///////////////////
 	
 	@FXML
-    private Button btnPower,btnEdit, btnFailureRadio, btnMenuRadio, btnAutotone, btnPresetUn, btnPresetDeux,btnPresetTrois, btnArrowUp, btnValidate;
+    private Button btnPower,btnEdit, btnFailureRadio, btnMenuRadio, btnAutotone, btnPresetOne, btnPresetTwo,btnPresetThree, btnArrowUp, btnValidate;
 	@FXML
     private Button btnArrowDown, btnArrowLeft, btnArrowRight, btnRadioAuxOutModifyStatus, btnRadioAlarmModifyStatus;
     @FXML
@@ -65,9 +70,12 @@ public class RadioController {
 	
 	private final int roundingFactor = 1; // no decimals rounding
 	private final DoubleProperty rotation = new SimpleDoubleProperty();
+	private long startTime;
 	
 	private RadioPlayer radio;
 	private Configurator configurator;
+	private ArrayList<Button> listOfPresets = new ArrayList<Button>();
+	private boolean isLongPressed;
 	
 	//////////////////////////////////////
 	//			Constructeur            //
@@ -82,7 +90,13 @@ public class RadioController {
 		radio = new RadioPlayer(configurator);
 		radio.setRadioController(this);
 		rotator_handle.setRotate(210);
-        
+		
+		listOfPresets.add(btnPresetOne);
+		listOfPresets.add(btnPresetTwo);
+		listOfPresets.add(btnPresetThree);
+		
+		this.presetInitialize(listOfPresets);
+
         rotator_dial.setOnAction((ActionEvent event) -> {
             event.consume();
         });
@@ -91,6 +105,28 @@ public class RadioController {
         });
 	}
 	
+	private void presetInitialize(ArrayList<Button> listOfPresets) {
+		for (Button button : listOfPresets) {
+			button.addEventFilter(MouseEvent.ANY, new EventHandler<MouseEvent>() {
+		        long startTime;
+
+		        @Override
+		        public void handle(MouseEvent event) {
+		            if (event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {
+		                startTime = System.currentTimeMillis();
+		            } else if (event.getEventType().equals(MouseEvent.MOUSE_RELEASED)) {
+		                if (System.currentTimeMillis() - startTime > 3 * 1000) {
+		                	isLongPressed = true;
+		                    System.out.println("Pressed for at least 3 seconds (" + (System.currentTimeMillis() - startTime) + " milliseconds)");
+		                } else {
+		                	isLongPressed = false;
+		                    System.out.println("Pressed for " + (System.currentTimeMillis() - startTime) + " milliseconds"); 
+		                }
+		            }
+		        }
+		    });	
+		}
+	}
 	
 	//////////////////////////////////////
 	// Fonctions intéractions graphique //
@@ -172,28 +208,41 @@ public class RadioController {
 	
 	@FXML
 	private void btnPresetOneClick(ActionEvent e) {
-		//Sauvegarde
-		radio.getPlayer().setPreset1();
-		//chargement
-		if(radio.getPlayer().getPreset1()!=null) {
-			radio.getPlayer().setCurrentMediaIndex(radio.getPlayer().getPreset1().getIndex());
+		
+		if(isLongPressed) {
+			radio.getPlayer().setPreset(Constant.indexOfFirstPreset);
+			isLongPressed = false;
+		} else {
+			if(radio.getPlayer().getPreset(Constant.indexOfFirstPreset) != null) {
+				radio.getPlayer().setCurrentMediaIndex(radio.getPlayer().getPreset(Constant.indexOfFirstPreset).getIndex());
+			}
+		}
+		
+	}
+
+	
+	@FXML
+	private void btnPresetTwoClick(ActionEvent e) {
+		if(isLongPressed) {
+			radio.getPlayer().setPreset(Constant.indexOfSecondPreset);
+			isLongPressed = false;
+		} else {
+			if(radio.getPlayer().getPreset(Constant.indexOfSecondPreset) != null) {
+				radio.getPlayer().setCurrentMediaIndex(radio.getPlayer().getPreset(Constant.indexOfSecondPreset).getIndex());
+			}
 		}
 	}
 	
 	@FXML
-	private void btnPresetTwoClick(ActionEvent e) {
-		//Sauvegarde
-		radio.getPlayer().setPreset2();
-		//chargement
-		radio.getPlayer().setCurrentMediaIndex(radio.getPlayer().getPreset2().getIndex());
-	}
-	
-	@FXML
 	private void btnPresetThreeClick(ActionEvent e) {
-		//Sauvegarde
-		radio.getPlayer().setPreset3();
-		//chargement
-		radio.getPlayer().setCurrentMediaIndex(radio.getPlayer().getPreset3().getIndex());
+		if(isLongPressed) {
+			radio.getPlayer().getPreset(Constant.indexOfThirdPreset);
+			isLongPressed = false;
+		} else {
+			if(radio.getPlayer().getPreset(Constant.indexOfThirdPreset) != null) {
+				radio.getPlayer().setCurrentMediaIndex(radio.getPlayer().getPreset(Constant.indexOfThirdPreset).getIndex());
+			}
+		}
 	}
 	
 	@FXML

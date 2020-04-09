@@ -15,4 +15,9 @@ public final class Constant {
 	public final static int maxMonthInAYear = 12;
 	public final static int minMonthInAYear = 1;
 	
+	public final static int maxPresetInRadio = 3;
+	public final static int indexOfFirstPreset = 0;
+	public final static int indexOfSecondPreset = 1;
+	public final static int indexOfThirdPreset = 2;
+	
 }

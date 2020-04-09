@@ -13,8 +13,6 @@ public class AutotuneManager {
 	
 	public void autotune() {
 		System.out.println("BehaviourManager : Un autotune a été demandé");
-		radio.setPreset1(radio.getPlayer().getMediaAtIndex(0));
-		radio.setPreset2(radio.getPlayer().getMediaAtIndex(1));
-		radio.setPreset3(radio.getPlayer().getMediaAtIndex(2));
+		radio.getPlayer().setPresetsWithAutotune();
 	}
 }

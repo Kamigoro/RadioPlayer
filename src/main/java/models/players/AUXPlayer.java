@@ -21,6 +21,7 @@ import org.xml.sax.SAXException;
 
 import models.Media;
 import models.RadioPlayer;
+import models.constants.Constant;
 
 public class AUXPlayer implements IPlayer{
 
@@ -31,14 +32,21 @@ public class AUXPlayer implements IPlayer{
 	private long currentSongTimer;
 	private RadioPlayer radio;
 	
-	private Media preset1;
-	private Media preset2;
-	private Media preset3;
+	private ArrayList<Media> listOfPresets = new ArrayList<Media>(); 
 	
 	public AUXPlayer(RadioPlayer radio) {
 		this.radio = radio;
 		listSongs();
 		currentSongIndex = 0;
+		instanciatePreset();
+	}
+	
+	private void instanciatePreset() {
+		
+		for (int i = Constant.indexOfFirstPreset; i < Constant.maxPresetInRadio; i++) {
+			listOfPresets.add(new Media());			
+		}
+		
 	}
 	
 	/**
@@ -151,34 +159,25 @@ public class AUXPlayer implements IPlayer{
 	public Media getCurrentMedia() {
 		return listOfAUXSongs[currentSongIndex];
 	}
-
+	
 	@Override
-	public Media getPreset1() {
-		return preset1;
+	public void setPresetsWithAutotune() {
+		for (int i = Constant.indexOfFirstPreset; i < Constant.maxPresetInRadio; i++) {
+			listOfPresets.set(i, listOfAUXSongs[i]);
+		}
+		
 	}
 
 	@Override
-	public void setPreset1() {
-		preset1 = getCurrentMedia();
+	public Media getPreset(int index) {
+		return listOfPresets.get(index);
 	}
 
 	@Override
-	public Media getPreset2() {
-		return preset2;
+	public void setPreset(int index) {
+		listOfPresets.set(index, getCurrentMedia());
+		
 	}
 
-	@Override
-	public void setPreset2() {
-		preset2 = getCurrentMedia();
-	}
 
-	@Override
-	public Media getPreset3() {
-		return preset3;
-	}
-
-	@Override
-	public void setPreset3() {
-		preset3 = getCurrentMedia();
-	}
 }

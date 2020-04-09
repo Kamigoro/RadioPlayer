@@ -63,12 +63,12 @@ public interface IPlayer {
 	 */
 	public void setCurrentMediaIndex(int index);
 	
-	public Media getPreset1();
-	public void setPreset1();
+	/**
+	 * Méthode qui va permettre de donner une valeur pour tous les presets du player en une fois -> Autotune
+	 */
+	public void setPresetsWithAutotune();
 	
-	public Media getPreset2();
-	public void setPreset2();
-	
-	public Media getPreset3();
-	public void setPreset3();
+	public Media getPreset(int index);
+	public void setPreset(int index);
+
 }

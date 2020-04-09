@@ -9,6 +9,9 @@ public class Media {
 	private String songImagePath;
 	private String songPath;
 	
+	public Media() {
+	}
+	
 	public Media(int index,String name, String artistOrFrequency, String mediaLogo, String songImagePath, String songPath) {
 		this.index = index;
 		this.name = name;
@@ -22,6 +25,7 @@ public class Media {
 	//  Getters et setters //
 	/////////////////////////
 	
+
 	public int getIndex() {
 		return this.index;
 	}
