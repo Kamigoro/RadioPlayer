@@ -1,6 +1,7 @@
 package models.options;
 
 import models.RadioPlayer;
+import models.behaviourManager.AudioOutManager;
 
 public class AudioOutOption implements IOption {
 
@@ -11,12 +12,20 @@ public class AudioOutOption implements IOption {
 	
 	@Override
 	public void activate() {
-		System.out.println("Options : Option de sortie extérieur activée");
+		if(radio.getAudioOutManager()==null) {
+			System.out.println("Options : Option de sortie extérieur activée");
+			radio.setAudiOutManager(new AudioOutManager(radio));
+			radio.showAuxOut();
+		}
 	}
 
 	@Override
 	public void desactivate() {
-		System.out.println("Options : Option de sortie extérieur désactivée");
+		if(radio.getAudioOutManager()!=null) {
+			System.out.println("Options : Option de sortie extérieur désactivée");
+			radio.setAudiOutManager(null);
+			radio.hideAuxOut();
+		}
 	}
 
 	@Override

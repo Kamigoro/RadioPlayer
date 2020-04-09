@@ -34,11 +34,13 @@ public class FMPlayer implements IPlayer {
 	private boolean isPlaying;
 	private Clip clip;
 	private RadioPlayer radio;
+	private boolean isWorking;
 	
 	private ArrayList<Media> listOfPresets = new ArrayList<Media>(); 
 	
 	public FMPlayer(RadioPlayer radio){
 		this.radio = radio;
+		isWorking = true;
 		listFMStations();
 		currentStationIndex = 0;
 	}
@@ -119,7 +121,10 @@ public class FMPlayer implements IPlayer {
 			AudioInputStream audioInput = AudioSystem.getAudioInputStream(songFile);
 			clip = AudioSystem.getClip();
 			clip.open(audioInput);
-			clip.start();
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
+			if(isWorking) {
+				clip.start();
+			}
 			sendMediaToRadio();
 		} catch (UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
@@ -172,6 +177,11 @@ public class FMPlayer implements IPlayer {
 	@Override
 	public void setPreset(int index) {
 		listOfPresets.set(index, getCurrentMedia());
-		
 	}
+	
+	@Override
+	public void setIsWorking(boolean isWorking) {
+		this.isWorking = isWorking;
+	}
+	
 }

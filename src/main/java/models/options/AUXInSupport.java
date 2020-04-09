@@ -23,8 +23,8 @@ public class AUXInSupport implements IOption {
 		if(radio.getAuxPlayer()!=null) {
 			radio.getAuxPlayer().stopPlayer();
 			radio.setAuxPlayer(null);
+			System.out.println("Options : Un player AUXIn a été désactivé");
 		}	
-		System.out.println("Options : Un player AUXIn a été désactivé");
 	}
 	
 	@Override

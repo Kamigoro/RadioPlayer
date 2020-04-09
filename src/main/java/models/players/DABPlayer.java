@@ -34,11 +34,13 @@ public class DABPlayer implements IPlayer {
 	private int currentStationIndex;
 	private boolean isPlaying;
 	private Clip clip;
+	private boolean isWorking;
 	
 	private ArrayList<Media> listOfPresets = new ArrayList<Media>(); 
 	
 	public DABPlayer(RadioPlayer radio){
 		listDABStations();
+		isWorking = true;
 		currentStationIndex = 0;
 		this.radio = radio;
 		instanciatePreset();
@@ -120,7 +122,10 @@ public class DABPlayer implements IPlayer {
 			AudioInputStream audioInput = AudioSystem.getAudioInputStream(songFile);
 			clip = AudioSystem.getClip();
 			clip.open(audioInput);
-			clip.start();
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
+			if(isWorking) {
+				clip.start();
+			}
 			sendMediaToRadio();
 		} catch (UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
@@ -172,7 +177,11 @@ public class DABPlayer implements IPlayer {
 
 	@Override
 	public void setPreset(int index) {
-		listOfPresets.set(index, getCurrentMedia());
-		
+		listOfPresets.set(index, getCurrentMedia());	
+	}
+	
+	@Override
+	public void setIsWorking(boolean isWorking) {
+		this.isWorking = isWorking;
 	}
 }

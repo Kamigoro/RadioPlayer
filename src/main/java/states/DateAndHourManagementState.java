@@ -131,6 +131,14 @@ public class DateAndHourManagementState implements IRadioState {
 		}
 	}
 	
+	@Override
+	public void auxOutClick() {
+		if(radio.getAudioOutManager()!= null && radio.getAudioOutManager().isWorking()) {
+			radio.getAudioOutManager().setIsEnabled(!radio.getAudioOutManager().isEnabled());//Passer de activé à non activé et inversément
+			radio.changeAuxOutStatus(radio.getAudioOutManager().isEnabled());//Changer l'interface graphique
+		}
+	}
+	
 	/**
 	 * Permet d'initaliser les valeurs de l'interface du menu date et heure à partir des informations de la radio
 	 */
@@ -268,4 +276,5 @@ public class DateAndHourManagementState implements IRadioState {
 		}
 	}
 
+	
 }

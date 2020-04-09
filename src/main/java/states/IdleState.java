@@ -65,4 +65,11 @@ public class IdleState implements IRadioState{
 		}
 	}
 
+	@Override
+	public void auxOutClick() {
+		if(radio.getAudioOutManager()!= null && radio.getAudioOutManager().isWorking()) {
+			radio.getAudioOutManager().setIsEnabled(!radio.getAudioOutManager().isEnabled());//Passer de activé à non activé et inversément
+			radio.changeAuxOutStatus(radio.getAudioOutManager().isEnabled());//Changer l'interface graphique
+		}
+	}
 }

@@ -71,4 +71,6 @@ public interface IPlayer {
 	public Media getPreset(int index);
 	public void setPreset(int index);
 
+	public void setIsWorking(boolean isWorking);
+	
 }

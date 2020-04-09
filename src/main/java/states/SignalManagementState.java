@@ -116,5 +116,13 @@ public class SignalManagementState implements IRadioState {
 			radio.changeAlarmStatus(radio.getAlarmManager().getIsEnabled());
 		}
 	}
+	
+	@Override
+	public void auxOutClick() {
+		if(radio.getAudioOutManager()!= null && radio.getAudioOutManager().isWorking()) {
+			radio.getAudioOutManager().setIsEnabled(!radio.getAudioOutManager().isEnabled());//Passer de activé à non activé et inversément
+			radio.changeAuxOutStatus(radio.getAudioOutManager().isEnabled());//Changer l'interface graphique
+		}
+	}
 
 }

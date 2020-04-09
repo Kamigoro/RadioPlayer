@@ -1,11 +1,15 @@
 package models;
 
+import controllers.ConfigurationController;
+import controllers.FailureController;
 import controllers.RadioController;
 import models.behaviourManager.*;
 import models.players.*;
 import states.IRadioState;
 import states.IdleState;
 import java.io.IOException;
+
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,6 +26,8 @@ public class RadioPlayer {
 	
 	private RadioController radioController;
 	private Configurator configurator;
+	private FailureManager failureManager;
+	private Stage failureStage;
 	
 	private IRadioState currentState;
 	private IPlayer player;
@@ -29,6 +35,8 @@ public class RadioPlayer {
 	private AutotuneManager autotuneManager;
 	private BreakingNewsManager breakingNewsManager;
 	private DateAndHourManager dateAndHourManager;
+	private VolumeManager volumeManager;
+	private AudioOutManager audioOutManager;
 	
 	private AUXPlayer auxPlayer;
 	private DABPlayer dabPlayer;
@@ -36,6 +44,7 @@ public class RadioPlayer {
 	private USBPlayer usbPlayer;
 	
 	private IOption[] optionsArray = new IOption[9];
+	private boolean isScreenWorking;
 	
 	//////////////////////////////////////
 	//			Constructeur            //
@@ -43,10 +52,12 @@ public class RadioPlayer {
 	
 	public RadioPlayer(Configurator configurator) {
 		System.out.println("MODELS : Création d'une nouvelle radio");
+		isScreenWorking = true;
 		instanciateOptions();
 		this.configurator = configurator;
 		player = new DABPlayer(this);
 		dateAndHourManager = new DateAndHourManager(this);
+		volumeManager = new VolumeManager(this);
 	}
 
 	/////////////////////////////////////
@@ -83,15 +94,43 @@ public class RadioPlayer {
 		}
 	}
 	
+	/**
+	 * Génère l'écran des pannes pour la première fois
+	 */
+	public void generateFailureScreenForTheFirstTime() {
+		try {
+	    	FXMLLoader loader = new FXMLLoader(this.getClass().getResource("../views/FailurePanel.fxml"));
+	        Parent failureRoot;
+			failureRoot = (Parent) loader.load();
+	        FailureController failureController = loader.<FailureController>getController();
+	        failureController.setRadio(this);
+	        failureManager = failureController.getFailureManager();
+	        failureStage = new Stage();
+	        failureController.setStage(failureStage);
+	        Platform.setImplicitExit(false);
+	        Scene scene = new Scene(failureRoot);
+	        failureStage.setTitle("Ecran de gestion des pannes");
+	        failureStage.setScene(scene);
+	        failureStage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	public void showFailureScreen() {
+		failureStage.show();
+	}
+	
 	/////////////////////////////////////
 	//    Délégation graphique         //
 	/////////////////////////////////////
 	
-	/**
-	 * Permet de demander au controller l'ouverture du menu
-	 */
 	public void openInitialScreen() {
-		this.radioController.initialScreen();
+		if (isScreenWorking) {
+			this.radioController.initialScreen();
+		}
 	}
 	
 	public void openConfigurationScreen() {
@@ -101,18 +140,11 @@ public class RadioPlayer {
 	public void editRadioConfiguration() {
 		this.configurator.showConfiguratorScreen();
 	}
-	
 
-    /*-----------------------------------------------------------------------
-     *---- 	  METHODES CONCERNANT LES MODIFICATIONS DU MENU   			 ----
-     *-----------------------------------------------------------------------
-     */
-	
-	/**
-	 * Permet de demander au controller l'ouverture du menu du signal d'entrée
-	 */
 	public void openMenuScreen() {
-		this.radioController.menuScreen();
+		if(isScreenWorking) {
+			this.radioController.menuScreen();
+		}
 	}
 	
 	/**
@@ -122,22 +154,11 @@ public class RadioPlayer {
 	public void changeSelectedMenu(MainMenu currentMenu) {
 		this.radioController.changeFocusMainMenu(currentMenu);
 	}
-	
-    /*-----------------------------------------------------------------------
-     *---- 	  METHODES CONCERNANT LES MODIFICATIONS DU MENU              ----
-     *-----------------------------------------------------------------------
-     */
-    
-    /*-----------------------------------------------------------------------
-     *---- 	  METHODES CONCERNANT LES MODIFICATIONS DU SIGNAL D'ENTREE   ----
-     *-----------------------------------------------------------------------
-     */
-	
-	/**
-	 * Permet de demander au controller l'ouverture du menu du signal d'entrée
-	 */
+
 	public void openInputSignalMenu() {
-		this.radioController.inputSignalMenu();
+		if (isScreenWorking) {
+			this.radioController.inputSignalMenu();
+		}
 	}
 	
 	/**
@@ -147,22 +168,11 @@ public class RadioPlayer {
 	public void changeSelectedMenuInputSignal(InputSignalMenu currentInputSignal) {
 		this.radioController.changeFocusInputSignalMenu(currentInputSignal);
 	}
-	
-    /*------------------------------------------------------------------------
-     *---- FIN METHODES CONCERNANT LES MODIFICATIONS DU SIGNAL D'ENTREE   ----
-     *------------------------------------------------------------------------
-     */
-    
-    /*-----------------------------------------------------------------------
-     *---- 	  METHODES CONCERNANT LES MODIFICATIONS DE LA DATE ET HEURE  ----
-     *-----------------------------------------------------------------------
-     */
-	
-	/**
-	 * Permet de demander au controller l'ouverture du menu de date et heure 
-	 */
+
 	public void openDateAndTimeMenu() {
-		this.radioController.dateAndTimeMenu();
+		if (isScreenWorking) {
+			this.radioController.dateAndTimeMenu();
+		}
 	}
 	
 	/**
@@ -190,21 +200,10 @@ public class RadioPlayer {
 		this.radioController.editAllDateAndTimeProperties(dateAndTimeProperties);
 	}
 	
-    /*-----------------------------------------------------------------------
-     *--- FIN  METHODES CONCERNANT LES MODIFICATIONS DE LA DATE ET HEURE  ---
-     *-----------------------------------------------------------------------
-     */
-       
-    /*---------------------------------------------------------------
-     *---- 	  METHODES CONCERNANT LES MODIFICATIONS DE L'ALARME  ----
-     *---------------------------------------------------------------
-     */
-	
-	/**
-	 * Permet de demander au controller l'ouverture du menu alarme
-	 */
 	public void openAlarmMenu() {
-		this.radioController.alarmMenu();
+		if (isScreenWorking) {
+			this.radioController.alarmMenu();
+		}
 	}
 	
 	/**
@@ -232,11 +231,6 @@ public class RadioPlayer {
 		this.radioController.changeAlarmStatus(status);
 	}
 	
-    /*---------------------------------------------------------------
-     *--- FIN  METHODES CONCERNANT LES MODIFICATIONS DE L'ALARME  ---
-     *---------------------------------------------------------------
-     */
-	
 	public void editPlayerInformations(Media currentMedia) {
 		radioController.editPlayerInformations(currentMedia.getName(),
 				currentMedia.getName(),
@@ -244,7 +238,6 @@ public class RadioPlayer {
 				currentMedia.getMediaLogo());
 	}
 	
-    
     /**
      * Méthode permettant de modifier les messages de l'écran principal de la radio
      * @param displayType énumération permettant de savoir quel label modifier dans l'écran principal
@@ -252,6 +245,32 @@ public class RadioPlayer {
      */
 	public void displayMessageOnMainScreen(DisplayType displayType, String message) {
 		this.radioController.displayMessageOnMainScreen(displayType ,message);
+	}
+	
+	public void changeVolume(String volume) {
+		this.radioController.changeVolume(volume);
+	}
+
+	public void enableSecondarySpeaker() {
+		//TODO Activer la gestion du deuxième speaker
+		this.radioController.showSecondarySpeaker();
+	}
+	
+	public void disableSecondarySpeaker() {
+		//TODO Désactiver la gestion du deuxième haut parleur
+		this.radioController.hideSecondarySpeaker();
+	}
+	
+	public void changeAuxOutStatus(boolean isEnabled) {
+		this.radioController.changeAuxOutStatus(isEnabled);
+	}
+	
+	public void hideAuxOut() {
+		this.radioController.hideAuxOut();
+	}
+	
+	public void showAuxOut() {
+		this.radioController.showAuxOut();
 	}
 	
 	/////////////////////////////////////
@@ -363,4 +382,28 @@ public class RadioPlayer {
 		this.usbPlayer = usbPlayer;
 	}
 
+	public VolumeManager getVolumeManager() {
+		return this.volumeManager;
+	}
+
+	public AudioOutManager getAudioOutManager() {
+		return this.audioOutManager;
+	}
+	
+	public void setAudiOutManager(AudioOutManager audioOutManager) {
+		this.audioOutManager = audioOutManager;
+	}
+	
+	public FailureManager getFailureManager() {
+		return this.failureManager;
+	}
+
+	public boolean isScreenWorking() {
+		return isScreenWorking;
+	}
+	
+	public void setIsScreenWorking(boolean isScreenWorking) {
+		this.isScreenWorking = isScreenWorking;
+	}
+	
 }

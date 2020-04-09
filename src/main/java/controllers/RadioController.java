@@ -163,19 +163,19 @@ public class RadioController {
     private void rotate(Double value) {
     	
     	Double Rotation = value;
-    	// Permet d'obtenir une rotation comprise entre 0 et 360 Ã  la place de -180 - 0 - 180
+    	// Permet d'obtenir une rotation comprise entre 0 et 360 à la place de -180 - 0 - 180
     	if (value < 0) Rotation = 360 + value;
 
-    	// Fixer la rotation tolÃ©rÃ©e entre 210 et 150
+    	// Fixer la rotation tolérée entre 210 et 150
     	if (Rotation > 210 || Rotation < 150) {
     		//int rounded = round(Rotation, roundingFactor);
     		rotation.set(Rotation);
     		rotator_handle.setRotate(Rotation);
-    		// Ajout de 150 Ã  la valeur pour passer dans un systÃ¨me 0 - 300 
+    		// Ajout de 150 à la valeur pour passer dans un système 0 - 300 
     		float scaleDegrees = (float) (value + 150);
     		// Division par 3 pour obtenir un pourcentage
-    		int percent = (int) (Math.round(scaleDegrees / 3));
-    		System.out.println(percent);
+    		int volume = (int) (Math.round(scaleDegrees / 3));
+    		this.radio.getVolumeManager().setVolume(volume);
     	}   
 
     }
@@ -193,7 +193,11 @@ public class RadioController {
 	
 	@FXML
 	private void btnFailureClick(ActionEvent e) {
-		//TODO implÃ©menter l'ouverture de la gestion des pannes
+		if(radio.getFailureManager() == null) {
+			radio.generateFailureScreenForTheFirstTime();
+		} else {
+			radio.showFailureScreen();
+		}
 	}
 	
 	@FXML
@@ -220,7 +224,6 @@ public class RadioController {
 		
 	}
 
-	
 	@FXML
 	private void btnPresetTwoClick(ActionEvent e) {
 		if(isLongPressed) {
@@ -274,6 +277,10 @@ public class RadioController {
     public void btnRadioAlarmModifyStatusClick(ActionEvent e) {
     	radio.getCurrentState().alarmClick();
     }
+	
+	public void btnRadioAuxOutModifyStatusClick(){
+		radio.getCurrentState().auxOutClick();
+	}
 	
 	/**
 	 * Méthode permettant de mettre au premier plan l'écran initial de la radio 
@@ -377,24 +384,13 @@ public class RadioController {
 	    		break;
     	}
     }
-    
-    /*------------------------------------------------------------------------
-     *---- FIN METHODES CONCERNANT LES MODIFICATIONS DU SIGNAL D'ENTREE   ----
-     *------------------------------------------------------------------------
-     */
-    
-    /*-----------------------------------------------------------------------
-     *---- 	  METHODES CONCERNANT LES MODIFICATIONS DE LA DATE ET HEURE  ----
-     *-----------------------------------------------------------------------
-     */
-    
+
     /**
      * Méthode permettant de mettre au premier plan l'interface de modification de la date et heure
      */
     public void dateAndTimeMenu() {
     	hboxMenuDateAndTime.toFront();
     }
-    
     
     /**
      * Méthode permettant de montrer sur l'interface quelle propriété sera sélectionnée
@@ -480,17 +476,7 @@ public class RadioController {
     	changeValueOfLabel(lblDateAndTimeMonthEdit, dateAndTimeProperties[3]);
     	changeValueOfLabel(lblDateAndTimeYearEdit, dateAndTimeProperties[4]);
     }
-    
-    /*-----------------------------------------------------------------------
-     *--- FIN  METHODES CONCERNANT LES MODIFICATIONS DE LA DATE ET HEURE  ---
-     *-----------------------------------------------------------------------
-     */
-       
-    /*---------------------------------------------------------------
-     *---- 	  METHODES CONCERNANT LES MODIFICATIONS DE L'ALARME  ----
-     *---------------------------------------------------------------
-     */
-    
+        
     /**
      * Méthode permettant de mettre au premier plan l'interface de modification de l'alarme
      */
@@ -546,6 +532,14 @@ public class RadioController {
     	}
     }
     
+    public void changeAuxOutStatus(boolean isEnabled) {
+    	if(isEnabled) {
+    		btnRadioAuxOutModifyStatus.setStyle("-fx-border-color: #42B504; -fx-border-width: 3;");
+    	} else {
+    		btnRadioAuxOutModifyStatus.setStyle("-fx-border-color: #C00000; -fx-border-width: 3;");
+    	}
+    }
+    
     /*---------------------------------------------------------------
      *--- FIN  METHODES CONCERNANT LES MODIFICATIONS DE L'ALARME  ---
      *---------------------------------------------------------------
@@ -554,6 +548,7 @@ public class RadioController {
     public void editPlayerInformations(String PlayerName, String name, String imgSongPath, String imgMediaPath) {
     	lblRadioMainScreenStationName.setText(name);
     	lblRadioMainScreenSignalType.setText(PlayerName);
+    	//TODO Charger les images des chansons etc...
     	//imgRadioMainScreenMusicImage.setImage(new Image(imgSongPath));
     	//imgRadioMainScreenStationLogo.setImage(new Image(imgMediaPath));
     }
@@ -625,6 +620,36 @@ public class RadioController {
     	}
     }
 
+    /**
+     * Fonction changeant graphiquement le volume actuel
+     * @param volume
+     */
+	public void changeVolume(String volume) {
+		lblRadioMainScreenVolumeEdit.setText(volume);
+	}
+
+	/**
+	 * Fonction rendant visible l'image du deuxième haut parleur
+	 */
+	public void showSecondarySpeaker() {
+		imgRadioSecondarySpeaker.setVisible(true);
+	}
+
+	/**
+	 * Fonction rendant invisible l'image du deuxième speaker
+	 */
+	public void hideSecondarySpeaker() {
+		imgRadioSecondarySpeaker.setVisible(false);
+	}
+    
+	public void hideAuxOut() {
+		btnRadioAuxOutModifyStatus.setVisible(false);
+	}
+	
+	public void showAuxOut() {
+		btnRadioAuxOutModifyStatus.setVisible(true);
+	}
+	
 	//////////////////////////
 	// Getters et setters   //
 	//////////////////////////
@@ -645,5 +670,7 @@ public class RadioController {
     public Configurator getConfigurator() {
     	return this.configurator;
     }
+
+    
 	
 }

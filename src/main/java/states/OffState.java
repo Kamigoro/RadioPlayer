@@ -51,4 +51,8 @@ public class OffState implements IRadioState {
 		
 	}
 
+	@Override
+	public void auxOutClick() {
+	}
+	
 }

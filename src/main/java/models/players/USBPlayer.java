@@ -32,11 +32,13 @@ public class USBPlayer implements IPlayer {
 	private Clip clip;
 	private long currentSongTimer;
 	private RadioPlayer radio;
+	private boolean isWorking;
 	
 	private ArrayList<Media> listOfPresets = new ArrayList<Media>(); 
 	
 	public USBPlayer(RadioPlayer radio) {
 		this.radio = radio;
+		isWorking = true;
 		listSongs();
 		currentSongIndex = 0;
 		instanciatePreset();
@@ -124,7 +126,10 @@ public class USBPlayer implements IPlayer {
 			AudioInputStream audioInput = AudioSystem.getAudioInputStream(songFile);
 			clip = AudioSystem.getClip();
 			clip.open(audioInput);
-			clip.start();
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
+			if(isWorking) {
+				clip.start();
+			}
 			sendMediaToRadio();
 		} catch (UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
@@ -177,7 +182,11 @@ public class USBPlayer implements IPlayer {
 	@Override
 	public void setPreset(int index) {
 		listOfPresets.set(index, getCurrentMedia());
-		
 	}
 
+	@Override
+	public void setIsWorking(boolean isWorking) {
+		this.isWorking = isWorking;
+	}
+	
 }

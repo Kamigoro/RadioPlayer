@@ -12,11 +12,13 @@ public class SecondarySpeakerOption implements IOption {
 	@Override
 	public void activate() {
 		System.out.println("Options : Option de deuxième haut parleur activée");
+		radio.enableSecondarySpeaker();
 	}
 
 	@Override
 	public void desactivate() {
 		System.out.println("Options : Option de deuxième haut parleur désactivée");
+		radio.disableSecondarySpeaker();
 	}
 
 	@Override

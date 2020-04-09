@@ -88,7 +88,7 @@
             <Image url="@../../../ressources/img/Radio/speaker.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgRadioSecondarySpeaker" fitHeight="37.0" fitWidth="37.0" layoutX="1046.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgRadioSecondarySpeaker" fitHeight="37.0" fitWidth="37.0" layoutX="1046.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../../../ressources/img/Radio/speaker.png" />
          </image>
@@ -272,7 +272,7 @@
                               <Image url="@../../../ressources/img/Song.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="lblRadioMainScreenMessageEdit" alignment="CENTER" prefHeight="26.0" prefWidth="555.0" text="Message à diffuser">
+                        <Label fx:id="lblRadioMainScreenMessageEdit" alignment="CENTER" prefHeight="26.0" prefWidth="555.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -309,7 +309,7 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblRadioMainScreenVolumeEdit" text="XX">
+                              <Label fx:id="lblRadioMainScreenVolumeEdit" text="0">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -476,7 +476,7 @@
             </HBox>
          </children>
       </StackPane>
-      <Button fx:id="btnRadioAuxOutModifyStatus" layoutX="181.0" layoutY="511.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="51.0" style="-fx-border-color: #42B504; -fx-border-width: 3;" styleClass="circleButton">
+      <Button fx:id="btnRadioAuxOutModifyStatus" onAction="#btnRadioAuxOutModifyStatusClick" layoutX="181.0" layoutY="511.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="51.0" style="-fx-border-color: #C00000; -fx-border-width: 3;" styleClass="circleButton" visible="false">
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
