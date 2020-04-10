@@ -19,7 +19,6 @@ public class AlarmManagementState implements IRadioState {
 		radio.changeSelectedMenuAlarm(selectedAlarmProperty);
 		alarmHour = radio.getAlarmManager().getTriggerHour();
 		alarmMinute = radio.getAlarmManager().getTriggerMinute();
-		System.out.println("STATES : La radio est en état de gestion des alarmes");
 	}
 	
 	@Override
@@ -93,7 +92,6 @@ public class AlarmManagementState implements IRadioState {
 		radio.getAlarmManager().setTriggerMinute(alarmMinute);
 		radio.getAlarmManager().setIsEnabled(true);
 		radio.changeAlarmStatus(radio.getAlarmManager().getIsEnabled());
-		radio.setCurrentState(new IdleState(radio));
 		radio.openInitialScreen();
 	}
 
@@ -129,5 +127,34 @@ public class AlarmManagementState implements IRadioState {
 			radio.changeAuxOutStatus(radio.getAudioOutManager().isEnabled());//Changer l'interface graphique
 		}
 	}
+
+	@Override
+	public void preset1Click(boolean isForSavingOrForLoading) {
+		if (isForSavingOrForLoading == Constant.savingPreset) {
+			radio.saveCurrentMediaAsPreset1();
+		}else {
+			radio.loadPreset1();
+		}
+	}
+
+	@Override
+	public void preset2Click(boolean isForSavingOrForLoading) {
+		if (isForSavingOrForLoading == Constant.savingPreset) {
+			radio.saveCurrentMediaAsPreset2();
+		}else {
+			radio.loadPreset2();
+		}
+	}
+
+	@Override
+	public void preset3Click(boolean isForSavingOrForLoading) {
+		if (isForSavingOrForLoading == Constant.savingPreset) {
+			radio.saveCurrentMediaAsPreset3();
+		}else {
+			radio.loadPreset3();
+		}
+	}
+
+	
 
 }

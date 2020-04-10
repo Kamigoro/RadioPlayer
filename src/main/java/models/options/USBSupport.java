@@ -14,7 +14,6 @@ public class USBSupport implements IOption {
 	@Override
 	public void activate() {
 		if(radio.getUsbPlayer()==null) {
-			System.out.println("Options : Un player USB a été créé");
 			radio.setUsbPlayer(new USBPlayer(radio));
 		}
 	}
@@ -25,7 +24,6 @@ public class USBSupport implements IOption {
 			radio.getUsbPlayer().stopPlayer();
 			radio.setUsbPlayer(null);	
 		}
-		System.out.println("Options : Un player USB a été désactivé");
 	}
 
 	@Override

@@ -21,6 +21,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import models.Configurator;
 import models.RadioPlayer;
 import models.constants.Constant;
@@ -50,17 +51,19 @@ public class RadioController {
     @FXML
     private ImageView imgRadioFirstSpeaker, imgRadioSecondarySpeaker, imgRadioMainScreenMusicImage, imgRadioMainScreenStationLogo;
     @FXML
-    private HBox hboxMenuAlarm, hboxRadioMainScreen, hboxRadioMainScreenVolume, hboxMenuDateAndTime, hboxMenuMain, hboxMenuInputSignal;
+    private HBox hboxMenuAlarm, hboxRadioMainScreen, hboxRadioMainScreenVolume, hboxMenuDateAndTime, hboxMenuMain, hboxMenuInputSignal, hboxBrokenScreen;
+    @FXML
+    private VBox vboxOffScreen;
     @FXML
     private GridPane gridMenuAlarm, gridInputSignalDAB, gridInputSignalFM, gridInputSignalUSB, gridInputSignalAuxIN, gridRadioMainScreenStationInfo;
     @FXML
-    private GridPane gridMenuDateAndTimeTimeEdit, gridMenuDateAndTimeDateEdit, gridMenuDateAndTime, gridMenuInputSignal;
+    private GridPane gridMenuDateAndTimeTimeEdit, gridMenuDateAndTimeDateEdit, gridMenuDateAndTime, gridMenuInputSignal,gridMenuAlarmEdit;
     @FXML
     private Label lblAlarmHourEdit, lblAlarmMinutEdit,lblRadioMainScreenSignalType, lblRadioMainScreenDateAndTime, lblRadioMainScreenMessageEdit;
     @FXML
-    private Label lblRadioMainScreenStationName, lblRadioMainScreenVolumeEdit, lblMenuDateAndTimeTime, lblDateAndTimeHourEdit;
+    private Label lblRadioMainScreenStationName, lblRadioMainScreenVolumeEdit, lblMenuDateAndTimeTime, lblDateAndTimeHourEdit, lblOffScreenAlarmEdit;
     @FXML
-    private Label lblDateAndTimeMinutEdit,lblMenuDateAndTimeDate, lblDateAndTimeDayEdit, lblDateAndTimeMonthEdit, lblDateAndTimeYearEdit;
+    private Label lblDateAndTimeMinutEdit,lblMenuDateAndTimeDate, lblDateAndTimeDayEdit, lblDateAndTimeMonthEdit, lblDateAndTimeYearEdit, lblOffScreenDateAndTimeEdit;
 	@FXML
 	private Button rotator_dial;
 	@FXML
@@ -117,10 +120,8 @@ public class RadioController {
 		            } else if (event.getEventType().equals(MouseEvent.MOUSE_RELEASED)) {
 		                if (System.currentTimeMillis() - startTime > 3 * 1000) {
 		                	isLongPressed = true;
-		                    System.out.println("Pressed for at least 3 seconds (" + (System.currentTimeMillis() - startTime) + " milliseconds)");
 		                } else {
 		                	isLongPressed = false;
-		                    System.out.println("Pressed for " + (System.currentTimeMillis() - startTime) + " milliseconds"); 
 		                }
 		            }
 		        }
@@ -187,7 +188,6 @@ public class RadioController {
 	
 	@FXML
 	private void btnEditClick(ActionEvent e) {
-		//TODO implÃ©menter la rÃ©ouverture du configurateur
 		radio.editRadioConfiguration();
 	}
 	
@@ -212,39 +212,31 @@ public class RadioController {
 	
 	@FXML
 	private void btnPresetOneClick(ActionEvent e) {
-		
 		if(isLongPressed) {
-			radio.getPlayer().setPreset(Constant.indexOfFirstPreset);
+			radio.getCurrentState().preset1Click(Constant.savingPreset);
 			isLongPressed = false;
 		} else {
-			if(radio.getPlayer().getPreset(Constant.indexOfFirstPreset) != null) {
-				radio.getPlayer().setCurrentMediaIndex(radio.getPlayer().getPreset(Constant.indexOfFirstPreset).getIndex());
-			}
+			radio.getCurrentState().preset1Click(Constant.loadingPreset);
 		}
-		
 	}
 
 	@FXML
 	private void btnPresetTwoClick(ActionEvent e) {
 		if(isLongPressed) {
-			radio.getPlayer().setPreset(Constant.indexOfSecondPreset);
+			radio.getCurrentState().preset2Click(Constant.savingPreset);
 			isLongPressed = false;
 		} else {
-			if(radio.getPlayer().getPreset(Constant.indexOfSecondPreset) != null) {
-				radio.getPlayer().setCurrentMediaIndex(radio.getPlayer().getPreset(Constant.indexOfSecondPreset).getIndex());
-			}
+			radio.getCurrentState().preset2Click(Constant.loadingPreset);
 		}
 	}
 	
 	@FXML
 	private void btnPresetThreeClick(ActionEvent e) {
 		if(isLongPressed) {
-			radio.getPlayer().getPreset(Constant.indexOfThirdPreset);
+			radio.getCurrentState().preset3Click(Constant.savingPreset);
 			isLongPressed = false;
 		} else {
-			if(radio.getPlayer().getPreset(Constant.indexOfThirdPreset) != null) {
-				radio.getPlayer().setCurrentMediaIndex(radio.getPlayer().getPreset(Constant.indexOfThirdPreset).getIndex());
-			}
+			radio.getCurrentState().preset3Click(Constant.loadingPreset);
 		}
 	}
 	
@@ -287,14 +279,8 @@ public class RadioController {
 	 */ 
 	public void initialScreen() {
     	hboxRadioMainScreen.toFront();
-    	//TODO Regarder pour bouger ça car c'est dégueu
     	radio.setCurrentState(new IdleState(radio));
     }
-    
-    /*-----------------------------------------------------------------------
-     *---- 	  METHODES CONCERNANT LES MODIFICATIONS DU MENU   			 ----
-     *-----------------------------------------------------------------------
-     */
 	
 	/**
 	 * Méthode permettant de mettre au premier plan l'interface de modification du signal d'entrée
@@ -330,16 +316,6 @@ public class RadioController {
     	}
     
     }
-    
-    /*-----------------------------------------------------------------------
-     *---- 	  METHODES CONCERNANT LES MODIFICATIONS DU MENU              ----
-     *-----------------------------------------------------------------------
-     */
-    
-    /*-----------------------------------------------------------------------
-     *---- 	  METHODES CONCERNANT LES MODIFICATIONS DU SIGNAL D'ENTREE   ----
-     *-----------------------------------------------------------------------
-     */
     
     /**
      * Méthode permettant de mettre au premier plan l'interface de modification du signal d'entrée
@@ -540,10 +516,19 @@ public class RadioController {
     	}
     }
     
-    /*---------------------------------------------------------------
-     *--- FIN  METHODES CONCERNANT LES MODIFICATIONS DE L'ALARME  ---
-     *---------------------------------------------------------------
+    /**
+     * Méthode permettant de montrer l'écran de veille de la radio
      */
+    public void openOffScreen() {
+    	vboxOffScreen.toFront();
+    }
+    
+    /**
+     * Méthode permettant de montrer l'écran cassé de la radio
+     */
+    public void openBrokenScreen() {
+    	hboxBrokenScreen.toFront();
+    }
     
     public void editPlayerInformations(String PlayerName, String name, String imgSongPath, String imgMediaPath) {
     	lblRadioMainScreenStationName.setText(name);
@@ -566,6 +551,8 @@ public class RadioController {
 		    	case Alarm :
 		    		lblRadioMainScreenMessageEdit.setTextFill(Color.web("#4A932E"));
 					lblRadioMainScreenMessageEdit.setText(message);
+		    		lblOffScreenAlarmEdit.setTextFill(Color.web("#4A932E"));
+		    		lblOffScreenAlarmEdit.setText(message);
 		        	break;
 		    	case BreakingNews :
 		    		lblRadioMainScreenMessageEdit.setTextFill(Color.web("#C00000"));
@@ -573,6 +560,7 @@ public class RadioController {
 		    		break;
 		    	case DateAndTime :
 		    		lblRadioMainScreenDateAndTime.setText(message);
+		    		lblOffScreenDateAndTimeEdit.setText(message);		    		
 		    		break;
 	    	}   	
     	});

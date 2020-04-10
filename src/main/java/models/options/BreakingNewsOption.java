@@ -15,14 +15,12 @@ public class BreakingNewsOption implements IOption {
 	@Override
 	public void activate() {
 		if(radio.getBreakingNewsManager()== null) {
-			System.out.println("Options : L'option Breaking news a été activée");
 			radio.setBreakingNewsManager(new BreakingNewsManager(radio));
 		}
 	}
 
 	@Override
 	public void desactivate() {
-		System.out.println("Options : L'option Breaking news a été désactivée");
 		if(radio.getBreakingNewsManager() != null) {
 			radio.getBreakingNewsManager().setIsActivated(false);
 			radio.setBreakingNewsManager(null);

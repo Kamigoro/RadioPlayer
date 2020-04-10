@@ -1,15 +1,14 @@
 package states;
 
 import models.RadioPlayer;
+import models.constants.Constant;
 
-//TODO Implémenter la navigation dans cet état
 public class IdleState implements IRadioState{
 
 	private RadioPlayer radio;
 	
 	public IdleState(RadioPlayer radio) {
 		this.radio = radio;
-		System.out.println("STATES : La radio est en état IDLE");
 		radio.getPlayer().launchPlayer();
 	}
 	
@@ -70,6 +69,33 @@ public class IdleState implements IRadioState{
 		if(radio.getAudioOutManager()!= null && radio.getAudioOutManager().isWorking()) {
 			radio.getAudioOutManager().setIsEnabled(!radio.getAudioOutManager().isEnabled());//Passer de activé à non activé et inversément
 			radio.changeAuxOutStatus(radio.getAudioOutManager().isEnabled());//Changer l'interface graphique
+		}
+	}
+	
+	@Override
+	public void preset1Click(boolean isForSavingOrForLoading) {
+		if (isForSavingOrForLoading == Constant.savingPreset) {
+			radio.saveCurrentMediaAsPreset1();
+		}else {
+			radio.loadPreset1();
+		}
+	}
+
+	@Override
+	public void preset2Click(boolean isForSavingOrForLoading) {
+		if (isForSavingOrForLoading == Constant.savingPreset) {
+			radio.saveCurrentMediaAsPreset2();
+		}else {
+			radio.loadPreset2();
+		}
+	}
+
+	@Override
+	public void preset3Click(boolean isForSavingOrForLoading) {
+		if (isForSavingOrForLoading == Constant.savingPreset) {
+			radio.saveCurrentMediaAsPreset3();
+		}else {
+			radio.loadPreset3();
 		}
 	}
 }

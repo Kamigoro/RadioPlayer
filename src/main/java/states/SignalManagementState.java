@@ -1,11 +1,12 @@
 package states;
 
 import models.RadioPlayer;
+import models.constants.Constant;
 import models.enums.InputSignalMenu;
 import models.players.DABPlayer;
 import models.players.FMPlayer;
 
-//TODO Implémenter la navigation dans cet état
+
 public class SignalManagementState implements IRadioState {
 
 	private RadioPlayer radio;
@@ -17,7 +18,6 @@ public class SignalManagementState implements IRadioState {
 		radio.openInputSignalMenu();
 		selectedInputSignal = inputSignalMenu.DAB;
 		radio.changeSelectedMenuInputSignal(selectedInputSignal);
-		System.out.println("STATES : La radio est en état de gestion des signaux");
 	}
 	
 	@Override
@@ -62,14 +62,12 @@ public class SignalManagementState implements IRadioState {
 		case DAB: 
 			radio.getPlayer().stopPlayer();
 			radio.setPlayer(new DABPlayer(radio));
-			radio.setCurrentState(new IdleState(radio));
 			radio.openInitialScreen();
 			break;
 		case FM:
 			if(radio.getFmPlayer()!=null) {
 				radio.getPlayer().stopPlayer();
 				radio.setPlayer(radio.getFmPlayer());
-				radio.setCurrentState(new IdleState(radio));
 				radio.openInitialScreen();
 			}
 			break;
@@ -77,7 +75,6 @@ public class SignalManagementState implements IRadioState {
 			if(radio.getAuxPlayer()!=null) {
 				radio.getPlayer().stopPlayer();
 				radio.setPlayer(radio.getAuxPlayer());
-				radio.setCurrentState(new IdleState(radio));
 				radio.openInitialScreen();
 			}
 			break;
@@ -85,7 +82,6 @@ public class SignalManagementState implements IRadioState {
 			if(radio.getUsbPlayer()!=null) {
 				radio.getPlayer().stopPlayer();
 				radio.setPlayer(radio.getUsbPlayer());
-				radio.setCurrentState(new IdleState(radio));
 				radio.openInitialScreen();
 			}
 			break;
@@ -122,6 +118,33 @@ public class SignalManagementState implements IRadioState {
 		if(radio.getAudioOutManager()!= null && radio.getAudioOutManager().isWorking()) {
 			radio.getAudioOutManager().setIsEnabled(!radio.getAudioOutManager().isEnabled());//Passer de activé à non activé et inversément
 			radio.changeAuxOutStatus(radio.getAudioOutManager().isEnabled());//Changer l'interface graphique
+		}
+	}
+	
+	@Override
+	public void preset1Click(boolean isForSavingOrForLoading) {
+		if (isForSavingOrForLoading == Constant.savingPreset) {
+			radio.saveCurrentMediaAsPreset1();
+		}else {
+			radio.loadPreset1();
+		}
+	}
+
+	@Override
+	public void preset2Click(boolean isForSavingOrForLoading) {
+		if (isForSavingOrForLoading == Constant.savingPreset) {
+			radio.saveCurrentMediaAsPreset2();
+		}else {
+			radio.loadPreset2();
+		}
+	}
+
+	@Override
+	public void preset3Click(boolean isForSavingOrForLoading) {
+		if (isForSavingOrForLoading == Constant.savingPreset) {
+			radio.saveCurrentMediaAsPreset3();
+		}else {
+			radio.loadPreset3();
 		}
 	}
 

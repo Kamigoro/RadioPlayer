@@ -13,6 +13,7 @@ public class ScreenFailure implements IFailure {
 	@Override
 	public void activate() {
 		radio.setIsScreenWorking(false);
+		radio.openBrokenScreen();
 	}
 
 	@Override

@@ -36,6 +36,7 @@ public class AUXPlayer implements IPlayer{
 	private ArrayList<Media> listOfPresets = new ArrayList<Media>(); 
 	
 	public AUXPlayer(RadioPlayer radio) {
+		isPlaying = false;
 		this.radio = radio;
 		isWorking = true;
 		listSongs();
@@ -120,13 +121,13 @@ public class AUXPlayer implements IPlayer{
 	@Override
 	public void playMusic() {
 		try {
-			String songPath = listOfAUXSongs[currentSongIndex].getSongPath();
-			File songFile = new File(songPath);
-			AudioInputStream audioInput = AudioSystem.getAudioInputStream(songFile);
-			clip = AudioSystem.getClip();
-			clip.open(audioInput);
-			clip.loop(Clip.LOOP_CONTINUOUSLY);
 			if(isWorking) {
+				String songPath = listOfAUXSongs[currentSongIndex].getSongPath();
+				File songFile = new File(songPath);
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(songFile);
+				clip = AudioSystem.getClip();
+				clip.open(audioInput);
+				clip.loop(Clip.LOOP_CONTINUOUSLY);
 				clip.start();
 			}
 			sendMediaToRadio();
@@ -139,13 +140,16 @@ public class AUXPlayer implements IPlayer{
 
 	@Override
 	public void stopPlayer() {
+		isPlaying = false;
 		clip.stop();
 	}
 
 	@Override
 	public void launchPlayer() {
-		isPlaying = true;
-		playMusic();
+		if(isPlaying == false) {
+			isPlaying = true;
+			playMusic();
+		}
 	}
 
 	@Override
@@ -187,7 +191,14 @@ public class AUXPlayer implements IPlayer{
 	@Override
 	public void setIsWorking(boolean isWorking) {
 		this.isWorking = isWorking;
+		if(!isWorking) {
+			stopPlayer();
+		}
 	}
 
+	@Override
+	public boolean isPlaying() {
+		return isPlaying;
+	}
 
 }

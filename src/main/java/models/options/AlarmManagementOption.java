@@ -1,6 +1,5 @@
 package models.options;
 
-import models.BreakingNewsSender;
 import models.RadioPlayer;
 import models.behaviourManager.AlarmManager;
 
@@ -13,7 +12,6 @@ public class AlarmManagementOption implements IOption {
 	
 	@Override
 	public void activate() {
-		System.out.println("Options : Option Alarme activée");
 		if(radio.getAlarmManager()==null) {
 			radio.setAlarmManager(new AlarmManager(radio));
 		}
@@ -21,7 +19,6 @@ public class AlarmManagementOption implements IOption {
 
 	@Override
 	public void desactivate() {
-		System.out.println("Options : Option Alarme désactivée");
 		radio.setAlarmManager(null);
 	}
 	

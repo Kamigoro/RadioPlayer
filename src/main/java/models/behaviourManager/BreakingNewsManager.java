@@ -19,14 +19,6 @@ import org.xml.sax.SAXException;
 import models.*;
 import models.enums.DisplayType;
 
-/**
- * Classe gérant le comportement de réception de breaking news
- * Elle hérite de thread et va constamment checker si une breaking news est présente
- * S'il y'en a une elle la renvoit à la radio
- * Pour couper le thread il faut mettre close le Socket serveur et mettre isActivated à FALSE
- * @author Dylan
- *
- */
 public class BreakingNewsManager extends Thread {
 
 	private RadioPlayer radio;
@@ -35,7 +27,6 @@ public class BreakingNewsManager extends Thread {
 	private boolean isWorking;
 	
 	public BreakingNewsManager(RadioPlayer radio) {
-		System.out.println("BehaviourManager : Un gestionnaire de breaking news est attaché à  la radio");
 		this.radio = radio;
 		isActivated = true;
 		isWorking = true;
@@ -62,7 +53,6 @@ public class BreakingNewsManager extends Thread {
 					e.printStackTrace();
 				}
 		}
-		System.out.println("Breaking News Manager : A été détruit");
 	}
 
 	/**

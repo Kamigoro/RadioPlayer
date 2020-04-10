@@ -17,7 +17,9 @@ public class BreakingNewsFailure implements IFailure {
 
 	@Override
 	public void desactivate() {
-		radio.getBreakingNewsManager().setIsWorking(true);
+		if(radio.getBreakingNewsManager() != null) {
+			radio.getBreakingNewsManager().setIsWorking(true);
+		}
 	}
 
 }

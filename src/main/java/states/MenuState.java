@@ -1,10 +1,11 @@
 package states;
 
 import models.RadioPlayer;
+import models.constants.Constant;
 import models.enums.MainMenu;
 import models.options.DateAndTimeAutoOption;
 
-//TODO Implémenter la navigation dans cet état
+
 public class MenuState implements IRadioState {
 	
 	private RadioPlayer radio;
@@ -16,7 +17,6 @@ public class MenuState implements IRadioState {
 		radio.openMenuScreen();
 		selectedMenu = mainMenu.DateAndHour;
 		radio.changeSelectedMenu(selectedMenu);
-		System.out.println("STATES : La radio est en état Menu");
 	}
 	
 	@Override
@@ -71,7 +71,6 @@ public class MenuState implements IRadioState {
 
 	@Override
 	public void menuClick() {
-		radio.setCurrentState(new IdleState(radio));
 		radio.openInitialScreen();
 	}
 
@@ -101,6 +100,33 @@ public class MenuState implements IRadioState {
 		if(radio.getAudioOutManager()!= null && radio.getAudioOutManager().isWorking()) {
 			radio.getAudioOutManager().setIsEnabled(!radio.getAudioOutManager().isEnabled());//Passer de activé à non activé et inversément
 			radio.changeAuxOutStatus(radio.getAudioOutManager().isEnabled());//Changer l'interface graphique
+		}
+	}
+	
+	@Override
+	public void preset1Click(boolean isForSavingOrForLoading) {
+		if (isForSavingOrForLoading == Constant.savingPreset) {
+			radio.saveCurrentMediaAsPreset1();
+		}else {
+			radio.loadPreset1();
+		}
+	}
+
+	@Override
+	public void preset2Click(boolean isForSavingOrForLoading) {
+		if (isForSavingOrForLoading == Constant.savingPreset) {
+			radio.saveCurrentMediaAsPreset2();
+		}else {
+			radio.loadPreset2();
+		}
+	}
+
+	@Override
+	public void preset3Click(boolean isForSavingOrForLoading) {
+		if (isForSavingOrForLoading == Constant.savingPreset) {
+			radio.saveCurrentMediaAsPreset3();
+		}else {
+			radio.loadPreset3();
 		}
 	}
 

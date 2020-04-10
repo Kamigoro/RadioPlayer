@@ -37,6 +37,7 @@ public class USBPlayer implements IPlayer {
 	private ArrayList<Media> listOfPresets = new ArrayList<Media>(); 
 	
 	public USBPlayer(RadioPlayer radio) {
+		isPlaying = false;
 		this.radio = radio;
 		isWorking = true;
 		listSongs();
@@ -121,13 +122,13 @@ public class USBPlayer implements IPlayer {
 	@Override
 	public void playMusic() {
 		try {
-			String songPath = listOfUSBSongs[currentSongIndex].getSongPath();
-			File songFile = new File(songPath);
-			AudioInputStream audioInput = AudioSystem.getAudioInputStream(songFile);
-			clip = AudioSystem.getClip();
-			clip.open(audioInput);
-			clip.loop(Clip.LOOP_CONTINUOUSLY);
 			if(isWorking) {
+				String songPath = listOfUSBSongs[currentSongIndex].getSongPath();
+				File songFile = new File(songPath);
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(songFile);
+				clip = AudioSystem.getClip();
+				clip.open(audioInput);
+				clip.loop(Clip.LOOP_CONTINUOUSLY);
 				clip.start();
 			}
 			sendMediaToRadio();
@@ -140,13 +141,16 @@ public class USBPlayer implements IPlayer {
 
 	@Override
 	public void stopPlayer() {
+		isPlaying = false;
 		clip.stop();
 	}
 
 	@Override
 	public void launchPlayer() {
-		isPlaying = true;
-		playMusic();
+		if(isPlaying == false) {
+			isPlaying = true;
+			playMusic();
+		}
 	}
 
 	@Override
@@ -187,6 +191,14 @@ public class USBPlayer implements IPlayer {
 	@Override
 	public void setIsWorking(boolean isWorking) {
 		this.isWorking = isWorking;
+		if(!isWorking) {
+			stopPlayer();
+		}
+	}
+	
+	@Override
+	public boolean isPlaying() {
+		return isPlaying;
 	}
 	
 }

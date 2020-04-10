@@ -39,6 +39,7 @@ public class FMPlayer implements IPlayer {
 	private ArrayList<Media> listOfPresets = new ArrayList<Media>(); 
 	
 	public FMPlayer(RadioPlayer radio){
+		isPlaying = false;
 		this.radio = radio;
 		isWorking = true;
 		listFMStations();
@@ -88,7 +89,7 @@ public class FMPlayer implements IPlayer {
 	public void leftClick() {
 		clip.stop();//Arr�ter la musique actuelle
 		isPlaying = true;//Quand on change de musique on la joue directement
-		if(currentStationIndex>0) {//Jouer la chanson pr�c�dente s'il y'en a une
+		if(currentStationIndex>0) {//Jouer la chanson précédente s'il y'en a une
 			currentStationIndex--;
 		} else {
 			currentStationIndex = listOfFMStations.length - 1;
@@ -116,13 +117,13 @@ public class FMPlayer implements IPlayer {
 	@Override
 	public void playMusic() {
 		try {
-			String songPath = listOfFMStations[currentStationIndex].getSongPath();
-			File songFile = new File(songPath);
-			AudioInputStream audioInput = AudioSystem.getAudioInputStream(songFile);
-			clip = AudioSystem.getClip();
-			clip.open(audioInput);
-			clip.loop(Clip.LOOP_CONTINUOUSLY);
 			if(isWorking) {
+				String songPath = listOfFMStations[currentStationIndex].getSongPath();
+				File songFile = new File(songPath);
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(songFile);
+				clip = AudioSystem.getClip();
+				clip.open(audioInput);
+				clip.loop(Clip.LOOP_CONTINUOUSLY);
 				clip.start();
 			}
 			sendMediaToRadio();
@@ -135,13 +136,16 @@ public class FMPlayer implements IPlayer {
 
 	@Override
 	public void stopPlayer() {
+		isPlaying = false;
 		clip.stop();
 	}
 
 	@Override
 	public void launchPlayer() {
-		isPlaying = true;
-		playMusic();
+		if(isPlaying == false) {
+			isPlaying = true;
+			playMusic();
+		}
 	}
 
 	@Override
@@ -182,6 +186,14 @@ public class FMPlayer implements IPlayer {
 	@Override
 	public void setIsWorking(boolean isWorking) {
 		this.isWorking = isWorking;
+		if(!isWorking) {
+			stopPlayer();
+		}
+	}
+	
+	@Override
+	public boolean isPlaying() {
+		return isPlaying;
 	}
 	
 }

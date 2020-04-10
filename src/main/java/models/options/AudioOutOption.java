@@ -13,7 +13,6 @@ public class AudioOutOption implements IOption {
 	@Override
 	public void activate() {
 		if(radio.getAudioOutManager()==null) {
-			System.out.println("Options : Option de sortie extérieur activée");
 			radio.setAudiOutManager(new AudioOutManager(radio));
 			radio.showAuxOut();
 		}
@@ -22,7 +21,6 @@ public class AudioOutOption implements IOption {
 	@Override
 	public void desactivate() {
 		if(radio.getAudioOutManager()!=null) {
-			System.out.println("Options : Option de sortie extérieur désactivée");
 			radio.setAudiOutManager(null);
 			radio.hideAuxOut();
 		}

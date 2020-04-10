@@ -14,7 +14,6 @@ public class FMSupport implements IOption {
 	@Override
 	public void activate() {
 		if(radio.getFmPlayer()==null) {
-			System.out.println("Options : Un player FM a été créé");
 			radio.setFmPlayer(new FMPlayer(radio));
 		}
 	}
@@ -25,7 +24,6 @@ public class FMSupport implements IOption {
 			radio.getFmPlayer().stopPlayer();
 			radio.setFmPlayer(null);
 		}
-		System.out.println("Options : Un player FM a été désactivé");
 	}
 	
 	@Override

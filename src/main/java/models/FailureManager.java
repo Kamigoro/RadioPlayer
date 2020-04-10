@@ -12,6 +12,10 @@ public class FailureManager {
 	private PlayerFailure playerFailure;
 	private ScreenFailure screenFailure;
 	
+	public FailureManager() {
+		
+	}
+	
 	public FailureManager(RadioPlayer radio) {
 		this.radio = radio;
 		volumeFailure = new VolumeFailure(radio);

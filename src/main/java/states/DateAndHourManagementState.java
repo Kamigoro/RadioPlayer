@@ -5,7 +5,6 @@ import models.enums.DateAndTimeMenu;
 import models.enums.MonthInYear;
 import models.constants.Constant;
 
-//TODO Implémenter la navigation dans cet état
 public class DateAndHourManagementState implements IRadioState {
 
 	private RadioPlayer radio;
@@ -20,7 +19,6 @@ public class DateAndHourManagementState implements IRadioState {
 		selectedDateAndTimeProperty = dateAndTimeMenu.Hour;
 		radio.changeSelectedMenuDateAndTime(selectedDateAndTimeProperty);
 		configureDateAndTimeProperties();
-		System.out.println("STATES : La radio est en état de gestion des heures");
 	}
 	
 	@Override
@@ -102,7 +100,6 @@ public class DateAndHourManagementState implements IRadioState {
 	@Override
 	public void okClick() {
 		radio.getDateAndHourManager().setAllDateAndTimeProperties(dateAndTimeMinute, dateAndTimeHour, dateAndTimeDay, (dateAndTimeMonth -1), dateAndTimeYear);
-		radio.setCurrentState(new IdleState(radio));
 		radio.openInitialScreen();
 	}
 
@@ -136,6 +133,33 @@ public class DateAndHourManagementState implements IRadioState {
 		if(radio.getAudioOutManager()!= null && radio.getAudioOutManager().isWorking()) {
 			radio.getAudioOutManager().setIsEnabled(!radio.getAudioOutManager().isEnabled());//Passer de activé à non activé et inversément
 			radio.changeAuxOutStatus(radio.getAudioOutManager().isEnabled());//Changer l'interface graphique
+		}
+	}
+	
+	@Override
+	public void preset1Click(boolean isForSavingOrForLoading) {
+		if (isForSavingOrForLoading == Constant.savingPreset) {
+			radio.saveCurrentMediaAsPreset1();
+		}else {
+			radio.loadPreset1();
+		}
+	}
+
+	@Override
+	public void preset2Click(boolean isForSavingOrForLoading) {
+		if (isForSavingOrForLoading == Constant.savingPreset) {
+			radio.saveCurrentMediaAsPreset2();
+		}else {
+			radio.loadPreset2();
+		}
+	}
+
+	@Override
+	public void preset3Click(boolean isForSavingOrForLoading) {
+		if (isForSavingOrForLoading == Constant.savingPreset) {
+			radio.saveCurrentMediaAsPreset3();
+		}else {
+			radio.loadPreset3();
 		}
 	}
 	

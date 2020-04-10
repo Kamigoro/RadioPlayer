@@ -20,4 +20,8 @@ public final class Constant {
 	public final static int indexOfSecondPreset = 1;
 	public final static int indexOfThirdPreset = 2;
 	
+	public final static boolean savingPreset = true;
+	public final static boolean loadingPreset = false;
+	
+	public final static int noMediaBehindPreset = -1;
 }

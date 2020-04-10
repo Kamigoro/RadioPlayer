@@ -17,7 +17,9 @@ public class AudioOutFailure implements IFailure{
 
 	@Override
 	public void desactivate() {
-		radio.getAudioOutManager().setIsWorking(true);
+		if(radio.getAudioOutManager() != null) {
+			radio.getAudioOutManager().setIsWorking(true);
+		}
 	}
 
 }

@@ -14,5 +14,9 @@ public interface IRadioState {
 	public void onOffClick();
 	public void alarmClick();
 	public void auxOutClick();
-
+	
+	public void preset1Click(boolean isForSavingOrForLoading);
+	public void preset2Click(boolean isForSavingOrForLoading);
+	public void preset3Click(boolean isForSavingOrForLoading);
+	
 }

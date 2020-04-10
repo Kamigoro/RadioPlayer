@@ -4,6 +4,7 @@ import controllers.ConfigurationController;
 import controllers.FailureController;
 import controllers.RadioController;
 import models.behaviourManager.*;
+import models.constants.Constant;
 import models.players.*;
 import states.IRadioState;
 import states.IdleState;
@@ -50,8 +51,10 @@ public class RadioPlayer {
 	//			Constructeur            //
 	//////////////////////////////////////
 	
+	public RadioPlayer() {
+	}
+	
 	public RadioPlayer(Configurator configurator) {
-		System.out.println("MODELS : Création d'une nouvelle radio");
 		isScreenWorking = true;
 		instanciateOptions();
 		this.configurator = configurator;
@@ -113,7 +116,6 @@ public class RadioPlayer {
 	        failureStage.setScene(scene);
 	        failureStage.show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -121,6 +123,36 @@ public class RadioPlayer {
 	
 	public void showFailureScreen() {
 		failureStage.show();
+	}
+	
+	public void saveCurrentMediaAsPreset1() {
+		player.setPreset(Constant.indexOfFirstPreset);
+	}
+	
+	public void saveCurrentMediaAsPreset2() {
+		player.setPreset(Constant.indexOfSecondPreset);
+	}
+	
+	public void saveCurrentMediaAsPreset3() {
+		player.setPreset(Constant.indexOfThirdPreset);
+	}
+	
+	public void loadPreset1() {
+		if(player.getPreset(Constant.indexOfFirstPreset).getIndex()!=Constant.noMediaBehindPreset) {
+			player.setCurrentMediaIndex(player.getPreset(Constant.indexOfFirstPreset).getIndex());
+		}
+	}
+	
+	public void loadPreset2() {
+		if(player.getPreset(Constant.indexOfSecondPreset).getIndex()!=Constant.noMediaBehindPreset) {
+			player.setCurrentMediaIndex(player.getPreset(Constant.indexOfSecondPreset).getIndex());
+		}
+	}
+	
+	public void loadPreset3() {
+		if(player.getPreset(Constant.indexOfThirdPreset).getIndex()!=Constant.noMediaBehindPreset) {
+			player.setCurrentMediaIndex(player.getPreset(Constant.indexOfThirdPreset).getIndex());
+		}
 	}
 	
 	/////////////////////////////////////
@@ -252,12 +284,10 @@ public class RadioPlayer {
 	}
 
 	public void enableSecondarySpeaker() {
-		//TODO Activer la gestion du deuxième speaker
 		this.radioController.showSecondarySpeaker();
 	}
 	
 	public void disableSecondarySpeaker() {
-		//TODO Désactiver la gestion du deuxième haut parleur
 		this.radioController.hideSecondarySpeaker();
 	}
 	
@@ -273,6 +303,14 @@ public class RadioPlayer {
 		this.radioController.showAuxOut();
 	}
 	
+	public void openOffScreen() {
+		this.radioController.openOffScreen();
+	}
+	
+	public void openBrokenScreen() {
+		this.radioController.openBrokenScreen();
+	}
+
 	/////////////////////////////////////
 	//			Getters et setters	   //
 	/////////////////////////////////////
@@ -306,9 +344,6 @@ public class RadioPlayer {
 	}
 
 	public void setAlarmManager(AlarmManager alarmManager) {
-		if(alarmManager == null) {
-			System.out.println("BeaviourManager : La radio n'a plus de gestionnaire d'alarme");
-		}
 		this.alarmManager = alarmManager;
 	}
 
@@ -317,9 +352,6 @@ public class RadioPlayer {
 	}
 
 	public void setAutotuneManager(AutotuneManager autotuneManager) {
-		if(autotuneManager == null) {
-			System.out.println("BeaviourManager : La radio n'a plus de gestionnaire d'autotune");
-		}
 		this.autotuneManager = autotuneManager;
 	}
 
@@ -328,9 +360,6 @@ public class RadioPlayer {
 	}
 
 	public void setBreakingNewsManager(BreakingNewsManager breakingNewsManager) {
-		if(breakingNewsManager == null) {
-			System.out.println("BeaviourManager : La radio n'a plus de gestionnaire de Breaking News");
-		}
 		this.breakingNewsManager = breakingNewsManager;
 	}
 
@@ -405,5 +434,9 @@ public class RadioPlayer {
 	public void setIsScreenWorking(boolean isScreenWorking) {
 		this.isScreenWorking = isScreenWorking;
 	}
+
+	
+
+	
 	
 }

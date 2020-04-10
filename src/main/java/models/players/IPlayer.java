@@ -73,4 +73,5 @@ public interface IPlayer {
 
 	public void setIsWorking(boolean isWorking);
 	
+	public boolean isPlaying();
 }

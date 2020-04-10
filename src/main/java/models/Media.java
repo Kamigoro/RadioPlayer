@@ -1,5 +1,7 @@
 package models;
 
+import models.constants.Constant;
+
 public class Media {
 	
 	private int index;
@@ -10,6 +12,7 @@ public class Media {
 	private String songPath;
 	
 	public Media() {
+		index = Constant.noMediaBehindPreset;
 	}
 	
 	public Media(int index,String name, String artistOrFrequency, String mediaLogo, String songImagePath, String songPath) {

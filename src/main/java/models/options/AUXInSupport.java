@@ -13,7 +13,6 @@ public class AUXInSupport implements IOption {
 	@Override
 	public void activate() {
 		if(radio.getAuxPlayer()==null) {
-			System.out.println("Options : Un player AUXIn a été créé");
 			radio.setAuxPlayer(new AUXPlayer(radio));
 		}
 	}
@@ -23,7 +22,6 @@ public class AUXInSupport implements IOption {
 		if(radio.getAuxPlayer()!=null) {
 			radio.getAuxPlayer().stopPlayer();
 			radio.setAuxPlayer(null);
-			System.out.println("Options : Un player AUXIn a été désactivé");
 		}	
 	}
 	

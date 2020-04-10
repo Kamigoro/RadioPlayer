@@ -90,12 +90,7 @@ public class Configurator {
 	 * Fonction qui va demander au controller de montrer la fenêtre de configuration
 	 */
 	public void showConfiguratorScreen() {
-		if(this.configurationController==null) {
-			System.out.println("Le configurationcontroller de configurator est null");
-		}else {
-			System.out.println("Le configurationcontroller de configurator est OK");
-			this.configurationController.showScreen();
-		}
+		this.configurationController.showScreen();
 	}
 	
 	/**

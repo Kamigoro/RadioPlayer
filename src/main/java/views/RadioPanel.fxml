@@ -27,7 +27,7 @@
             </Label>
          </children>
       </Pane>
-      <Button fx:id="btnPower" onAction="#btnPowerClick" layoutX="45.0" layoutY="48.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="45.0" styleClass="powerButton">
+      <Button fx:id="btnPower" layoutX="45.0" layoutY="48.0" mnemonicParsing="false" onAction="#btnPowerClick" prefHeight="52.0" prefWidth="45.0" styleClass="powerButton">
          <graphic>
             <ImageView fitHeight="45.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -36,7 +36,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnEdit" onAction="#btnEditClick" layoutX="976.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="45.0" styleClass="editButton">
+      <Button fx:id="btnEdit" layoutX="976.0" layoutY="50.0" mnemonicParsing="false" onAction="#btnEditClick" prefHeight="40.0" prefWidth="45.0" styleClass="editButton">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -45,7 +45,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnFailureRadio" onAction="#btnFailureClick" layoutX="1041.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="45.0" styleClass="editButton">
+      <Button fx:id="btnFailureRadio" layoutX="1041.0" layoutY="50.0" mnemonicParsing="false" onAction="#btnFailureClick" prefHeight="40.0" prefWidth="45.0" styleClass="editButton">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -54,7 +54,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnMenu" onAction="#btnMenuClick" layoutX="706.0" layoutY="286.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="51.0" styleClass="circleButton">
+      <Button fx:id="btnMenu" layoutX="706.0" layoutY="286.0" mnemonicParsing="false" onAction="#btnMenuClick" prefHeight="52.0" prefWidth="51.0" styleClass="circleButton">
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -63,22 +63,22 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnAutotune" onAction="#btnAutotuneClick" layoutX="182.0" layoutY="286.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="51.0" styleClass="autotuneAndPreset" text="A" textFill="WHITE">
+      <Button fx:id="btnAutotune" layoutX="182.0" layoutY="286.0" mnemonicParsing="false" onAction="#btnAutotuneClick" prefHeight="52.0" prefWidth="51.0" styleClass="autotuneAndPreset" text="A" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Button>
-      <Button fx:id="btnPresetOne" onAction="#btnPresetOneClick" layoutX="260.0" layoutY="286.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="51.0" styleClass="autotuneAndPreset" text="1" textFill="WHITE">
+      <Button fx:id="btnPresetOne" layoutX="260.0" layoutY="286.0" mnemonicParsing="false" onAction="#btnPresetOneClick" prefHeight="52.0" prefWidth="51.0" styleClass="autotuneAndPreset" text="1" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Button>
-      <Button fx:id="btnPresetTwo" onAction="#btnPresetTwoClick" layoutX="341.0" layoutY="286.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="51.0" styleClass="autotuneAndPreset" text="2" textFill="WHITE">
+      <Button fx:id="btnPresetTwo" layoutX="341.0" layoutY="286.0" mnemonicParsing="false" onAction="#btnPresetTwoClick" prefHeight="52.0" prefWidth="51.0" styleClass="autotuneAndPreset" text="2" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Button>
-      <Button fx:id="btnPresetThree" onAction="#btnPresetThreeClick" layoutX="419.0" layoutY="286.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="51.0" styleClass="autotuneAndPreset" text="3" textFill="WHITE">
+      <Button fx:id="btnPresetThree" layoutX="419.0" layoutY="286.0" mnemonicParsing="false" onAction="#btnPresetThreeClick" prefHeight="52.0" prefWidth="51.0" styleClass="autotuneAndPreset" text="3" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
@@ -93,7 +93,7 @@
             <Image url="@../../../ressources/img/Radio/speaker.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnArrowUp" onAction="#btnArrowUpClick" layoutX="801.0" layoutY="338.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="51.0" styleClass="circleButton">
+      <Button fx:id="btnArrowUp" layoutX="801.0" layoutY="338.0" mnemonicParsing="false" onAction="#btnArrowUpClick" prefHeight="52.0" prefWidth="51.0" styleClass="circleButton">
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
                <image>
@@ -102,7 +102,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnValidate" onAction="#btnValidateClick" layoutX="801.0" layoutY="420.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="51.0" styleClass="circleButton">
+      <Button fx:id="btnValidate" layoutX="801.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnValidateClick" prefHeight="52.0" prefWidth="51.0" styleClass="circleButton">
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -111,7 +111,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnArrowDown" onAction="#btnArrowDownClick" layoutX="801.0" layoutY="498.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="51.0" styleClass="circleButton">
+      <Button fx:id="btnArrowDown" layoutX="801.0" layoutY="498.0" mnemonicParsing="false" onAction="#btnArrowDownClick" prefHeight="52.0" prefWidth="51.0" styleClass="circleButton">
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                <image>
@@ -120,7 +120,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnArrowLeft" onAction="#btnArrowLeftClick" layoutX="724.0" layoutY="420.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="51.0" styleClass="circleButton">
+      <Button fx:id="btnArrowLeft" layoutX="724.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnArrowLeftClick" prefHeight="52.0" prefWidth="51.0" styleClass="circleButton">
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" rotate="-180.0">
                <image>
@@ -129,7 +129,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnArrowRight" onAction="#btnArrowRightClick" layoutX="880.0" layoutY="420.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="51.0" styleClass="circleButton">
+      <Button fx:id="btnArrowRight" layoutX="880.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnArrowRightClick" prefHeight="52.0" prefWidth="51.0" styleClass="circleButton">
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -140,45 +140,6 @@
       </Button>
       <StackPane layoutX="149.0" layoutY="48.0" prefHeight="226.0" prefWidth="796.0">
          <children>
-            <HBox fx:id="hboxMenuAlarm" alignment="CENTER" fillHeight="false" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="150.0" styleClass="paneMenu">
-               <children>
-                  <GridPane fx:id="gridMenuAlarm" alignment="CENTER" prefHeight="159.0" prefWidth="524.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff; -fx-background-radius: 20; -fx-border-radius: 20;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="121.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="121.0" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="222.0" text="Heure d'activation" textAlignment="CENTER" textFill="#374a64" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="22.0" />
-                           </font>
-                        </Label>
-                        <HBox alignment="CENTER" prefHeight="124.0" prefWidth="294.0" spacing="10.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.rowIndex="1">
-                           <children>
-                              <Label fx:id="lblAlarmHourEdit" text="XX" textFill="#374a64">
-                                 <font>
-                                    <Font name="System Bold" size="55.0" />
-                                 </font>
-                              </Label>
-                              <Label text=":" textFill="#374a64">
-                                 <font>
-                                    <Font name="System Bold" size="55.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="lblAlarmMinutEdit" text="XX" textFill="#374a64">
-                                 <font>
-                                    <Font name="System Bold" size="55.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                     </children>
-                  </GridPane>
-               </children>
-            </HBox>
             <HBox fx:id="hboxMenuInputSignal" alignment="CENTER" fillHeight="false" prefHeight="100.0" prefWidth="200.0" spacing="50.0" styleClass="paneMenu">
                <children>
                   <GridPane fx:id="gridInputSignalDAB" alignment="CENTER" prefHeight="130.0" prefWidth="147.0" styleClass="menuButton">
@@ -474,9 +435,70 @@
                   </GridPane>
                </children>
             </HBox>
+            <HBox fx:id="hboxMenuAlarm" alignment="CENTER" fillHeight="false" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="150.0" styleClass="paneMenu">
+               <children>
+                  <GridPane fx:id="gridMenuAlarmEdit" alignment="CENTER" prefHeight="159.0" prefWidth="524.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff; -fx-background-radius: 20; -fx-border-radius: 20;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="121.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="121.0" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="222.0" text="Heure d'activation" textAlignment="CENTER" textFill="#374a64" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="124.0" prefWidth="294.0" spacing="10.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lblAlarmHourEdit" text="XX" textFill="#374a64">
+                                 <font>
+                                    <Font name="System Bold" size="55.0" />
+                                 </font>
+                              </Label>
+                              <Label text=":" textFill="#374a64">
+                                 <font>
+                                    <Font name="System Bold" size="55.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblAlarmMinutEdit" text="XX" textFill="#374a64">
+                                 <font>
+                                    <Font name="System Bold" size="55.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+            <HBox fx:id="hboxBrokenScreen" prefHeight="100.0" prefWidth="200.0" styleClass="paneMenu">
+               <children>
+                  <ImageView fx:id="imgBrokenScreen" fitHeight="226.0" fitWidth="796.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../ressources/img/brokenScreen.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <VBox fx:id="vboxOffScreen" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="40.0" styleClass="paneMenu">
+               <children>
+                  <Label fx:id="lblOffScreenDateAndTimeEdit" text="" textFill="#374a64">
+                     <font>
+                        <Font name="System Bold" size="45.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblOffScreenAlarmEdit" text="" />
+               </children>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </VBox>
          </children>
       </StackPane>
-      <Button fx:id="btnRadioAuxOutModifyStatus" onAction="#btnRadioAuxOutModifyStatusClick" layoutX="181.0" layoutY="511.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="51.0" style="-fx-border-color: #C00000; -fx-border-width: 3;" styleClass="circleButton" visible="false">
+      <Button fx:id="btnRadioAuxOutModifyStatus" layoutX="181.0" layoutY="511.0" mnemonicParsing="false" onAction="#btnRadioAuxOutModifyStatusClick" prefHeight="52.0" prefWidth="51.0" style="-fx-border-color: #C00000; -fx-border-width: 3;" styleClass="circleButton" visible="false">
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -485,7 +507,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnRadioAlarmModifyStatus" onAction="#btnRadioAlarmModifyStatusClick" layoutX="182.0" layoutY="393.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="51.0" style="-fx-border-color: #6D6D6D; -fx-border-width: 3;" styleClass="circleButton">
+      <Button fx:id="btnRadioAlarmModifyStatus" layoutX="182.0" layoutY="393.0" mnemonicParsing="false" onAction="#btnRadioAlarmModifyStatusClick" prefHeight="52.0" prefWidth="51.0" style="-fx-border-color: #6D6D6D; -fx-border-width: 3;" styleClass="circleButton">
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -509,6 +531,5 @@
    </children>
    <stylesheets>
       <URL value="@../../../ressources/CSS/modernUI.css" />
-      <URL value="@../../../../ressources/CSS/modernUI.css" />
    </stylesheets>
 </AnchorPane>

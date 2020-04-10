@@ -1,15 +1,17 @@
 package states;
 
 import models.RadioPlayer;
+import models.constants.Constant;
 
-//TODO Implémenter la navigation dans cet état
+
 public class OffState implements IRadioState {
 
 	private RadioPlayer radio;
 	
 	public OffState(RadioPlayer radio) {
 		this.radio = radio;
-		System.out.println("STATES : La radio est en état OFF");
+		radio.getPlayer().stopPlayer();
+		radio.openOffScreen();
 	}
 	
 	@Override
@@ -42,8 +44,7 @@ public class OffState implements IRadioState {
 
 	@Override
 	public void onOffClick() {
-		System.out.println("STATES : Passage de la radio en état ON");
-		radio.setCurrentState(new IdleState(radio));
+		radio.openInitialScreen();
 	}
 	
 	@Override
@@ -53,6 +54,18 @@ public class OffState implements IRadioState {
 
 	@Override
 	public void auxOutClick() {
+	}
+	
+	@Override
+	public void preset1Click(boolean isForSavingOrForLoading) {
+	}
+
+	@Override
+	public void preset2Click(boolean isForSavingOrForLoading) {
+	}
+
+	@Override
+	public void preset3Click(boolean isForSavingOrForLoading) {
 	}
 	
 }

@@ -19,7 +19,6 @@ public class DateAndHourManager extends Thread {
 	private boolean isInAutoMode;//Booleen pour voir si on activé l'heure auto
 	
 	public DateAndHourManager(RadioPlayer radio) {
-		System.out.println("BehaviourManager : Un gestionnaire de date et heure est attaché à  la radio");
 		this.radio = radio;
 		getCurrentTime();
 		this.start();
@@ -51,7 +50,11 @@ public class DateAndHourManager extends Thread {
 		
 		if(radio.getAlarmManager() != null && radio.getAlarmManager().getIsEnabled()) {
 			if(radio.getAlarmManager().getTriggerHour() == currentHour && radio.getAlarmManager().getTriggerMinute() == currentMinute) {
-				radio.getAlarmManager().trigger();
+				if(currentSecond<30) {//Ne laisser afficher l'alarme que 30s
+					radio.getAlarmManager().trigger();
+				}else {
+					radio.getAlarmManager().stopAlarm();
+				}
 			}
 		}
 		
