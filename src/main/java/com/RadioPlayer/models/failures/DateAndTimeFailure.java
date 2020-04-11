@@ -17,7 +17,7 @@ public class DateAndTimeFailure implements IFailure {
 
 	@Override
 	public void desactivate() {
-		radio.getDateAndHourManager().getCurrentTime();
+		radio.getDateAndHourManager().adjustToSystemTime();
 	}
 
 }

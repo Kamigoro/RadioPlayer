@@ -12,7 +12,7 @@ public class DateAndTimeAutoOption implements IOption {
 	@Override
 	public void activate() {
 		radio.getDateAndHourManager().setIsInAutoMode(true);
-		radio.getDateAndHourManager().getCurrentTime();
+		radio.getDateAndHourManager().adjustToSystemTime();
 	}
 
 	@Override

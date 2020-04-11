@@ -18,9 +18,13 @@ public class DateAndHourManager extends Thread {
 	DecimalFormat formatter = new DecimalFormat("00");
 	private boolean isInAutoMode;//Booleen pour voir si on activé l'heure auto
 	
+	public DateAndHourManager() {
+		
+	}
+	
 	public DateAndHourManager(RadioPlayer radio) {
 		this.radio = radio;
-		getCurrentTime();
+		adjustToSystemTime();
 		this.start();
 	}
 	
@@ -63,7 +67,7 @@ public class DateAndHourManager extends Thread {
 	/**
 	 * Permet de récupérer l'heure et la date actuelle à partir du pc
 	 */
-	public void getCurrentTime() {
+	public void adjustToSystemTime() {
 		
 		Calendar rightNow = Calendar.getInstance();
 		currentSecond = rightNow.get(Calendar.SECOND);
@@ -166,6 +170,12 @@ public class DateAndHourManager extends Thread {
 		}
 	}
 	
+	////////////////////////////
+	//	Getters et settets	  //
+	////////////////////////////
+	
+	
+	
 	/**
 	 * Méthode permettant d'obtenir toutes les propriétés de la date et l'heure sous la forme d'un vecteur d'entier
 	 * @return un vecteur d'entier où le premier élément 0 correspond aux minutes et le dernier élément 4 correspond à l'année
@@ -185,6 +195,55 @@ public class DateAndHourManager extends Thread {
 		
 	}
 	
+	public int getCurrentHour() {
+		return currentHour;
+	}
+
+	public void setCurrentHour(int currentHour) {
+		this.currentHour = currentHour;
+	}
+
+	public int getCurrentMinute() {
+		return currentMinute;
+	}
+
+	public void setCurrentMinute(int currentMinute) {
+		this.currentMinute = currentMinute;
+	}
+
+	public int getCurrentSecond() {
+		return currentSecond;
+	}
+
+	public void setCurrentSecond(int currentSecond) {
+		this.currentSecond = currentSecond;
+	}
+
+	public int getCurrentDay() {
+		return currentDay;
+	}
+
+	public void setCurrentDay(int currentDay) {
+		this.currentDay = currentDay;
+	}
+
+	public int getCurrentMonth() {
+		return currentMonth;
+	}
+
+	public void setCurrentMonth(int currentMonth) {
+		this.currentMonth = currentMonth;
+	}
+
+	public int getCurrentYear() {
+		return currentYear;
+	}
+
+	public void setCurrentYear(int currentYear) {
+		this.currentYear = currentYear;
+	}
+	
+
 	/**
 	 * Méthode permettant de mettre à jour les propriétés de la date et l'heure en une fois
 	 * @param minute
@@ -204,6 +263,7 @@ public class DateAndHourManager extends Thread {
 		}
 	}
 
+	
 	public void setIsInAutoMode(boolean isInAutoMode) {
 		this.isInAutoMode = isInAutoMode;
 	}
