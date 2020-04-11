@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<songs>
+	<fmStation stationName="BEL RTL" frequency="97.5 MHz" fmLogo="/com/RadioPlayer/stationLogo/fmLogo.png" defaultImageForFMSong="/com/RadioPlayer/img/Song.png" songPath="/com/RadioPlayer/songs/rtl.wav"/>
+	<fmStation stationName="NRJ" frequency="98.3 MHz" fmLogo="/com/RadioPlayer/stationLogo/fmLogo.png" defaultImageForFMSong="/com/RadioPlayer/img/Song.png" songPath="/com/RadioPlayer/songs/nrj.wav"/>
+	<fmStation stationName="Radio Contact" frequency="100.6 MHz" fmLogo="/com/RadioPlayer/stationLogo/fmLogo.png" defaultImageForFMSong="/com/RadioPlayer/img/Song.png" songPath="/com/RadioPlayer/songs/radioContact.wav"/>
+	<fmStation stationName="Classic 21" frequency="102.5 MHz" fmLogo="/com/RadioPlayer/stationLogo/fmLogo.png" defaultImageForFMSong="/com/RadioPlayer/img/Song.png" songPath="/com/RadioPlayer/songs/classic21.wav"/>
+	<fmStation stationName="Fun Radio" frequency="104.4 MHz" fmLogo="/com/RadioPlayer/stationLogo/fmLogo.png" defaultImageForFMSong="/com/RadioPlayer/img/Song.png" songPath="/com/RadioPlayer/songs/funRadio.wav"/>
+	<fmStation stationName="CK Radio" frequency="105.8 MHz" fmLogo="/com/RadioPlayer/stationLogo/fmLogo.png" defaultImageForFMSong="/com/RadioPlayer/img/Song.png" songPath="/com/RadioPlayer/songs/ckRadio.wav"/>
+</songs>

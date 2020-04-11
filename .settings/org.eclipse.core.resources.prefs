@@ -1,6 +1,6 @@
 eclipse.preferences.version=1
-encoding//src/main/java/models/players/AUXPlayer.java=UTF-8
-encoding//src/main/java/models/players/DABPlayer.java=UTF-8
-encoding//src/main/java/models/players/FMPlayer.java=UTF-8
-encoding//src/main/java/models/players/IPlayer.java=UTF-8
-encoding//src/main/java/models/players/USBPlayer.java=UTF-8
+encoding//src/main/java/com/RadioPlayer/models/players/AUXPlayer.java=UTF-8
+encoding//src/main/java/com/RadioPlayer/models/players/DABPlayer.java=UTF-8
+encoding//src/main/java/com/RadioPlayer/models/players/FMPlayer.java=UTF-8
+encoding//src/main/java/com/RadioPlayer/models/players/IPlayer.java=UTF-8
+encoding//src/main/java/com/RadioPlayer/models/players/USBPlayer.java=UTF-8

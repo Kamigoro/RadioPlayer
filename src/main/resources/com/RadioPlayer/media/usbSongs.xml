@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<songs>
+	<usbsong name="On the road again" artist="Willie Nelson" usbLogo="/com/RadioPlayer/stationLogo/usbLogo.png" imageForUsbSong="/com/RadioPlayer/songsImages/willieNelson.png" songPath="/com/RadioPlayer/songs/onTheRoadAgain.wav"/>
+	<usbsong name="Paint it black" artist="The Rolling Stones" usbLogo="/com/RadioPlayer/stationLogo/usbLogo.png" imageForUsbSong="/com/RadioPlayer/songsImages/theRollingStones.png" songPath="/com/RadioPlayer/songs/paintItBlack.wav"/>
+	<usbsong name="Smoke on the water" artist="Deep purple" usbLogo="/com/RadioPlayer/stationLogo/usbLogo.png" imageForUsbSong="/com/RadioPlayer/songsImages/deepPurple.png" songPath="/com/RadioPlayer/songs/deepPurple.wav"/>
+	<usbsong name="Bohemian rhapsody" artist="Queen" usbLogo="/com/RadioPlayer/stationLogo/usbLogo.png" imageForUsbSong="/com/RadioPlayer/songsImages/queen.png" songPath="/com/RadioPlayer/songs/bohemian.wav"/>
+	<usbsong name="Livin' on a prayer" artist="Bon Jovi" usbLogo="/com/RadioPlayer/stationLogo/usbLogo.png" imageForUsbSong="/com/RadioPlayer/songsImages/bonJovi.png" songPath="/com/RadioPlayer/songs/livinOnAPrayer.wav"/>
+	<usbsong name="Thunderstruck" artist="AC/DC" usbLogo="/com/RadioPlayer/stationLogo/usbLogo.png" imageForUsbSong="/com/RadioPlayer/songsImages/acdc.png" songPath="/com/RadioPlayer/songs/thunderstruck.wav"/>
+</songs>

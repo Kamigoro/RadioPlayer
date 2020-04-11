@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<songs>
+	<auxsong name="On the road again" artist="Willie Nelson" auxLogo="/com/RadioPlayer/stationLogo/auxInLogo.png" defaultImageForAuxSong="/com/RadioPlayer/img/Song.png" songPath="/com/RadioPlayer/songs/onTheRoadAgain.wav"/>
+	<auxsong name="Paint it black" artist="The Rolling Stones" auxLogo="/com/RadioPlayer/stationLogo/auxInLogo.png" defaultImageForAuxSong="/com/RadioPlayer/img/Song.png" songPath="/com/RadioPlayer/songs/paintItBlack.wav"/>
+	<auxsong name="Smoke on the water" artist="Deep purple" auxLogo="/com/RadioPlayer/stationLogo/auxInLogo.png" defaultImageForAuxSong="/com/RadioPlayer/img/Song.png" songPath="/com/RadioPlayer/songs/deepPurple.wav"/>
+	<auxsong name="Bohemian rhapsody" artist="Queen" auxLogo="/com/RadioPlayer/stationLogo/auxInLogo.png" defaultImageForAuxSong="/com/RadioPlayer/img/Song.png" songPath="/com/RadioPlayer/songs/bohemian.wav"/>
+	<auxsong name="Livin' on a prayer" artist="Bon Jovi" auxLogo="/com/RadioPlayer/stationLogo/auxInLogo.png" defaultImageForAuxSong="/com/RadioPlayer/img/Song.png" songPath="/com/RadioPlayer/songs/livinOnAPrayer.wav"/>
+	<auxsong name="Thunderstruck" artist="AC/DC" auxLogo="/com/RadioPlayer/stationLogo/auxInLogo.png" defaultImageForAuxSong="/com/RadioPlayer/img/Song.png" songPath="/com/RadioPlayer/songs/thunderstruck.wav"/>
+
+</songs>
