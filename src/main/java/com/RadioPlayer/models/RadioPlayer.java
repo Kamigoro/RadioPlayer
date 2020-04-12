@@ -399,6 +399,10 @@ public class RadioPlayer {
 		this.dateAndHourManager = dateAndHourManager;
 	}
 	
+	public void setVolumeManager(VolumeManager volumeManager) {
+		this.volumeManager = volumeManager;
+	}
+	
 	public IPlayer getPlayer() {
 		return player;
 	}

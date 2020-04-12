@@ -81,7 +81,7 @@ public class DateAndHourManager extends Thread {
 	/**
 	 * Permet d'incrémenter les secondes et si dépassement appel de la méthode d'incrémentation des minutes
 	 */
-	private void secondIncrement() {
+	public void secondIncrement() {
 		if(currentSecond < Constant.maxSecondInAMinut) {
 			currentSecond ++;
 		} else {
@@ -149,7 +149,7 @@ public class DateAndHourManager extends Thread {
 	 * Permet de déterminer le nombre de jour dans un mois en tenant compte des années bissextile
 	 * @return retourne le nombre de jour dans un mois
 	 */
-	private int howManyDaysInAMonth() {
+	public int howManyDaysInAMonth() {
 		if ( currentMonth == month.APRIL.ordinal() || currentMonth == month.JUNE.ordinal() || currentMonth == month.SEPTEMBER.ordinal() || currentMonth == month.NOVEMBER.ordinal()) {
 			
 			return 30;  	

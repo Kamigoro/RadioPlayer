@@ -2,6 +2,7 @@ package com.RadioPlayer.states;
 
 import com.RadioPlayer.models.RadioPlayer;
 import com.RadioPlayer.models.constants.Constant;
+import com.RadioPlayer.models.enums.AlarmMenu;
 import com.RadioPlayer.models.enums.InputSignalMenu;
 import com.RadioPlayer.models.players.DABPlayer;
 import com.RadioPlayer.models.players.FMPlayer;
@@ -12,6 +13,8 @@ public class SignalManagementState implements IRadioState {
 	private RadioPlayer radio;
 	private InputSignalMenu selectedInputSignal;
 	private InputSignalMenu inputSignalMenu;
+	
+	public SignalManagementState() {}
 	
 	public SignalManagementState(RadioPlayer radio) {
 		this.radio = radio;
@@ -146,6 +149,22 @@ public class SignalManagementState implements IRadioState {
 		}else {
 			radio.loadPreset3();
 		}
+	}
+
+	public RadioPlayer getRadio() {
+		return radio;
+	}
+
+	public void setRadio(RadioPlayer radio) {
+		this.radio = radio;
+	}
+
+	public InputSignalMenu getSelectedInputSignal() {
+		return selectedInputSignal;
+	}
+
+	public void setSelectedInputSignal(InputSignalMenu selectedInputSignal) {
+		this.selectedInputSignal = selectedInputSignal;
 	}
 
 }

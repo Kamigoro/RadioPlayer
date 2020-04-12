@@ -11,6 +11,8 @@ public class AlarmManagementState implements IRadioState {
 	private AlarmMenu alarmMenu;
 	private int alarmHour, alarmMinute;
 	
+	public AlarmManagementState() {}
+	
 	public AlarmManagementState(RadioPlayer radio) {
 		this.radio = radio;
 		radio.openAlarmMenu();
@@ -153,7 +155,36 @@ public class AlarmManagementState implements IRadioState {
 			radio.loadPreset3();
 		}
 	}
+	public AlarmMenu getSelectedAlarmProperty() {
+		return selectedAlarmProperty;
+	}
 
+	public void setSelectedAlarmProperty(AlarmMenu selectedAlarmProperty) {
+		this.selectedAlarmProperty = selectedAlarmProperty;
+	}
 	
+	public int getAlarmHour() {
+		return alarmHour;
+	}
+
+	public void setAlarmHour(int alarmHour) {
+		this.alarmHour = alarmHour;
+	}
+
+	public int getAlarmMinute() {
+		return alarmMinute;
+	}
+
+	public void setAlarmMinute(int alarmMinute) {
+		this.alarmMinute = alarmMinute;
+	}
+
+	public void setRadio(RadioPlayer radio) {
+		this.radio = radio;
+	}
+
+	public RadioPlayer getRadioPlayer() {
+		return this.radio;
+	}
 
 }

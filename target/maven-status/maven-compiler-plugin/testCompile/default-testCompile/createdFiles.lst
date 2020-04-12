@@ -1,0 +1,5 @@
+com\RadioPlayer\models\behaviourManager\AudioOutManagerTest.class
+com\RadioPlayer\models\behaviourManager\BreakingNewsManagerTest.class
+com\RadioPlayer\models\behaviourManager\VolumeManagerTest.class
+com\RadioPlayer\models\behaviourManager\DateAndHourManagerTest.class
+com\RadioPlayer\models\behaviourManager\AlarmManagerTest.class

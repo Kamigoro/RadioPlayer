@@ -5,7 +5,7 @@ import com.RadioPlayer.models.RadioPlayer;
 public class AudioOutFailure implements IFailure{
 
 	private RadioPlayer radio;
-	
+		
 	public AudioOutFailure(RadioPlayer radio) {
 		this.radio = radio;
 	}

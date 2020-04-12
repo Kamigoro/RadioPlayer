@@ -54,9 +54,8 @@ public class DABPlayer implements IPlayer {
 		for (int i = Constant.indexOfFirstPreset; i < Constant.maxPresetInRadio; i++) {
 			listOfPresets.add(new Media());			
 		}
-		
 	}
-	
+
 	public Media[] listDABStations() {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
@@ -172,8 +171,7 @@ public class DABPlayer implements IPlayer {
 	public void setPresetsWithAutotune() {
 		for (int i = Constant.indexOfFirstPreset; i < Constant.maxPresetInRadio; i++) {
 			listOfPresets.set(i, listOfDABStations[i]);
-		}
-		
+		}	
 	}
 
 	@Override
@@ -199,4 +197,8 @@ public class DABPlayer implements IPlayer {
 		return isPlaying;
 	}
 	
+	public ArrayList<Media> getListOfPresets() {
+		return listOfPresets;
+	}
+
 }

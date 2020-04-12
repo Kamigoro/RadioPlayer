@@ -7,11 +7,13 @@ public class IdleState implements IRadioState{
 
 	private RadioPlayer radio;
 	
+	public IdleState() {}
+	
 	public IdleState(RadioPlayer radio) {
 		this.radio = radio;
 		radio.getPlayer().launchPlayer();
 	}
-	
+
 	@Override
 	public void leftClick() {
 		radio.getPlayer().leftClick();
@@ -97,5 +99,13 @@ public class IdleState implements IRadioState{
 		}else {
 			radio.loadPreset3();
 		}
+	}
+	
+	public RadioPlayer getRadio() {
+		return radio;
+	}
+
+	public void setRadio(RadioPlayer radio) {
+		this.radio = radio;
 	}
 }

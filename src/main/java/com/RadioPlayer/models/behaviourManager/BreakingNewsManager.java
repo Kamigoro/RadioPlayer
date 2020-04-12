@@ -27,6 +27,10 @@ public class BreakingNewsManager extends Thread {
 	private String[] breakingNewsInFile;
 	private boolean isWorking;
 	
+	public BreakingNewsManager() {
+		
+	}
+	
 	public BreakingNewsManager(RadioPlayer radio) {
 		this.radio = radio;
 		isActivated = true;
@@ -64,7 +68,7 @@ public class BreakingNewsManager extends Thread {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document document = builder.parse(this.getClass().getResourceAsStream(("../../media/breakingNews.xml")));
+			Document document = builder.parse(this.getClass().getResourceAsStream(("/com/RadioPlayer/media/breakingNews.xml")));
 			NodeList breakingNewsList = document.getElementsByTagName("breakingNews");
 			breakingNewsInFile = new String[breakingNewsList.getLength()];
 			for (int i = 0; i<breakingNewsList.getLength();i++) {
@@ -90,6 +94,14 @@ public class BreakingNewsManager extends Thread {
 	
 	public void setIsWorking(boolean isWorking) {
 		this.isWorking = isWorking;
+	}
+	
+	public boolean isActivated() {
+		return this.isActivated;
+	}
+	
+	public boolean isWorking() {
+		return this.isWorking;
 	}
 	
 }

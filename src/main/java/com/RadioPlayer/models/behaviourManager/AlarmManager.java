@@ -8,6 +8,10 @@ public class AlarmManager {
 	private int triggerHour, triggerMinute;
 	private RadioPlayer radio;
 	private boolean isEnabled;
+	
+	public AlarmManager() {
+		
+	}
 
 	public AlarmManager(RadioPlayer radio) {
 		this.radio = radio;

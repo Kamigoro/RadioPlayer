@@ -1,62 +1,75 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="0" failures="0" name="com.RadioPlayer.models.behaviourManager.DateAndHourManagerTest" time="0" errors="0" skipped="0">
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.RadioPlayer.models.behaviourManager.DateAndHourManagerTest" time="0.02" tests="14" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="java.vm.version" value="12.0.2+10"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-12.0.2\bin"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\Dylan\Desktop\RadioPlayer"/>
-    <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="java.vendor.url" value="https://java.oracle.com/"/>
-    <property name="guice.disable.misplaced.annotation.check" value="true"/>
-    <property name="path.separator" value=";"/>
-    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="sun.os.patch.level" value=""/>
-    <property name="user.script" value=""/>
-    <property name="user.country" value="BE"/>
-    <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\Dylan\Desktop\RadioPlayer"/>
-    <property name="java.vm.compressedOopsMode" value="Zero based"/>
-    <property name="java.runtime.version" value="12.0.2+10"/>
-    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="os.arch" value="amd64"/>
-    <property name="java.io.tmpdir" value="C:\Users\Dylan\AppData\Local\Temp\"/>
-    <property name="line.separator" value="
-"/>
-    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="user.variant" value=""/>
-    <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="C:\Users\Dylan\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf3934145126847182861.tmp"/>
-    <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-12.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jdk-12.0.2/bin/server;C:/Program Files/Java/jdk-12.0.2/bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;E:\Program Files\PuTTY\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Git\cmd;C:\Android;C:\Users\Dylan\AppData\Local\Microsoft\WindowsApps;C:\Users\Dylan\AppData\Local\GitHubDesktop\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.3.3\bin;;C:\apache-maven-3.6.3\bin;C:\Program Files (x86)\Sophos\Sophos SSL VPN Client\bin;C:\Windows\System32;;."/>
-    <property name="jdk.debug" value="release"/>
-    <property name="java.class.version" value="56.0"/>
-    <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="10.0"/>
-    <property name="user.home" value="C:\Users\Dylan"/>
-    <property name="user.timezone" value="Europe/Brussels"/>
-    <property name="file.encoding" value="Cp1252"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
     <property name="java.specification.version" value="12"/>
-    <property name="user.name" value="Dylan"/>
-    <property name="java.class.path" value="C:\Users\Dylan\.p2\pool\plugins\org.eclipse.m2e.maven.runtime_1.14.0.20191209-1923\jars\plexus-classworlds-2.6.0.jar"/>
-    <property name="java.vm.specification.version" value="12"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="E:\UMONS\ModLog\RadioPlayer\target\test-classes;E:\UMONS\ModLog\RadioPlayer\target\classes;C:\Users\lse\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.5.2\junit-jupiter-api-5.5.2.jar;C:\Users\lse\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\lse\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\lse\.m2\repository\org\junit\platform\junit-platform-commons\1.5.2\junit-platform-commons-1.5.2.jar;C:\Users\lse\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.5.2\junit-jupiter-engine-5.5.2.jar;C:\Users\lse\.m2\repository\org\junit\platform\junit-platform-engine\1.5.2\junit-platform-engine-1.5.2.jar;C:\Users\lse\.m2\repository\org\openjfx\javafx-controls\13\javafx-controls-13.jar;C:\Users\lse\.m2\repository\org\openjfx\javafx-controls\13\javafx-controls-13-win.jar;C:\Users\lse\.m2\repository\org\openjfx\javafx-graphics\13\javafx-graphics-13.jar;C:\Users\lse\.m2\repository\org\openjfx\javafx-graphics\13\javafx-graphics-13-win.jar;C:\Users\lse\.m2\repository\org\openjfx\javafx-base\13\javafx-base-13.jar;C:\Users\lse\.m2\repository\org\openjfx\javafx-base\13\javafx-base-13-win.jar;C:\Users\lse\.m2\repository\org\openjfx\javafx-fxml\11.0.1\javafx-fxml-11.0.1.jar;C:\Users\lse\.m2\repository\org\openjfx\javafx-fxml\11.0.1\javafx-fxml-11.0.1-win.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B test"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk-12.0.2"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Europe/Brussels"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="12"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="BE"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-12.0.1\bin"/>
+    <property name="sun.java.command" value="C:\Users\lse\AppData\Local\Temp\surefire8495597449499644267\surefirebooter7331901001220680658.jar C:\Users\lse\AppData\Local\Temp\surefire8495597449499644267 2020-04-13T00-57-28_895-jvmRun1 surefire18327797821728892782tmp surefire_018259544259009467243tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="E:\UMONS\ModLog\RadioPlayer\target\test-classes;E:\UMONS\ModLog\RadioPlayer\target\classes;C:\Users\lse\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.5.2\junit-jupiter-api-5.5.2.jar;C:\Users\lse\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\lse\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\lse\.m2\repository\org\junit\platform\junit-platform-commons\1.5.2\junit-platform-commons-1.5.2.jar;C:\Users\lse\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.5.2\junit-jupiter-engine-5.5.2.jar;C:\Users\lse\.m2\repository\org\junit\platform\junit-platform-engine\1.5.2\junit-platform-engine-1.5.2.jar;C:\Users\lse\.m2\repository\org\openjfx\javafx-controls\13\javafx-controls-13.jar;C:\Users\lse\.m2\repository\org\openjfx\javafx-controls\13\javafx-controls-13-win.jar;C:\Users\lse\.m2\repository\org\openjfx\javafx-graphics\13\javafx-graphics-13.jar;C:\Users\lse\.m2\repository\org\openjfx\javafx-graphics\13\javafx-graphics-13-win.jar;C:\Users\lse\.m2\repository\org\openjfx\javafx-base\13\javafx-base-13.jar;C:\Users\lse\.m2\repository\org\openjfx\javafx-base\13\javafx-base-13-win.jar;C:\Users\lse\.m2\repository\org\openjfx\javafx-fxml\11.0.1\javafx-fxml-11.0.1.jar;C:\Users\lse\.m2\repository\org\openjfx\javafx-fxml\11.0.1\javafx-fxml-11.0.1-win.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\lse"/>
     <property name="user.language" value="fr"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
-    <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="java.version" value="12.0.2"/>
-    <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="C:\Users\Dylan\Desktop\RadioPlayer\EMBEDDED"/>
+    <property name="java.version.date" value="2019-04-16"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-12.0.1"/>
     <property name="file.separator" value="\"/>
-    <property name="java.version.date" value="2019-07-16"/>
+    <property name="basedir" value="E:\UMONS\ModLog\RadioPlayer"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="C:\Users\lse\AppData\Local\Temp\surefire8495597449499644267\surefirebooter7331901001220680658.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="12.0.1+12"/>
+    <property name="user.name" value="lse"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\lse\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\lse\AppData\Local\Temp\"/>
+    <property name="java.version" value="12.0.1"/>
+    <property name="user.dir" value="E:\UMONS\ModLog\RadioPlayer"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-12.0.1\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jdk-12.0.1/bin/server;C:/Program Files/Java/jdk-12.0.1/bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\PuTTY\;C:\Program Files\dotnet\;C:\Program Files\Symantec.cloud\PlatformAgent\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft Dynamics AX\60\Client\Bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Symfony;C:\Users\lse\php-7.3.6-Win32-VC15-x64;C:\composer;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Users\lse\AppData\Local\Microsoft\WindowsApps;C:\Users\lse\AppData\Roaming\Composer\vendor\bin;C:\Users\lse\AppData\Local\GitHubDesktop\bin;E:\UMONS\UML\MikTex\miktex\bin\x64\;C:\Users\lse\AppData\Local\Microsoft\WindowsApps;C:\WINDOWS\System32;;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="12.0.1+12"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="sun.cpu.endian" value="little"/>
-    <property name="sun.desktop" value="windows"/>
-    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="java.class.version" value="56.0"/>
   </properties>
+  <testcase name="getCurrentMonthTest" classname="com.RadioPlayer.models.behaviourManager.DateAndHourManagerTest" time="0"/>
+  <testcase name="getCurrentSecondTest" classname="com.RadioPlayer.models.behaviourManager.DateAndHourManagerTest" time="0"/>
+  <testcase name="howManyDaysInAMonthTest" classname="com.RadioPlayer.models.behaviourManager.DateAndHourManagerTest" time="0.001"/>
+  <testcase name="setDatePropertiesTest" classname="com.RadioPlayer.models.behaviourManager.DateAndHourManagerTest" time="0"/>
+  <testcase name="timeSecondToMinuteIncrementationTest" classname="com.RadioPlayer.models.behaviourManager.DateAndHourManagerTest" time="0"/>
+  <testcase name="getCurrentDayTest" classname="com.RadioPlayer.models.behaviourManager.DateAndHourManagerTest" time="0"/>
+  <testcase name="setAllPropertiesTest" classname="com.RadioPlayer.models.behaviourManager.DateAndHourManagerTest" time="0.001"/>
+  <testcase name="getCurrentMinuteTest" classname="com.RadioPlayer.models.behaviourManager.DateAndHourManagerTest" time="0"/>
+  <testcase name="autoModeSwitchTest" classname="com.RadioPlayer.models.behaviourManager.DateAndHourManagerTest" time="0"/>
+  <testcase name="getCurrentYearTest" classname="com.RadioPlayer.models.behaviourManager.DateAndHourManagerTest" time="0.001"/>
+  <testcase name="timeSecondToHourIncrementationTest" classname="com.RadioPlayer.models.behaviourManager.DateAndHourManagerTest" time="0.001"/>
+  <testcase name="monthInAYearEnumTest" classname="com.RadioPlayer.models.behaviourManager.DateAndHourManagerTest" time="0.001"/>
+  <testcase name="howManyDaysInALeapYearTest" classname="com.RadioPlayer.models.behaviourManager.DateAndHourManagerTest" time="0.001"/>
+  <testcase name="getCurrentHourTest" classname="com.RadioPlayer.models.behaviourManager.DateAndHourManagerTest" time="0.008"/>
 </testsuite>

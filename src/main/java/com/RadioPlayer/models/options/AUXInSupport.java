@@ -29,5 +29,4 @@ public class AUXInSupport implements IOption {
 	public void setRadioPlayer(RadioPlayer radio) {
 		this.radio = radio;
 	}
-
 }

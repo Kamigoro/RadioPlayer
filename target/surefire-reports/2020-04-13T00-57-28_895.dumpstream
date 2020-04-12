@@ -1,0 +1,4 @@
+# Created at 2020-04-13T00:57:29.170
+Boot Manifest-JAR contains absolute paths in classpath 'E:\UMONS\ModLog\RadioPlayer\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+

@@ -12,6 +12,8 @@ public class MenuState implements IRadioState {
 	private MainMenu selectedMenu;
 	private MainMenu mainMenu;
 	
+	public MenuState() {}
+	
 	public MenuState(RadioPlayer radio) {
 		this.radio = radio;
 		radio.openMenuScreen();
@@ -129,5 +131,22 @@ public class MenuState implements IRadioState {
 			radio.loadPreset3();
 		}
 	}
+	
+	public RadioPlayer getRadio() {
+		return radio;
+	}
+
+	public void setRadio(RadioPlayer radio) {
+		this.radio = radio;
+	}
+
+	public MainMenu getSelectedMenu() {
+		return selectedMenu;
+	}
+
+	public void setSelectedMenu(MainMenu selectedMenu) {
+		this.selectedMenu = selectedMenu;
+	}
+
 
 }

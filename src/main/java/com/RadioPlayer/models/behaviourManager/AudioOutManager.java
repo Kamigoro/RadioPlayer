@@ -8,6 +8,10 @@ public class AudioOutManager {
 	private boolean isEnabled;
 	private RadioPlayer radio;
 	
+	public AudioOutManager() {
+		
+	}
+	
 	public AudioOutManager(RadioPlayer radio) {
 		this.radio = radio;
 		isWorking = true;

@@ -13,6 +13,8 @@ public class DateAndHourManagementState implements IRadioState {
 	private int dateAndTimeHour,dateAndTimeMinute,dateAndTimeDay,dateAndTimeMonth,dateAndTimeYear;
 	private MonthInYear monthInYear;
 	
+	public DateAndHourManagementState() {}
+
 	public DateAndHourManagementState(RadioPlayer radio) {
 		this.radio = radio;
 		radio.openDateAndTimeMenu();
@@ -300,5 +302,67 @@ public class DateAndHourManagementState implements IRadioState {
 		}
 	}
 
-	
+	public RadioPlayer getRadio() {
+		return radio;
+	}
+
+	public void setRadio(RadioPlayer radio) {
+		this.radio = radio;
+	}
+
+	public DateAndTimeMenu getSelectedDateAndTimeProperty() {
+		return selectedDateAndTimeProperty;
+	}
+
+	public void setSelectedDateAndTimeProperty(DateAndTimeMenu selectedDateAndTimeProperty) {
+		this.selectedDateAndTimeProperty = selectedDateAndTimeProperty;
+	}
+
+	public DateAndTimeMenu getDateAndTimeMenu() {
+		return dateAndTimeMenu;
+	}
+
+	public void setDateAndTimeMenu(DateAndTimeMenu dateAndTimeMenu) {
+		this.dateAndTimeMenu = dateAndTimeMenu;
+	}
+
+	public int getDateAndTimeHour() {
+		return dateAndTimeHour;
+	}
+
+	public void setDateAndTimeHour(int dateAndTimeHour) {
+		this.dateAndTimeHour = dateAndTimeHour;
+	}
+
+	public int getDateAndTimeMinute() {
+		return dateAndTimeMinute;
+	}
+
+	public void setDateAndTimeMinute(int dateAndTimeMinute) {
+		this.dateAndTimeMinute = dateAndTimeMinute;
+	}
+
+	public int getDateAndTimeDay() {
+		return dateAndTimeDay;
+	}
+
+	public void setDateAndTimeDay(int dateAndTimeDay) {
+		this.dateAndTimeDay = dateAndTimeDay;
+	}
+
+	public int getDateAndTimeMonth() {
+		return dateAndTimeMonth;
+	}
+
+	public void setDateAndTimeMonth(int dateAndTimeMonth) {
+		this.dateAndTimeMonth = dateAndTimeMonth;
+	}
+
+	public int getDateAndTimeYear() {
+		return dateAndTimeYear;
+	}
+
+	public void setDateAndTimeYear(int dateAndTimeYear) {
+		this.dateAndTimeYear = dateAndTimeYear;
+	}
 }

@@ -13,6 +13,10 @@ public class VolumeManager {
 	private boolean isWorking;
 	private RadioPlayer radio;
 	
+	public VolumeManager() {
+		
+	}
+	
 	public VolumeManager(RadioPlayer radio) {
 		this.radio = radio;
 		volume = 0;
