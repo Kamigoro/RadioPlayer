@@ -466,6 +466,10 @@ public class RadioPlayer {
 	public void setIsScreenWorking(boolean isScreenWorking) {
 		this.isScreenWorking = isScreenWorking;
 	}
+	
+	public IOption[] getOptionArray() {
+		return this.optionsArray;
+	}
 
 	
 

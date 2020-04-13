@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<songs>
-	<dabStation stationName="BEL RTL" frequency="" stationLogo="/com/RadioPlayer/stationLogo/rtl.png" stationImage="/com/RadioPlayer/stationLogo/rtl.png" songPath="/com/RadioPlayer/songs/rtl.wav"/>
-	<dabStation stationName="NRJ" frequency="" stationLogo="/com/RadioPlayer/stationLogo/nrj.png" stationImage="/com/RadioPlayer/stationLogo/nrj.png" songPath="/com/RadioPlayer/songs/nrj.wav"/>
-	<dabStation stationName="Radio Contact" frequency="" stationLogo="/com/RadioPlayer/stationLogo/radioContact.png" stationImage="/com/RadioPlayer/stationLogo/radioContact.png" songPath="/com/RadioPlayer/songs/radioContact.wav"/>
-	<dabStation stationName="Classic 21" frequency="" stationLogo="/com/RadioPlayer/stationLogo/classic21.png" stationImage="/com/RadioPlayer/stationLogo/classic21.png" songPath="/com/RadioPlayer/songs/classic21.wav"/>
-	<dabStation stationName="Fun Radio" frequency="" stationLogo="/com/RadioPlayer/stationLogo/funRadio.png" stationImage="/com/RadioPlayer/stationLogo/funRadio.png" songPath="/com/RadioPlayer/songs/funRadio.wav"/>
-	<dabStation stationName="CK Radio" frequency="" stationLogo="/com/RadioPlayer/stationLogo/ckRadio.png" stationImage="/com/RadioPlayer/stationLogo/ckRadio.png" songPath="/com/RadioPlayer/songs/ckRadio.wav"/>
-</songs>

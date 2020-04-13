@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.RadioPlayer.models.player.DABPlayerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s - in com.RadioPlayer.models.player.DABPlayerTest
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.001 s <<< FAILURE! - in com.RadioPlayer.models.player.DABPlayerTest
+dabPlayerListPresetTest  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalArgumentException: InputStream cannot be null
+	at com.RadioPlayer.models.player.DABPlayerTest.dabPlayerInit(DABPlayerTest.java:21)
+

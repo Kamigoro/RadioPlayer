@@ -36,6 +36,14 @@ public class FailureManager {
 	//			Getters et setters	   //
 	/////////////////////////////////////
 	
+	public RadioPlayer getRadio() {
+		return radio;
+	}
+
+	public void setRadio(RadioPlayer radio) {
+		this.radio = radio;
+	}
+
 	public VolumeFailure getVolumeFailure() {
 		return volumeFailure;
 	}
